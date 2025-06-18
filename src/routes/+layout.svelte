@@ -3,7 +3,7 @@
 
     let { children } = $props();
 
-    const BLOB_COUNT = 101;
+    const BLOB_COUNT = 100;
     const BLOB_CANVAS_WIDTH = 5000;
     const BLOB_CANVAS_HEIGHT = 2000;
     const MIN_DISTANCE_FACTOR = 0.8; // adjust how tightly blobs can be placed
@@ -35,7 +35,7 @@
                 top,
                 left,
                 colorClass: Math.random() > 0.5 ? 'bg-primary-700' : 'bg-primary-800',
-                opacity: Math.random() * 0.3 + 0.25,
+                opacity: Math.random() * 0.1 + 0.1,
                 blur: ['blur-2xl', 'blur-2xl', 'blur-3xl'][Math.floor(Math.random() * 3)],
             };
 
@@ -54,7 +54,7 @@
     }
 </script>
 
-<div class="bg-accent-900 relative h-screen w-full overflow-hidden">
+<div class="bg-background-800 relative h-screen w-full overflow-hidden">
     <!-- Static blob canvas -->
     <div
         class="pointer-events-none absolute top-1/2 left-1/2"
