@@ -57,3 +57,43 @@
     --color-background-900: #070707;
     --color-background-950: #000000;
 }
+
+@font-face {
+  font-family: 'Atma';
+  src: url('/fonts/atma/Atma-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Atma';
+  src: url('/fonts/atma/Atma-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Atma';
+  src: url('/fonts/atma/Atma-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Atma';
+  src: url('/fonts/atma/Atma-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Atma';
+  src: url('/fonts/atma/Atma-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-atma {
+  font-family: 'Atma', cursive;
+}
+
