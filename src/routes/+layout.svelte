@@ -75,7 +75,7 @@
     </div>
 
     <!-- Foreground content -->
-    <div class="relative z-10 container p-5 text-white md:mx-36">
+    <div class="relative z-1 container mx-auto w-full max-w-4xl p-5 text-white">
         {@render children()}
     </div>
 </div>
