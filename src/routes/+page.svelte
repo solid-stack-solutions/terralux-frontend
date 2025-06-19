@@ -1,22 +1,26 @@
 <div class="flex justify-center">
-  <h1 class="text-6xl font-atma font-bold">Terralux</h1>
+    <h1 class="text-6xl font-bold">Terralux</h1>
 </div>
 
-<div class="flex flex-col lg:flex-row mt-8 gap-8 px-4">
-  <div class="flex-1">
-    <p class="mt-4 text-3xl font-atma font-medium">
-      Die smarte <strong class="font-bold">all-in-one</strong> Lampensteuerung für dein Reptil.
-    </p>
-    <div class="flex justify-center mt-6">
-      <button type="button" class="btn preset-filled-primary-500 text-3xl">
-        Jetzt starten
-      </button>
+<div class="mt-8 flex flex-col gap-8 px-4 lg:flex-row">
+    <div class="flex-1">
+        <p class="mt-4 text-3xl font-medium">
+            Die smarte <strong class="font-bold">all-in-one</strong> Lampensteuerung für dein Reptil.
+        </p>
+        <div class="mt-6 flex justify-center">
+            <button type="button" class="btn preset-filled-primary-500 text-3xl">
+                Jetzt starten
+            </button>
+        </div>
     </div>
-  </div>
 
- <div class="flex-1 flex justify-center items-center">
-  <img src="image/Reptiel_Auf_Ast.png" alt="Reptil auf Ast" class="h-63 rounded object-cover" />
-</div> 
+    <div class="flex flex-1 justify-center">
+        <img
+            src="image/reptileOnBranch.png"
+            alt="Ein Reptil auf einem Ast"
+            class="h-63 rounded object-cover"
+        />
+    </div>
 </div>
 
 <div class="bg-primary-500 h-20 w-20"></div>
