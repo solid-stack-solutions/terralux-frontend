@@ -1,3 +1,7 @@
+<script lang="ts">
+    import ConfigIpModal from '$lib/components/configIpModal.svelte';
+</script>
+
 <div class="flex justify-center">
     <h1 class="text-6xl font-bold">Terralux</h1>
 </div>
@@ -8,9 +12,7 @@
             Die smarte <strong class="font-bold">all-in-one</strong> Lampensteuerung für dein Reptil.
         </p>
         <div class="mt-6 flex justify-center">
-            <button type="button" class="btn preset-filled-primary-500 text-3xl">
-                Jetzt starten
-            </button>
+            <ConfigIpModal triggerText="Jetzt starten" />
         </div>
     </div>
 
