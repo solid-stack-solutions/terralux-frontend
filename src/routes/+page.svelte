@@ -8,7 +8,7 @@
       Die smarte <strong class="font-bold">all-in-one</strong> Lampensteuerung für dein Reptil.
     </p>
     <div class="flex justify-center mt-6">
-      <button class="text-3xl bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-6 rounded">
+      <button type="button" class="btn preset-filled-primary-500 text-3xl">
         Jetzt starten
       </button>
     </div>
@@ -20,5 +20,5 @@
 </div>
 
 <div class="bg-primary-500 h-20 w-20"></div>
-<div class="bg-accent-500 h-20 w-20"></div>
 <div class="bg-secondary-500 h-20 w-20"></div>
+<div class="bg-tertiary-500 h-20 w-20"></div>
