@@ -12,14 +12,14 @@
     <div class="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
         <div class="flex flex-col">
             <h2 class="mb-2 text-center text-xl font-semibold">Matürlicher Standort</h2>
-            <div class="aspect-[6/5] w-full overflow-hidden shadow">
+            <div class="aspect-[6/5] w-full shadow">
                 <MapClickMarker onSelect={(pos) => (natCoords = pos)} />
             </div>
         </div>
 
         <div class="flex flex-col">
             <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
-            <div class="aspect-[6/5] w-full overflow-hidden shadow">
+            <div class="aspect-[6/5] w-full shadow">
                 <MapClickMarker onSelect={(pos) => (terrCoords = pos)} />
             </div>
         </div>

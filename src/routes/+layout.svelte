@@ -54,7 +54,7 @@
     }
 </script>
 
-<div class="bg-background-800 relative h-screen w-full overflow-hidden">
+<div class="bg-background-800 relative h-screen w-full">
     <!-- Static blob canvas -->
     <div
         class="pointer-events-none absolute top-1/2 left-1/2"
@@ -75,7 +75,7 @@
     </div>
 
     <!-- Foreground content -->
-    <div class="relative z-1 container mx-auto h-screen w-full max-w-4xl p-5 text-white">
+    <div class="relative z-1 container mx-auto w-full max-w-4xl p-5 text-white">
         {@render children()}
     </div>
 </div>
