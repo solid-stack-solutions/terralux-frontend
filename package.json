@@ -39,6 +39,7 @@
     },
     "dependencies": {
         "@lucide/svelte": "^0.522.0",
+        "apexcharts": "^4.7.0",
         "lucide-svelte": "^0.522.0"
     }
 }

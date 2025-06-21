@@ -1,5 +1,10 @@
 <script lang="ts">
   import { Power } from '@lucide/svelte';
+  import MonitorChart from '$lib/components/monitorChart.svelte';
+
+
+  
+
 </script>
 
 <div class="flex justify-center">
@@ -9,6 +14,8 @@
     </button>
     <Power />
 </div>
+
+<MonitorChart />
 
 <div class="flex justify-center">
     <button type="button" class="btn preset-filled-tertiary-500 w-128">Neu konfigurieren</button>
