@@ -7,7 +7,11 @@
         openState = false;
     }
 
-    let { triggerText = 'Jetzt starten' } = $props();
+    let {
+        triggerText = 'Jetzt starten',
+        // TODO validate IP address
+        onConfirm,
+    }: { triggerText: string; onConfirm: (e: MouseEvent) => void } = $props();
 </script>
 
 <Modal
@@ -41,7 +45,7 @@
             <button type="button" class=" btn preset-filled-surface-500" onclick={modalClose}
                 >Cancel</button
             >
-            <button type="button" class="btn preset-filled-success-500" onclick={modalClose}
+            <button type="button" class="btn preset-filled-success-500" onclick={onConfirm}
                 >Confirm</button
             >
         </footer>

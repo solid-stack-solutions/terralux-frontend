@@ -1,5 +1,10 @@
 <script lang="ts">
+    import { goto } from '$app/navigation';
     import ConfigIpModal from '$lib/components/configIpModal.svelte';
+
+    function onConfirmIP(e: MouseEvent) {
+        goto('/configure');
+    }
 </script>
 
 <div class="flex justify-center">
@@ -12,7 +17,7 @@
             Die smarte <strong class="font-bold">all-in-one</strong> Lampensteuerung für dein Reptil.
         </p>
         <div class="mt-6 flex justify-center">
-            <ConfigIpModal triggerText="Jetzt starten" />
+            <ConfigIpModal triggerText="Jetzt starten" onConfirm={onConfirmIP} />
         </div>
     </div>
 
