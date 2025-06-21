@@ -7,9 +7,7 @@
     }
 </script>
 
-<div class="flex justify-center">
-    <h1 class="text-6xl font-bold">Terralux</h1>
-</div>
+<h1 class="text-center text-6xl font-bold">Terralux</h1>
 
 <div class="mt-8 flex flex-col gap-8 px-4 lg:flex-row">
     <div class="flex-1">
