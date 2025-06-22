@@ -118,9 +118,7 @@
                     'var(--color-tertiary-700)',
                     'var(--color-error-700)',
                 ],
-
             },
-            
         },
         grid: {
             borderColor: 'var(--color-surface-400)',
@@ -184,7 +182,7 @@
             },
             labels: {
                 datetimeFormatter: {
-                    year: "MMM",
+                    year: 'MMM',
                     month: 'MMM',
                 },
                 style: {
