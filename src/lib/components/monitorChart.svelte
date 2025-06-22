@@ -71,6 +71,14 @@
             background: 'transparent',
             type: 'line',
             height: 550,
+            dropShadow: {
+                enabled: true,
+                color: '#000',
+                top: 18,
+                left: 7,
+                blur: 10,
+                opacity: 1,
+            },
             animations: {
                 enabled: true,
                 animateGradually: {
@@ -91,6 +99,13 @@
             floating: false,
             onItemHover: {
                 highlightDataSeries: false,
+            },
+        },
+        grid: {
+            borderColor: 'oklch(60.44% 0.07 134.69deg)',
+            row: {
+                colors: ['oklch(60.44% 0.07 134.69deg)', 'transparent'],
+                opacity: 0.05,
             },
         },
         tooltip: {
