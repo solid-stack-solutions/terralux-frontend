@@ -100,11 +100,32 @@
             onItemHover: {
                 highlightDataSeries: false,
             },
+            customLegendItems: [
+                'Natürlich 🌞',
+                'Terrarium 🌞',
+                'Lampe 🌞',
+                'Natürlich 🌚',
+                'Terrarium 🌚',
+                'Lampe 🌚',
+            ],
+            markers: {
+                offsetX: -5,
+                fillColors: [
+                    'var(--color-primary-400)',
+                    'var(--color-tertiary-400)',
+                    'var(--color-error-300)',
+                    'var(--color-primary-700)',
+                    'var(--color-tertiary-700)',
+                    'var(--color-error-700)',
+                ],
+
+            },
+            
         },
         grid: {
-            borderColor: 'var(--color-primary-500)',
+            borderColor: 'var(--color-surface-400)',
             row: {
-                colors: ['var(--color-primary-500)', 'transparent'],
+                colors: ['var(--color-surface-400)', 'transparent'],
                 opacity: 0.05,
             },
         },
@@ -121,20 +142,20 @@
                 data: seriesDataNaturalSunrise,
             },
             {
-                name: 'Terrarium 🌞',
-                data: seriesDataLocalSunrise,
-            },
-            {
-                name: 'Lampe 🌞',
-                data: seriesDataOn,
-            },
-            {
                 name: 'Natürlich 🌚',
                 data: seriesDataNaturalSunset,
             },
             {
+                name: 'Terrarium 🌞',
+                data: seriesDataLocalSunrise,
+            },
+            {
                 name: 'Terrarium 🌚',
                 data: seriesDataLocalSunset,
+            },
+            {
+                name: 'Lampe 🌞',
+                data: seriesDataOn,
             },
             {
                 name: 'Lampe 🌚',
@@ -143,10 +164,10 @@
         ],
         colors: [
             'var(--color-primary-400)',
-            'var(--color-tertiary-400)',
-            'var(--color-error-300)',
             'var(--color-primary-700',
+            'var(--color-tertiary-400)',
             'var(--color-tertiary-700)',
+            'var(--color-error-300)',
             'var(--color-error-700)',
         ],
         stroke: {
