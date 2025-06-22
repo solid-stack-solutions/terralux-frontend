@@ -1,74 +1,144 @@
 <script lang="ts">
-    // https://www.reddit.com/r/sveltejs/comments/n508th/apex_chart_with_sveltekit/
-
-    import { onMount } from 'svelte';
-    import type ApexChartsClass from 'apexcharts';
-
+    // Types for typescript support
+    import ApexChartsClass from 'apexcharts';
     import type { ApexOptions } from 'apexcharts';
 
-    var options = {
-        series: [
-            {
-                name: 'Desktops',
-                data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
-            },
-        ],
-        chart: {
-            height: 350,
-            type: 'line',
-            zoom: {
-                enabled: false,
-            },
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        stroke: {
-            curve: 'straight',
-        },
+    import { onMount, onDestroy } from 'svelte';
+    import { browser } from '$app/environment';
+
+    // Dummy data
+    import configData from '$lib/data/Configuration-Data.json';
+
+    // Prepare data
+    const toDecimalTime = (hour: number, minute: number): number =>
+        Math.round((hour + minute / 60) * 1000) / 1000;
+
+    const mapToDatetimeSeries = (values: number[]): { x: Date; y: number }[] =>
+        values.map((y, index) => ({
+            x: new Date(2025, 0, index + 1),
+            y,
+        }));
+
+    // Chart
+    let chart: ApexChartsClass;
+    let chartElement: HTMLDivElement;
+
+    // Data
+    const dataNaturalSunrise: number[] = configData.natural_timers.map((timer) =>
+        toDecimalTime(timer.on_time.hour, timer.on_time.minute),
+    );
+
+    const seriesData = mapToDatetimeSeries(dataNaturalSunrise);
+
+    const dataNaturalSunset: number[] = configData.natural_timers.map((timer) =>
+        toDecimalTime(timer.off_time.hour, timer.off_time.minute),
+    );
+    const dataLocalSunrise: number[] = configData.local_timers.map((timer) =>
+        toDecimalTime(timer.on_time.hour, timer.on_time.minute),
+    );
+    const dataLocalSunset: number[] = configData.local_timers.map((timer) =>
+        toDecimalTime(timer.off_time.hour, timer.off_time.minute),
+    );
+    const dataOn: number[] = configData.computed_timers.map((timer) =>
+        toDecimalTime(timer.on_time.hour, timer.on_time.minute),
+    );
+    const dataOff: number[] = configData.computed_timers.map((timer) =>
+        toDecimalTime(timer.off_time.hour, timer.off_time.minute),
+    );
+
+    const options: ApexOptions = {
         title: {
-            text: 'Product Trends by Month',
+            text: 'Sonnenzeiten & Schaltpunkte',
             align: 'left',
         },
-        grid: {
-            row: {
-                colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-                opacity: 0.5,
+        chart: {
+            fontFamily: 'Atma',
+            foreColor: '#fff',
+            type: 'line',
+            height: 550,
+            zoom: {
+                enabled: true,
             },
         },
+        legend: {
+            position: 'bottom',
+            fontSize: '17px',
+            floating: false,
+        },
+        tooltip: {
+            enabled: true,
+            style: {
+                fontFamily: 'Atma',
+                fontSize: '12px',
+            },
+        },
+        series: [
+            {
+                name: 'Nat. 🌞',
+                data: seriesData,
+            },
+            // {
+            //     name: 'Nat. 🌚',
+            //     data: dataNaturalSunset,
+            // },
+            // {
+            //     name: 'Ter. 🌞',
+            //     data: dataLocalSunrise,
+            // },
+            // {
+            //     name: 'Ter. 🌚',
+            //     data: dataLocalSunset,
+            // },
+            // {
+            //     name: 'Lampe 🌞',
+            //     data: dataOn,
+            // },
+            // {
+            //     name: 'Lampe 🌚',
+            //     data: dataOff,
+            // },
+        ],
+        colors: [
+            'oklch(68.12% 0.07 134.27deg)',
+            'oklch(46.16% 0.07 134.91deg)',
+            'oklch(78% 0.09 69.51deg)',
+            'oklch(62.11% 0.07 70.73deg)',
+            'oklch(68.49% 0.11 21.67deg)',
+            'oklch(43.24% 0.12 23.56deg)',
+        ],
         xaxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+            title: {
+                text: 'Monat',
+            },
+            type: 'datetime'
+        },
+        yaxis: {
+            reversed: true,
+            min: 0,
+            max: 24,
+            tickAmount: 8,
+            title: {
+                text: 'Stunde',
+            },
         },
     };
 
-    let ApexCharts: typeof ApexChartsClass;
-    let loaded = false;
-
-    const chart = (node: HTMLElement) => {
-        if (!loaded) return;
-
-        const myChart = new ApexCharts(node, options);
-        myChart.render();
-
-        return {
-            update(newOptions: ApexOptions) {
-                myChart.updateOptions(newOptions);
-            },
-            destroy() {
-                myChart.destroy();
-            },
-        };
-    };
-
+    // When first rendered
     onMount(async () => {
-        const module = await import('apexcharts');
-        ApexCharts = module.default;
-        loaded = true;
+        // Only render on client
+        if (browser) {
+            const ApexCharts = (await import('apexcharts')).default;
+            chart = new ApexCharts(chartElement, options);
+            await chart.render();
+        }
+    });
+
+    // When leaving site
+    onDestroy(() => {
+        if (chart) {
+            chart.destroy();
+        }
     });
 </script>
 
-{#if loaded}
-    <div use:chart></div>
-{:else}
-    <p>Diagramm wird geladen …</p>
-{/if}
+<div class="p-10" bind:this={chartElement}></div>

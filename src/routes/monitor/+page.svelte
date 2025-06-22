@@ -1,17 +1,11 @@
 <script lang="ts">
-  import { Power } from '@lucide/svelte';
-  import MonitorChart from '$lib/components/monitorChart.svelte';
-
-
-  
-
+    import { Power } from '@lucide/svelte';
+    import MonitorChart from '$lib/components/monitorChart.svelte';
 </script>
 
 <div class="flex justify-center">
     <h1 class="text-4xl font-bold">Terralux Kontrollstation</h1>
-    <button type="button" class="btn preset-filled-success-500 w-16">
-        ON 
-    </button>
+    <button type="button" class="btn preset-filled-success-500 w-16"> ON </button>
     <Power />
 </div>
 
