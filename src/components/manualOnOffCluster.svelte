@@ -3,8 +3,8 @@
     import type { PowerState } from '$lib/response-types';
     import { onMount } from 'svelte';
 
+    let loading = true;
     let currentPowerState: boolean = false;
-    let loading = false;
 
     function changeState(power: boolean) {
         changePlugState(power);
@@ -24,7 +24,7 @@
         <button
             type="button"
             class="btn preset-filled-success-500"
-            disabled={currentPowerState || loading}
+            disabled={loading || currentPowerState }
             onclick={() => changeState(true)}
         >
             An
@@ -32,7 +32,7 @@
         <button
             type="button"
             class="btn preset-filled-error-500"
-            disabled={!currentPowerState || loading}
+            disabled={loading || !currentPowerState}
             onclick={() => changeState(false)}
         >
             Aus
