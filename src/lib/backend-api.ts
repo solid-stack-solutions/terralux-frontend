@@ -7,7 +7,7 @@ import { getBackendUrl, endpoints } from './backend-util';
  */
 async function changePlugState(power: boolean): Promise<Response> {
     return await tryFetching(getBackendUrl() + endpoints.put.power_state, HTTP_METHOD.PUT, null, {
-        power: power,
+        power: power.toString(),
     });
 }
 
