@@ -5,19 +5,25 @@
 
     import { onMount, onDestroy } from 'svelte';
     import { browser } from '$app/environment';
+    import apexchartsLocaleDE from '$lib/apexcharts-locales/de.json';
 
     // Dummy data
     import configData from '$lib/data/Configuration-Data.json';
 
     // Prepare data
-    const toDecimalTime = (hour: number, minute: number): number =>
-        Math.round((hour + minute / 60) * 1000) / 1000;
+    const toDecimalTime = (hour: number, minute: number): number => hour + minute / 60;
 
     const mapToDatetimeSeries = (values: number[]): { x: Date; y: number }[] =>
         values.map((y, index) => ({
             x: new Date(2025, 0, index + 1),
             y,
         }));
+
+    function convertToHourMinute(value: number): string {
+        const hours = Math.floor(value);
+        const minutes = Math.round((value - hours) * 60);
+        return `${hours.toString()}:${minutes.toString().padStart(2, '0')}`;
+    }
 
     // Chart
     let chart: ApexChartsClass;
@@ -27,9 +33,6 @@
     const dataNaturalSunrise: number[] = configData.natural_timers.map((timer) =>
         toDecimalTime(timer.on_time.hour, timer.on_time.minute),
     );
-
-    const seriesData = mapToDatetimeSeries(dataNaturalSunrise);
-
     const dataNaturalSunset: number[] = configData.natural_timers.map((timer) =>
         toDecimalTime(timer.off_time.hour, timer.off_time.minute),
     );
@@ -45,20 +48,42 @@
     const dataOff: number[] = configData.computed_timers.map((timer) =>
         toDecimalTime(timer.off_time.hour, timer.off_time.minute),
     );
+    const seriesDataNaturalSunrise = mapToDatetimeSeries(dataNaturalSunrise);
+    const seriesDataNaturalSunset = mapToDatetimeSeries(dataNaturalSunset);
+    const seriesDataLocalSunrise = mapToDatetimeSeries(dataLocalSunrise);
+    const seriesDataLocalSunset = mapToDatetimeSeries(dataLocalSunset);
+    const seriesDataOn = mapToDatetimeSeries(dataOn);
+    const seriesDataOff = mapToDatetimeSeries(dataOff);
 
     const options: ApexOptions = {
         title: {
             text: 'Sonnenzeiten & Schaltpunkte',
             align: 'left',
+            style: {
+                fontSize: '20px',
+            },
         },
         chart: {
             fontFamily: 'Atma',
+            locales: [apexchartsLocaleDE],
+            defaultLocale: 'de',
             foreColor: '#fff',
+            background: 'transparent',
             type: 'line',
             height: 550,
+            animations: {
+                enabled: true,
+                animateGradually: {
+                    enabled: false,
+                    delay: 50,
+                },
+            },
             zoom: {
                 enabled: true,
             },
+        },
+        theme: {
+            mode: 'dark',
         },
         legend: {
             position: 'bottom',
@@ -75,28 +100,28 @@
         series: [
             {
                 name: 'Nat. 🌞',
-                data: seriesData,
+                data: seriesDataNaturalSunrise,
             },
-            // {
-            //     name: 'Nat. 🌚',
-            //     data: dataNaturalSunset,
-            // },
-            // {
-            //     name: 'Ter. 🌞',
-            //     data: dataLocalSunrise,
-            // },
-            // {
-            //     name: 'Ter. 🌚',
-            //     data: dataLocalSunset,
-            // },
-            // {
-            //     name: 'Lampe 🌞',
-            //     data: dataOn,
-            // },
-            // {
-            //     name: 'Lampe 🌚',
-            //     data: dataOff,
-            // },
+            {
+                name: 'Nat. 🌚',
+                data: seriesDataNaturalSunset,
+            },
+            {
+                name: 'Ter. 🌞',
+                data: seriesDataLocalSunrise,
+            },
+            {
+                name: 'Ter. 🌚',
+                data: seriesDataLocalSunset,
+            },
+            {
+                name: 'Lampe 🌞',
+                data: seriesDataOn,
+            },
+            {
+                name: 'Lampe 🌚',
+                data: seriesDataOff,
+            },
         ],
         colors: [
             'oklch(68.12% 0.07 134.27deg)',
@@ -106,11 +131,27 @@
             'oklch(68.49% 0.11 21.67deg)',
             'oklch(43.24% 0.12 23.56deg)',
         ],
+        stroke: {
+            width: [2, 2, 2, 2, 4, 4],
+            dashArray: [4, 4, 4, 4, 0, 0],
+        },
         xaxis: {
+            type: 'datetime',
             title: {
                 text: 'Monat',
+                style: {
+                    fontSize: '14px',
+                },
             },
-            type: 'datetime'
+            labels: {
+                datetimeFormatter: {
+                    year: "MMM 'yy",
+                },
+                style: {
+                    fontSize: '14px',
+                    cssClass: 'font-normal',
+                },
+            },
         },
         yaxis: {
             reversed: true,
@@ -119,11 +160,19 @@
             tickAmount: 8,
             title: {
                 text: 'Stunde',
+                style: {
+                    fontSize: '14px',
+                },
+            },
+            labels: {
+                style: {
+                    fontSize: '14px',
+                },
+                formatter: convertToHourMinute,
             },
         },
     };
 
-    // When first rendered
     onMount(async () => {
         // Only render on client
         if (browser) {
@@ -133,7 +182,6 @@
         }
     });
 
-    // When leaving site
     onDestroy(() => {
         if (chart) {
             chart.destroy();
