@@ -11,4 +11,13 @@ async function changePlugState(power: boolean): Promise<Response> {
     });
 }
 
-export { changePlugState };
+async function getPlugState(): Promise<Response> {
+    return await tryFetching(
+        getBackendUrl() + endpoints.get.power_state,
+        HTTP_METHOD.GET,
+        null,
+        '',
+    );
+}
+
+export { changePlugState, getPlugState };
