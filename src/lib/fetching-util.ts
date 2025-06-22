@@ -1,6 +1,12 @@
 // Import 🐦
 import { ConstantBackoff, handleAll, retry } from 'cockatiel';
 
+enum HTTP_METHOD {
+    GET = "GET",
+    POST = "POST",
+    PUT = "PUT"
+}
+
 const retryPolicy = retry(handleAll, {
     maxAttempts: 10, // Try 10 times
     backoff: new ConstantBackoff(1000), // Wait 1s after each try
@@ -8,8 +14,8 @@ const retryPolicy = retry(handleAll, {
 
 async function tryFetching(
     url: string,
-    method: string,
-    body: string,
+    method: HTTP_METHOD,
+    body: string | null,
     query: any,
 ) {
     if (query) {
@@ -18,9 +24,9 @@ async function tryFetching(
     return await retryPolicy.execute(async () => {
             return await fetch(
                 new Request(url, {
-                    method: method,
+                    method: method ? method.toString() : HTTP_METHOD.GET.toString(),
                     headers: {
-                        'Content-Type': body === undefined ? 'text/plain' : 'application/json',
+                        'Content-Type': body === null ? 'text/plain' : 'application/json',
                     },
                     body: body ? JSON.stringify(body) : '',
                 }),
@@ -28,4 +34,4 @@ async function tryFetching(
     });
 }
 
-export { tryFetching };
+export { tryFetching, HTTP_METHOD };
