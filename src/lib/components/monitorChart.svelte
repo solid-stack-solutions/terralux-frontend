@@ -163,7 +163,8 @@
             },
             labels: {
                 datetimeFormatter: {
-                    year: "MMM 'yy",
+                    year: "MMM",
+                    month: 'MMM',
                 },
                 style: {
                     fontSize: '14px',
