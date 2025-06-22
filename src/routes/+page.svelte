@@ -22,7 +22,8 @@
         <img
             src="image/reptileOnBranch.png"
             alt="Ein Reptil auf einem Ast"
-            class="h-63 rounded object-cover" />
+            class="h-63 rounded object-cover"
+        />
     </div>
     <ManualOnOffCluster></ManualOnOffCluster>
 </div>

@@ -5,9 +5,12 @@
 
     let currentPowerState: boolean = false;
     let loading = false;
+
     function changeState(power: boolean) {
         changePlugState(power);
+        currentPowerState = power;
     }
+
     onMount(async () => {
         loading = true;
         const data: PowerState = await (await getPlugState()).json();
@@ -22,14 +25,16 @@
             type="button"
             class="btn preset-filled-success-500"
             disabled={!currentPowerState || loading}
-            onclick={() => changeState(true)}>
+            onclick={() => changeState(true)}
+        >
             An
         </button>
         <button
             type="button"
             class="btn preset-filled-error-500"
             disabled={currentPowerState || loading}
-            onclick={() => changeState(false)}>
+            onclick={() => changeState(false)}
+        >
             Aus
         </button>
     </div>
