@@ -52,6 +52,15 @@
 
         if (valid && blob) blobs.push(blob);
     }
+
+    import { onMount } from 'svelte';
+    import { loadConfig } from '$lib/load-config';
+    import { backendUrl } from '$lib/backend-util';
+    // read and cache persistent configuration into store
+	onMount(async () => {
+		const config = await loadConfig();
+		backendUrl.set(config.backendUrl);
+	});
 </script>
 
 <div class="bg-background-800 relative h-screen w-full overflow-hidden">
