@@ -31,6 +31,6 @@
             disabled={currentPowerState || loading}
             onclick={() => changeState(false)}>
             Aus
-            </button>
+        </button>
     </div>
 </div>

@@ -67,8 +67,7 @@
     <!-- Static blob canvas -->
     <div
         class="pointer-events-none absolute top-1/2 left-1/2"
-        style={`width: ${BLOB_CANVAS_WIDTH}px; height: ${BLOB_CANVAS_HEIGHT}px; transform: translate(-50%, -50%);`}
-    >
+        style={`width: ${BLOB_CANVAS_WIDTH}px; height: ${BLOB_CANVAS_HEIGHT}px; transform: translate(-50%, -50%);`}>
         {#each blobs as blob}
             <div
                 class={`absolute rounded-full ${blob.colorClass} ${blob.blur}`}
@@ -78,8 +77,8 @@
           top: ${blob.top}px;
           left: ${blob.left}px;
           opacity: ${blob.opacity};
-        `}
-            ></div>
+        `}>
+            </div>
         {/each}
     </div>
 
