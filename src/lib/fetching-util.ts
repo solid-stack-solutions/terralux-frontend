@@ -2,8 +2,8 @@
 import { ConstantBackoff, handleAll, retry } from 'cockatiel';
 
 const retryPolicy = retry(handleAll, {
-    maxAttempts: 3, // Try 3 times
-    backoff: new ConstantBackoff(50), // Wait 50ms after each try
+    maxAttempts: 10, // Try 10 times
+    backoff: new ConstantBackoff(1000), // Wait 1s after each try
 });
 
 async function tryFetching(
