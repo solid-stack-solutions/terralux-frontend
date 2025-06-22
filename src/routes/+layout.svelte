@@ -1,5 +1,8 @@
 <script lang="ts">
     import '../app.css';
+    import { onMount } from 'svelte';
+    import { loadConfig } from '$lib/load-config';
+    import { backendUrl } from '$lib/backend-util';
 
     let { children } = $props();
 
@@ -52,10 +55,7 @@
 
         if (valid && blob) blobs.push(blob);
     }
-
-    import { onMount } from 'svelte';
-    import { loadConfig } from '$lib/load-config';
-    import { backendUrl } from '$lib/backend-util';
+    
     // read and cache persistent configuration into store
     onMount(async () => {
         const config = await loadConfig();
