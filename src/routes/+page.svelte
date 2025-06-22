@@ -1,3 +1,12 @@
+<script lang="ts">
+    import { changePlugState } from "$lib/backend-api";
+
+    async function onclick() {
+        console.log("Changing plug state to ON...");
+        await changePlugState(true)
+        console.log("Successfulyl changed plug state to ON");
+    }
+</script>
 <div class="flex justify-center">
     <h1 class="text-6xl font-bold">Terralux</h1>
 </div>
@@ -8,7 +17,7 @@
             Die smarte <strong class="font-bold">all-in-one</strong> Lampensteuerung für dein Reptil.
         </p>
         <div class="mt-6 flex justify-center">
-            <button type="button" class="btn preset-filled-primary-500 text-3xl">
+            <button type="button" class="btn preset-filled-primary-500 text-3xl" {onclick}>
                 Jetzt starten
             </button>
         </div>
