@@ -13,7 +13,7 @@ function getBackendUrl(): string {
 
 // Backend endpoints
 const plugPower = 'plug/power';
-const configuration = 'configuration';
+const configuration = 'configuration/';
 const today = 'today';
 
 /**
