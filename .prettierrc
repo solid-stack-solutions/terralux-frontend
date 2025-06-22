@@ -5,6 +5,9 @@
     "trailingComma": "all",
     "printWidth": 100,
     "endOfLine": "lf",
+    "semi": true,
+    "bracketSpacing": true,
+    "bracketSameLine": true,
     "plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
     "overrides": [
         {
