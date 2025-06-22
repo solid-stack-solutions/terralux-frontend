@@ -55,7 +55,7 @@
 
         if (valid && blob) blobs.push(blob);
     }
-    
+
     // read and cache persistent configuration into store
     onMount(async () => {
         const config = await loadConfig();
