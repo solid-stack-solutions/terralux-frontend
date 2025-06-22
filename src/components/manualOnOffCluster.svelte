@@ -24,7 +24,7 @@
         <button
             type="button"
             class="btn preset-filled-success-500"
-            disabled={!currentPowerState || loading}
+            disabled={currentPowerState || loading}
             onclick={() => changeState(true)}
         >
             An
@@ -32,7 +32,7 @@
         <button
             type="button"
             class="btn preset-filled-error-500"
-            disabled={currentPowerState || loading}
+            disabled={!currentPowerState || loading}
             onclick={() => changeState(false)}
         >
             Aus
