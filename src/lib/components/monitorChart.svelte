@@ -102,9 +102,9 @@
             },
         },
         grid: {
-            borderColor: 'oklch(60.44% 0.07 134.69deg)',
+            borderColor: 'var(--color-primary-500)',
             row: {
-                colors: ['oklch(60.44% 0.07 134.69deg)', 'transparent'],
+                colors: ['var(--color-primary-500)', 'transparent'],
                 opacity: 0.05,
             },
         },
@@ -142,12 +142,12 @@
             },
         ],
         colors: [
-            'oklch(68.12% 0.07 134.27deg)',
-            'oklch(78% 0.09 69.51deg)',
-            'oklch(68.49% 0.11 21.67deg)',
-            'oklch(46.16% 0.07 134.91deg)',
-            'oklch(62.11% 0.07 70.73deg)',
-            'oklch(43.24% 0.12 23.56deg)',
+            'var(--color-primary-400)',
+            'var(--color-tertiary-400)',
+            'var(--color-error-300)',
+            'var(--color-primary-700',
+            'var(--color-tertiary-700)',
+            'var(--color-error-700)',
         ],
         stroke: {
             width: [2, 2, 4, 2, 2, 4],
