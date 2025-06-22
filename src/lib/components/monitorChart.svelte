@@ -79,39 +79,42 @@
                 },
             },
             zoom: {
-                enabled: true,
+                enabled: false,
             },
         },
         theme: {
             mode: 'dark',
         },
         legend: {
-            position: 'bottom',
-            fontSize: '17px',
-            floating: false,
+            position: 'right',
+            fontSize: '16px',
+            floating: true,
+            onItemHover: {
+              highlightDataSeries: false
+            },
         },
         tooltip: {
             enabled: true,
             style: {
                 fontFamily: 'Atma',
-                fontSize: '12px',
+                fontSize: '16px',
             },
         },
         series: [
             {
-                name: 'Nat. 🌞',
+                name: 'Natürlich 🌞',
                 data: seriesDataNaturalSunrise,
             },
             {
-                name: 'Nat. 🌚',
+                name: 'Natürlich 🌚',
                 data: seriesDataNaturalSunset,
             },
             {
-                name: 'Ter. 🌞',
+                name: 'Terrarium 🌞',
                 data: seriesDataLocalSunrise,
             },
             {
-                name: 'Ter. 🌚',
+                name: 'Terrarium 🌚',
                 data: seriesDataLocalSunset,
             },
             {
