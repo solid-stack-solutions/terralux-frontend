@@ -7,7 +7,7 @@ const retryPolicy = retry(handleAll, {
 
 async function tryFetching(url:string, method:string, body:string , restricted:boolean, query:any) {
     if (query) {
-        url = url + "?" + new URLSearchParams(query).toString;
+        url = url + "?" + new URLSearchParams(query).toString();
     }
     return await retryPolicy.execute(async () => {
         if (method === "GET" || query || method === undefined) {

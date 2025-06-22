@@ -6,7 +6,7 @@ import { getBackendUrl, endpoints } from "./backend-util";
  * @returns {Promise<Response>} the backend response as a {@link Promise<Response>}. Consult backend API documentation for response code semantics (https://github.com/solid-stack-solutions/terralux-backend)
  */
 async function changePlugState(power:boolean) {
-    return await tryFetchingPublic(getBackendUrl + endpoints.put.power_state, "PUT", undefined, {power: power});
+    return await tryFetchingPublic(getBackendUrl() + endpoints.put.power_state, "PUT", undefined, {power: power});
 }
 
 export {changePlugState};
