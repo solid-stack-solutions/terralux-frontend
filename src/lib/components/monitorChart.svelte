@@ -86,11 +86,11 @@
             mode: 'dark',
         },
         legend: {
-            position: 'right',
+            position: 'bottom',
             fontSize: '16px',
-            floating: true,
+            floating: false,
             onItemHover: {
-              highlightDataSeries: false
+                highlightDataSeries: false,
             },
         },
         tooltip: {
@@ -106,20 +106,20 @@
                 data: seriesDataNaturalSunrise,
             },
             {
-                name: 'Natürlich 🌚',
-                data: seriesDataNaturalSunset,
-            },
-            {
                 name: 'Terrarium 🌞',
                 data: seriesDataLocalSunrise,
             },
             {
-                name: 'Terrarium 🌚',
-                data: seriesDataLocalSunset,
-            },
-            {
                 name: 'Lampe 🌞',
                 data: seriesDataOn,
+            },
+            {
+                name: 'Natürlich 🌚',
+                data: seriesDataNaturalSunset,
+            },
+            {
+                name: 'Terrarium 🌚',
+                data: seriesDataLocalSunset,
             },
             {
                 name: 'Lampe 🌚',
@@ -128,15 +128,15 @@
         ],
         colors: [
             'oklch(68.12% 0.07 134.27deg)',
-            'oklch(46.16% 0.07 134.91deg)',
             'oklch(78% 0.09 69.51deg)',
-            'oklch(62.11% 0.07 70.73deg)',
             'oklch(68.49% 0.11 21.67deg)',
+            'oklch(46.16% 0.07 134.91deg)',
+            'oklch(62.11% 0.07 70.73deg)',
             'oklch(43.24% 0.12 23.56deg)',
         ],
         stroke: {
-            width: [2, 2, 2, 2, 4, 4],
-            dashArray: [4, 4, 4, 4, 0, 0],
+            width: [2, 2, 4, 2, 2, 4],
+            dashArray: [4, 4, 0, 4, 4, 0],
         },
         xaxis: {
             type: 'datetime',
@@ -193,3 +193,11 @@
 </script>
 
 <div class="p-10" bind:this={chartElement}></div>
+
+<style>
+    :global(.apexcharts-legend) {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+    }
+</style>
