@@ -39,6 +39,8 @@
         "vite": "^6.3.5"
     },
     "dependencies": {
+        "@lucide/svelte": "^0.522.0",
+        "apexcharts": "^4.7.0",
         "cockatiel": "^3.2.1",
         "leaflet": "^1.9.4"
     }
