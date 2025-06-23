@@ -4,7 +4,7 @@
     import type { ApexOptions } from 'apexcharts';
 
     import { onMount, onDestroy } from 'svelte';
-    import { browser } from '$app/environment';
+    // import { browser } from '$app/environment';
     import apexchartsLocaleDE from '$lib/apexcharts-locales/de.json';
 
     // Dummy data
@@ -209,12 +209,10 @@
     };
 
     onMount(async () => {
-        // Only render on client
-        if (browser) {
-            const ApexCharts = (await import('apexcharts')).default;
-            chart = new ApexCharts(chartElement, options);
-            await chart.render();
-        }
+        // Only render on client (add to page: export const ssr = false)
+        const ApexCharts = (await import('apexcharts')).default;
+        chart = new ApexCharts(chartElement, options);
+        await chart.render();
     });
 
     onDestroy(() => {
