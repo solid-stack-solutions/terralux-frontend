@@ -4,7 +4,6 @@
     import type { ApexOptions } from 'apexcharts';
 
     import { onMount, onDestroy } from 'svelte';
-    // import { browser } from '$app/environment';
     import apexchartsLocaleDE from '$lib/apexcharts-locales/de.json';
 
     // Dummy data
@@ -57,7 +56,6 @@
 
     const options: ApexOptions = {
         title: {
-            // text: 'Sonnenzeiten & Schaltpunkte',
             align: 'left',
             style: {
                 fontSize: '20px',
@@ -72,7 +70,7 @@
             type: 'line',
             height: 550,
             toolbar: {
-              show: false
+                show: false,
             },
             dropShadow: {
                 enabled: true,
@@ -105,7 +103,7 @@
             },
             customLegendItems: ['Natürlich  🌞🌚', 'Terrarium 🌞🌚', 'Lampe 🌞🌚'],
             onItemClick: {
-              toggleDataSeries: false,
+                toggleDataSeries: false,
             },
             markers: {
                 offsetX: -5,
@@ -222,8 +220,8 @@
     });
 </script>
 
-<h1 class="h6 ml-12 mt-10">Sonnenzeiten & Schaltpunkte</h1>
-<p class="h10 ml-12 mb-2 opacity-60">Hier kann der Graph erläutert werden</p>
+<h1 class="h6 mt-10 ml-12">Sonnenzeiten & Schaltpunkte</h1>
+<p class="h10 mb-2 ml-12 opacity-60">Hier kann der Graph erläutert werden</p>
 <div bind:this={chartElement}></div>
 
 <style>
