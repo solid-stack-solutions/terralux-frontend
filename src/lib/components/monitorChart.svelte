@@ -71,6 +71,9 @@
             background: 'transparent',
             type: 'line',
             height: 550,
+            toolbar: {
+              show: false
+            },
             dropShadow: {
                 enabled: true,
                 color: '#000',
