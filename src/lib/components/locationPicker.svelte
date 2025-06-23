@@ -39,17 +39,16 @@
     });
 </script>
 
-<div class="flex h-full w-full">
+<div class="relative flex h-full w-full">
     <div bind:this={mapDiv} class="z-0 flex h-full w-full rounded"></div>
+    {#if selected}
+        <div
+            class="bg-primary-500 absolute top-3 left-1/2 -translate-x-1/2 transform rounded px-4 py-2"
+        >
+            Lat: {selected.lat.toFixed(5)}, Lng: {selected.lng.toFixed(5)}
+        </div>
+    {/if}
 </div>
-
-{#if selected}
-    <div
-        class="bg-primary-500 absolute top-10 left-1/2 -translate-x-1/2 transform rounded px-4 py-2"
-    >
-        Lat: {selected.lat.toFixed(5)}, Lng: {selected.lng.toFixed(5)}
-    </div>
-{/if}
 
 <style>
     /* Overwrite Leaflet styles */
