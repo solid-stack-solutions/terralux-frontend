@@ -5,12 +5,14 @@
 
 <div class="flex justify-center">
     <h1 class="text-4xl font-bold">Terralux Kontrollstation</h1>
-    <button type="button" class="btn preset-filled-success-500 w-16"> ON </button>
-    <Power />
+</div>
+
+<div class="flex justify-center pt-10">
+    <button type="button" class="btn preset-filled-primary-500 w-128"> <Power /> </button>
 </div>
 
 <MonitorChart />
 
 <div class="flex justify-center">
-    <button type="button" class="btn preset-filled-tertiary-500 w-128">Neu konfigurieren</button>
+    <button type="button" class="btn preset-filled-primary-500 w-128">Neu konfigurieren</button>
 </div>
