@@ -10,13 +10,16 @@
     import configData from '$lib/data/Configuration-Data.json';
 
     // Prepare data
-    const toDecimalTime = (hour: number, minute: number): number => hour + minute / 60;
+    function toDecimalTime(hour: number, minute: number): number {
+        return hour + minute / 60;
+    }
 
-    const mapToDatetimeSeries = (values: number[]): { x: Date; y: number }[] =>
-        values.map((y, index) => ({
+    function mapToDatetimeSeries(values: number[]): { x: Date; y: number }[] {
+        return values.map((y, index) => ({
             x: new Date(2025, 0, index + 1),
             y,
         }));
+    }
 
     function convertToHourMinute(value: number): string {
         const hours = Math.floor(value);
