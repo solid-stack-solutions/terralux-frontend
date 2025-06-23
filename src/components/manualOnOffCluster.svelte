@@ -2,10 +2,12 @@
     import { changePlugState, getPlugState } from '$lib/backend-api';
     import type { PowerState } from '$lib/response-types';
     import { onMount } from 'svelte';
+    import {Lightbulb, LightbulbOff } from '@lucide/svelte' 
 
     let loading = true;
     let currentPowerState: boolean = false;
-
+    let onColor = '';
+    let offColor = '';
     function changeState(power: boolean) {
         changePlugState(power);
         currentPowerState = power;
@@ -13,17 +15,31 @@
 
     onMount(async () => {
         loading = true;
+        const style = getComputedStyle(document.documentElement);
+        onColor = style.getPropertyValue('--color-yellow-500');
+        offColor = style.getPropertyValue('--color-surface-300');
+        console.log(onColor);
+        console.log(offColor)
         const data: PowerState = await (await getPlugState()).json();
         currentPowerState = data.power;
         loading = false;
     });
 </script>
 
-<div class="flex-row">
-    <div class="flex-col p-2 {loading ? 'animate-pulse cursor-not-allowed' : ''}">
+<div class="flex flex-col h-fit rounded-md bg-surface-400">
+    <div class="flex flex-row pt-2 px-2">
+        <div class="flex w-full justify-center py-1 rounded-md bg-surface-700">
+            {#if currentPowerState}
+                <Lightbulb color={onColor}/>
+            {:else}
+                <LightbulbOff color={offColor}/>
+            {/if}
+        </div>
+    </div>
+    <div class="flex flex-row space-x-1 p-2 {loading ? 'animate-pulse cursor-not-allowed' : ''}">
         <button
             type="button"
-            class="btn preset-filled-success-500"
+            class="btn preset-filled-success-500 w-1/2"
             disabled={loading || currentPowerState }
             onclick={() => changeState(true)}
         >
@@ -31,7 +47,7 @@
         </button>
         <button
             type="button"
-            class="btn preset-filled-error-500"
+            class="btn preset-filled-error-500 w-1/2"
             disabled={loading || !currentPowerState}
             onclick={() => changeState(false)}
         >
