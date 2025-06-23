@@ -26,7 +26,7 @@
         </header>
         <article>
             <p>
-                Gebe die IP-Adresse der Steckdose ein, um dich mit ihr zu verbinden.<br />
+                Gebe die IP-Adresse deiner Steckdose ein, um dich mit ihr zu verbinden.<br />
                 <span class="opacity-60"
                     >Die Steckdose muss sich im gleichen Netzwerk befinden. Du kannst die IP-Adresse
                     der Steckdose in den Router Einstellungen finden.</span
