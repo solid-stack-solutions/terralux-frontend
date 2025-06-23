@@ -11,6 +11,24 @@
     }));
   in
   {
+    packages = eachSystem (system: pkgs: rec {
+      default = terralux-frontend;
+      terralux-frontend = pkgs.buildNpmPackage {
+        name = "terralux-frontend";
+        src = ./.;
+
+        npmDepsHash = "sha256-kUJa63D5A5gJhiGw5JuowIF1vXfB2Aaaxsmpi2z8E0s=";
+
+        # runs `npm run build` by default
+
+        installPhase = ''
+          mkdir -p $out/bin/src
+          cp -r build/* $out/bin/src
+          makeWrapper ${pkgs.nodejs}/bin/node "$out/bin/terralux-frontend" --add-flags "$out/bin/src"
+        '';
+      };
+    });
+
     devShells = eachSystem (system: pkgs: {
       default = pkgs.mkShell {
         nativeBuildInputs = [ pkgs.nodejs ];
