@@ -57,7 +57,7 @@
 
     const options: ApexOptions = {
         title: {
-            text: 'Sonnenzeiten & Schaltpunkte',
+            // text: 'Sonnenzeiten & Schaltpunkte',
             align: 'left',
             style: {
                 fontSize: '20px',
@@ -100,23 +100,17 @@
             onItemHover: {
                 highlightDataSeries: false,
             },
-            customLegendItems: [
-                'Natürlich 🌞',
-                'Terrarium 🌞',
-                'Lampe 🌞',
-                'Natürlich 🌚',
-                'Terrarium 🌚',
-                'Lampe 🌚',
-            ],
+            customLegendItems: ['Natürlich  🌞🌚', 'Terrarium 🌞🌚', 'Lampe 🌞🌚'],
+            onItemClick: {
+              toggleDataSeries: false,
+            },
             markers: {
                 offsetX: -5,
+                offsetY: -1,
                 fillColors: [
-                    'var(--color-primary-400)',
-                    'var(--color-tertiary-400)',
-                    'var(--color-error-300)',
-                    'var(--color-primary-700)',
-                    'var(--color-tertiary-700)',
-                    'var(--color-error-700)',
+                    'var(--color-success-400)',
+                    'var(--color-warning-400)',
+                    'var(--color-error-400)',
                 ],
             },
         },
@@ -161,16 +155,16 @@
             },
         ],
         colors: [
-            'var(--color-primary-400)',
-            'var(--color-primary-700',
-            'var(--color-tertiary-400)',
-            'var(--color-tertiary-700)',
-            'var(--color-error-300)',
-            'var(--color-error-700)',
+            'var(--color-success-400)',
+            'var(--color-success-400)',
+            'var(--color-warning-400)',
+            'var(--color-warning-400)',
+            'var(--color-error-400)',
+            'var(--color-error-400)',
         ],
         stroke: {
-            width: [2, 2, 4, 2, 2, 4],
-            dashArray: [4, 4, 0, 4, 4, 0],
+            width: [2.5, 2.5, 2.5, 2.5, 4, 4],
+            dashArray: [4, 4, 4, 4, 0, 0],
         },
         xaxis: {
             type: 'datetime',
@@ -227,7 +221,9 @@
     });
 </script>
 
-<div class="p-10" bind:this={chartElement}></div>
+<h1 class="h6 ml-12 mt-10">Sonnenzeiten & Schaltpunkte</h1>
+<p class="h10 ml-12 mb-2 opacity-60">Hier kann der Graph erläutert werden</p>
+<div bind:this={chartElement}></div>
 
 <style>
     :global(.apexcharts-legend) {
