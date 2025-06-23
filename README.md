@@ -1,38 +1,32 @@
-# sv
+# Terralux Frontend
+### For usage with [terralux-backend](https://github.com/solid-stack-solutions/terralux-backend), powered by [SunriseSunset.io](https://sunrisesunset.io)
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## Installation
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
+### Using [Node.js](https://nodejs.org)
+```sh
+# fetch the source
+git clone https://github.com/solid-stack-solutions/terralux-frontend
+cd terralux-frontend
+# install dependencies and run
+npm i
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+### Using [Nix Flakes](https://wiki.nixos.org/wiki/Flakes)
+```sh
+# option 1: fully automatic
+nix run github:solid-stack-solutions/terralux-frontend
+# option 2: fetch source, build and run
+git clone https://github.com/solid-stack-solutions/terralux-frontend
+cd terralux-frontend
+nix run
+```
 
-To create a production version of your app:
+## Development
 
-```bash
+```sh
+# building/running release
 npm run build
+node build
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
