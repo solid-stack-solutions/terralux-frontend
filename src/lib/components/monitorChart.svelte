@@ -22,7 +22,7 @@ The chart can not be rendered on the server.
 
     function mapToDatetimeSeries(values: number[]): { x: Date; y: number }[] {
         return values.map((y, index) => ({
-            x: new Date(2025, 0, index + 1),
+            x: new Date(new Date().getFullYear(), 0, index + 1),
             y,
         }));
     }
