@@ -1,6 +1,12 @@
+<!--
+@component
+Make sure to add `export const ssr = false` to the page when using this component.
+The chart can not be rendered on the server.
+-->
 <script lang="ts">
     // Types for typescript support
     import ApexChartsClass from 'apexcharts';
+    import ApexCharts from 'apexcharts';
     import type { ApexOptions } from 'apexcharts';
 
     import { onMount, onDestroy } from 'svelte';
@@ -210,8 +216,6 @@
     };
 
     onMount(async () => {
-        // Only render on client (add to page: export const ssr = false)
-        const ApexCharts = (await import('apexcharts')).default;
         chart = new ApexCharts(chartElement, options);
         await chart.render();
     });
