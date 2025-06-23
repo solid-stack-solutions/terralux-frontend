@@ -38,6 +38,7 @@
         "vite": "^6.3.5"
     },
     "dependencies": {
+        "@lucide/svelte": "^0.522.0",
         "cockatiel": "^3.2.1"
     }
 }
