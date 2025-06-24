@@ -13,6 +13,17 @@ npm i
 npm run dev
 ```
 
+### Using [Docker](https://www.docker.com/)
+```sh
+# fetch source
+git clone https://github.com/solid-stack-solutions/terralux-frontend
+cd terralux-frontend
+# build image
+docker build -t terralux-frontend:latest .
+# run image
+docker run -p 4173:4173 terralux-frontend:latest
+```
+
 ### Using [Nix Flakes](https://wiki.nixos.org/wiki/Flakes)
 ```sh
 # option 1: fully automatic
