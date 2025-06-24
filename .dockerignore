@@ -1,0 +1,51 @@
+# == .gitignore contents ==
+node_modules
+
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
+/result
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+.direnv
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# == Additional ignores ==
+# Docker related
+Dockerfile
+.dockerignore
+
+# Git related
+.git
+.gitignore
+.gitattributes
+
+# Nix related
+.envrc
+flake.lock
+flake.nix
+
+# Dev config
+.npmrc
+.prettierignore
+.prettierrc
+.eslint.config.js
+
+# Docs
+README.md
+LICENSE
