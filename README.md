@@ -26,7 +26,8 @@ nix run
 ## Development
 
 ```sh
-# building/running release
+### building/running release
 npm run build
-node build
+# run with port env var (on linux, needs different syntax on windows) 
+PORT=5173 node build
 ```

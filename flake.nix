@@ -24,7 +24,9 @@
         installPhase = ''
           mkdir -p $out/bin/src
           cp -r build/* $out/bin/src
-          makeWrapper ${pkgs.nodejs}/bin/node "$out/bin/terralux-frontend" --add-flags "$out/bin/src"
+          makeWrapper "${pkgs.nodejs}/bin/node" "$out/bin/terralux-frontend" \
+            --add-flags "$out/bin/src" \
+            --set PORT 5173
         '';
       };
     });
