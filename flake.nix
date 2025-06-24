@@ -26,7 +26,7 @@
           cp -r build/* $out/bin/src
           makeWrapper "${pkgs.nodejs}/bin/node" "$out/bin/terralux-frontend" \
             --add-flags "$out/bin/src" \
-            --set PORT 5173
+            --set PORT 4173
         '';
       };
     });

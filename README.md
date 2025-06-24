@@ -29,5 +29,5 @@ nix run
 ### building/running release
 npm run build
 # run with port env var (on linux, needs different syntax on windows) 
-PORT=5173 node build
+PORT=4173 node build
 ```
