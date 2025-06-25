@@ -26,7 +26,6 @@
             class="h-63 rounded object-cover"
         />
     </div>
-    <ManualOnOffCluster></ManualOnOffCluster>
 </div>
 
 <div class="bg-primary-500 h-20 w-20"></div>
