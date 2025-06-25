@@ -8,6 +8,9 @@
 @import './terralux';
 @source '../node_modules/@skeletonlabs/skeleton-svelte/dist';
 
+/* === Leaflet map === */
+@import 'leaflet/dist/leaflet.css';
+
 /* === Custom Font === */
 @font-face {
     font-family: 'Atma';

@@ -1,10 +1,13 @@
-<script>
-    import ManualOnOffCluster from '../components/manualOnOffCluster.svelte';
+<script lang="ts">
+    import { goto } from '$app/navigation';
+    import ConfigIpModal from '$lib/components/configIpModal.svelte';
+
+    function onConfirmIP(e: MouseEvent) {
+        goto('/configure');
+    }
 </script>
 
-<div class="flex justify-center">
-    <h1 class="text-6xl font-bold">Terralux</h1>
-</div>
+<h1 class="text-center text-6xl font-bold">Terralux</h1>
 
 <div class="mt-8 flex flex-col gap-8 px-4 lg:flex-row">
     <div class="flex-1">
@@ -12,9 +15,7 @@
             Die smarte <strong class="font-bold">all-in-one</strong> Lampensteuerung für dein Reptil.
         </p>
         <div class="mt-6 flex justify-center">
-            <button type="button" class="btn preset-filled-primary-500 text-3xl">
-                Jetzt starten
-            </button>
+            <ConfigIpModal triggerText="Jetzt starten" onConfirm={onConfirmIP} />
         </div>
     </div>
 
