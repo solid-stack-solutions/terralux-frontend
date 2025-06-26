@@ -15,11 +15,14 @@
         <div class="flex-1">
             <p class="mt-4 text-4xl font-medium">
                 Die smarte <br />
-                <strong class="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-tertiary-500">ALL IN ONE</strong> Lampensteuerung für dein Reptil.
+                <strong
+                    class="from-primary-400 to-tertiary-500 bg-gradient-to-r bg-clip-text text-6xl font-bold text-transparent"
+                    >ALL IN ONE</strong
+                > Lampensteuerung für dein Reptil.
             </p>
             <p class="mt-2 text-2xl opacity-60">
-                Mit dem Terralux Smartplug <Copyright class="w-5 h-5 -ml-1 pb-1 inline" /> passt sich dein Terrarium automatisch dem biologischen
-                Rhythmus deines Reptils an.
+                Mit dem Terralux Smartplug <Copyright class="-ml-1 inline h-5 w-5 pb-1" /> passt sich
+                dein Terrarium automatisch dem biologischen Rhythmus deines Reptils an.
             </p>
             <div class="mt-16 flex justify-center">
                 <ConfigIpModal triggerText="Jetzt durchstarten 🚀" onConfirm={onConfirmIP} />

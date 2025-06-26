@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <p class="text-center">Klicke auf die Karten, um eine Position auszuwählen</p>
-</div>
+        <p class="text-center">Klicke auf die Karten, um eine Position auszuwählen</p>
+    </div>
+</section>

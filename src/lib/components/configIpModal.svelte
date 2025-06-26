@@ -89,10 +89,14 @@
                 </label>
             </article>
             <footer class="flex justify-end gap-4">
-                <button type="button" class="btn preset-filled-surface-500 font-semibold" onclick={modalClose}
-                    >Cancel</button
+                <button
+                    type="button"
+                    class="btn preset-filled-surface-500 font-semibold"
+                    onclick={modalClose}>Cancel</button
                 >
-                <button type="submit" class="btn preset-filled-success-500 font-semibold">Confirm</button>
+                <button type="submit" class="btn preset-filled-success-500 font-semibold"
+                    >Confirm</button
+                >
             </footer>
         </form>
     {/snippet}
