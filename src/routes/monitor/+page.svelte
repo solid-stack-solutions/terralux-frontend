@@ -4,9 +4,7 @@
 </script>
 
 <section class="mx-auto max-w-5xl">
-    <div class="flex justify-center">
-        <h1 class="text-6xl font-bold">Terralux Kontrollstation</h1>
-    </div>
+    <h1 class="text-center text-6xl font-bold">Terralux Kontrollstation</h1>
 
     <div class="flex justify-center pt-10">
         <button type="button" class="btn preset-filled-primary-500 w-128"> <Power /> </button>
