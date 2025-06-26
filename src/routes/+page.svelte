@@ -27,7 +27,3 @@
         />
     </div>
 </div>
-
-<div class="bg-primary-500 h-20 w-20"></div>
-<div class="bg-secondary-500 h-20 w-20"></div>
-<div class="bg-tertiary-500 h-20 w-20"></div>
