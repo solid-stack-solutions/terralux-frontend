@@ -48,7 +48,7 @@
 <Modal
     open={openState}
     onOpenChange={(e) => (openState = e.open)}
-    triggerBase="btn preset-filled-primary-500 text-3xl"
+    triggerBase="btn preset-filled-primary-500 text-2xl font-semibold"
     contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl max-w-screen-sm"
     backdropClasses="backdrop-blur-sm"
 >
@@ -89,10 +89,10 @@
                 </label>
             </article>
             <footer class="flex justify-end gap-4">
-                <button type="button" class=" btn preset-filled-surface-500" onclick={modalClose}
+                <button type="button" class="btn preset-filled-surface-500 font-semibold" onclick={modalClose}
                     >Cancel</button
                 >
-                <button type="submit" class="btn preset-filled-success-500">Confirm</button>
+                <button type="submit" class="btn preset-filled-success-500 font-semibold">Confirm</button>
             </footer>
         </form>
     {/snippet}
