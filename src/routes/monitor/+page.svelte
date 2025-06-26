@@ -4,7 +4,7 @@
 </script>
 
 <div class="flex justify-center">
-    <h1 class="text-4xl font-bold">Terralux Kontrollstation</h1>
+    <h1 class="text-6xl font-bold">Terralux Kontrollstation</h1>
 </div>
 
 <div class="flex justify-center pt-10">
