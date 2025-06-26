@@ -84,7 +84,7 @@
     </div>
 
     <!-- Foreground content -->
-    <div class="relative z-1 container mx-auto w-full max-w-4xl p-5 text-white">
+    <div class="relative z-1 container mx-auto p-10">
         {@render children()}
     </div>
 </div>
