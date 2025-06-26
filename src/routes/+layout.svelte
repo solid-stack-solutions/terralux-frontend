@@ -6,7 +6,7 @@
 
     let { children } = $props();
 
-    const BLOB_COUNT = 100;
+    const BLOB_COUNT = 10;
     const BLOB_CANVAS_WIDTH = 5000;
     const BLOB_CANVAS_HEIGHT = 2000;
     const MIN_DISTANCE_FACTOR = 0.8; // adjust how tightly blobs can be placed
