@@ -8,8 +8,17 @@ import type { PlugConfiguration } from './data-types';
  */
 async function changePlugState(power: boolean): Promise<Response> {
     return await tryFetching(getBackendUrl() + endpoints.put.power_state, HTTP_METHOD.PUT, null, {
-        power: power,
+        power: power.toString(),
     });
+}
+
+async function getPlugState(): Promise<Response> {
+    return await tryFetching(
+        getBackendUrl() + endpoints.get.power_state,
+        HTTP_METHOD.GET,
+        null,
+        '',
+    );
 }
 
 /**
@@ -18,7 +27,7 @@ async function changePlugState(power: boolean): Promise<Response> {
  * @returns the backend response as a {@link Promise<Response>}. Consult backend API documentation for response code semantics (https://github.com/solid-stack-solutions/terralux-backend)
  */
 async function changeConfiguration(configuration:PlugConfiguration): Promise<Response> {
-    return await tryFetching(getBackendUrl() + endpoints.put.configuration, HTTP_METHOD.PUT, JSON.stringify(configuration), null);
+    return await tryFetching(getBackendUrl() + endpoints.put.configuration, HTTP_METHOD.PUT, JSON.stringify(configuration), '');
 };
 
 /**
@@ -27,7 +36,7 @@ async function changeConfiguration(configuration:PlugConfiguration): Promise<Res
  * @returns the fetched configuration
  */
 async function getConfiguration(full: boolean = false): Promise<Response> {
-    return await tryFetching(getBackendUrl() + (full ? endpoints.get.configuration :  endpoints.get.configuration_today), HTTP_METHOD.GET, null, null);
+    return await tryFetching(getBackendUrl() + (full ? endpoints.get.configuration :  endpoints.get.configuration_today), HTTP_METHOD.GET, null, '');
 }
 
 async function getFullConfiguration() {
@@ -39,4 +48,4 @@ async function getTodayConfiguration() {
 }
 
 
-export { changePlugState, changeConfiguration, getFullConfiguration, getTodayConfiguration };
+export { changePlugState, getPlugState, changeConfiguration, getFullConfiguration, getTodayConfiguration };
