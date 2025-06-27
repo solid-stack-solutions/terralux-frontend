@@ -1,9 +1,14 @@
 <script lang="ts">
     import LocationPicker from '$lib/components/locationPicker.svelte';
     import { LatLng } from 'leaflet';
+    import { ipState } from './ipstate.svelte';
 
     let natCoords: LatLng | null = null;
     let terrCoords: LatLng | null = null;
+
+    async function setConfiguration() {
+        // TODO send data to backend
+    }
 </script>
 
 <section class="mx-auto max-w-5xl">
@@ -27,5 +32,11 @@
         </div>
 
         <p class="text-center">Klicke auf die Karten, um eine Position auszuwählen</p>
+    </div>
+
+    <div class="flex justify-center pt-10">
+        <button type="button" class="btn preset-filled-primary-500 w-128" onclick={setConfiguration}
+            >Jetzt konfigurieren</button
+        >
     </div>
 </section>

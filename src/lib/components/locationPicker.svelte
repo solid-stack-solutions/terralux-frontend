@@ -9,8 +9,10 @@
     const initialCenter: L.LatLngExpression = [53.131, 8.22];
     const initialZoom = 13;
 
-    export let selected: L.LatLng | null = null;
-    export let onSelect: (coords: L.LatLng) => void = () => {};
+    let {
+        selected = null,
+        onSelect = () => {},
+    }: { selected?: L.LatLng | null; onSelect: (coords: L.LatLng) => void } = $props();
 
     onMount(() => {
         map = L.map(mapDiv).setView(initialCenter, initialZoom);

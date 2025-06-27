@@ -1,5 +1,6 @@
 <script lang="ts">
     import { Modal } from '@skeletonlabs/skeleton-svelte';
+    import { ipState } from '../../routes/configure/ipstate.svelte';
 
     // == Modal control ==
     let openState = $state(false);
@@ -28,6 +29,7 @@
             return;
         }
         error = false;
+        ipState.ipAddress = ipAddress;
         onConfirm(e);
     }
 
