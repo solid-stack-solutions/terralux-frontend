@@ -12,7 +12,12 @@ const retryPolicy = retry(handleAll, {
     backoff: new ConstantBackoff(1000), // Wait 1s after each try
 });
 
-async function tryFetching(url: string, method: HTTP_METHOD, body: string | null, query: any) {
+async function tryFetching(
+    url: string,
+    method: HTTP_METHOD,
+    body: string | null,
+    query: string[][] | Record<string, string> | string | URLSearchParams,
+) {
     if (query) {
         url = url + '?' + new URLSearchParams(query).toString();
     }
@@ -23,7 +28,7 @@ async function tryFetching(url: string, method: HTTP_METHOD, body: string | null
                 headers: {
                     'Content-Type': body === null ? 'text/plain' : 'application/json',
                 },
-                body: body ? JSON.stringify(body) : '',
+                body: body ? JSON.stringify(body) : null,
             }),
         );
     });
