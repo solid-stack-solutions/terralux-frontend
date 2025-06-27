@@ -22,6 +22,7 @@ const today = 'today';
 const endpoints = {
     get: {
         configuration_today: configuration + today,
+        configuration: configuration,
         power_state: plugPower,
     },
     put: {

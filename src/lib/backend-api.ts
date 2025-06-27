@@ -13,7 +13,7 @@ async function changePlugState(power: boolean): Promise<Response> {
 }
 
 /**
- * Requets top change the configuration of the plug
+ * Requests top change the configuration of the plug
  * @param configuration the new configuration
  * @returns the backend response as a {@link Promise<Response>}. Consult backend API documentation for response code semantics (https://github.com/solid-stack-solutions/terralux-backend)
  */
@@ -21,4 +21,22 @@ async function changeConfiguration(configuration:PlugConfiguration): Promise<Res
     return await tryFetching(getBackendUrl() + endpoints.put.configuration, HTTP_METHOD.PUT, JSON.stringify(configuration), null);
 };
 
-export { changePlugState };
+/**
+ * Fatches the plug configuration
+ * @param full if true -- fetches the full configuration, otherwise the configuration for the current day
+ * @returns the fetched configuration
+ */
+async function getConfiguration(full: boolean = false): Promise<Response> {
+    return await tryFetching(getBackendUrl() + (full ? endpoints.get.configuration :  endpoints.get.configuration_today), HTTP_METHOD.GET, null, null);
+}
+
+async function getFullConfiguration() {
+    return await getConfiguration(true);
+}
+
+async function getTodayConfiguration() {
+    return await getConfiguration(false);
+}
+
+
+export { changePlugState, changeConfiguration, getFullConfiguration, getTodayConfiguration };
