@@ -2,11 +2,16 @@
     import LocationPicker from '$lib/components/locationPicker.svelte';
     import { LatLng } from 'leaflet';
     import { Slider } from '@skeletonlabs/skeleton-svelte';
+    import { ipState } from './ipstate.svelte';
 
     let natCoords: LatLng | null = null;
     let terrCoords: LatLng | null = null;
 
-    let sliderValue = $state([30]);
+    let sliderValue = $state([50]);
+  
+    async function setConfiguration() {
+        // TODO send data to backend
+    }
 </script>
 
 <section class="mx-auto max-w-5xl">
@@ -59,4 +64,10 @@
         />
         <p class="text-lg opacity-60">Natürlich</p>
     </section>
+
+    <div class="flex justify-center pt-10">
+        <button type="button" class="btn preset-filled-primary-500 w-128" onclick={setConfiguration}
+            >Jetzt konfigurieren</button
+        >
+    </div>
 </section>

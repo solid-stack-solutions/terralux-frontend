@@ -9,8 +9,10 @@
     const initialCenter: L.LatLngExpression = [53.131, 8.22];
     const initialZoom = 13;
 
-    export let selected: L.LatLng | null = null;
-    export let onSelect: (coords: L.LatLng) => void = () => {};
+    let {
+        selected = null,
+        onSelect = () => {},
+    }: { selected?: L.LatLng | null; onSelect: (coords: L.LatLng) => void } = $props();
 
     onMount(() => {
         map = L.map(mapDiv).setView(initialCenter, initialZoom);
@@ -43,7 +45,7 @@
     <div bind:this={mapDiv} class="z-0 flex h-full w-full rounded"></div>
     {#if selected}
         <div
-            class="bg-primary-500 absolute top-3 left-1/2 -translate-x-1/2 transform rounded px-4 py-2"
+            class="bg-primary-500 absolute top-3 left-1/2 -translate-x-1/2 transform rounded px-4 py-2 text-nowrap"
         >
             Lat: {selected.lat.toFixed(5)}, Lng: {selected.lng.toFixed(5)}
         </div>

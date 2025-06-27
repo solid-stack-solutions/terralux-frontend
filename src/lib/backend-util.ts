@@ -1,6 +1,6 @@
 import { writable, get } from 'svelte/store';
 
-const initial = 'https://localhost:5000/';
+const initial = 'http://localhost:5000/';
 const backendUrl = writable<string>(initial);
 
 function setBackendUrl(newUrl: string) {
