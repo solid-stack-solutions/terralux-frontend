@@ -51,6 +51,7 @@
             markers={[0, 25, 50, 75, 100]}
             markText="text-sm"
             markOpacity="opacity-60"
+            trackBg="bg-gradient-to-r from-surface-800 to-surface-700"
             meterBg="bg-primary-500"
             height="h-4"
             thumbSize="size-6"
