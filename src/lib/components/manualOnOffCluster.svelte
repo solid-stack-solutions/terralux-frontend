@@ -4,11 +4,13 @@
     import { onMount } from 'svelte';
     import { Lightbulb, LightbulbOff } from '@lucide/svelte';
 
-    export let background_styles: string | null = null;
-    export let indicator: boolean = true;
+    let {
+        background_styles = null,
+        indicator = true,
+    }: { background_styles?: string | null; indicator?: boolean } = $props();
 
-    let loading = true;
-    let currentPowerState: boolean = false;
+    let loading = $state(true);
+    let currentPowerState: boolean = $state(false);
     const onColor = 'var(--color-yellow-500)';
     const offColor = 'var(--color-surface-300)';
     function changeState(power: boolean) {
