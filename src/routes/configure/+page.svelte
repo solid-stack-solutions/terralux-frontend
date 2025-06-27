@@ -20,24 +20,25 @@
         <i>Natürlicher Standort</i> einstellen.
     </p>
 
-    <section class="flex flex-wrap justify-center gap-4">
+    <section class="grid grid-cols-2 gap-4 md:grid-cols-4 w-full">
         {#each [
-            { name: 'Gecko', src: 'image/gecko.jpg' },
-            { name: 'Bartagame', src: 'image/bartagame.webp' },
-            { name: 'Königspython', src: 'image/koenigspython.jpg' }, 
-            { name: 'Grüner Leguan', src: 'image/leguan.jpg', position: 'object-left-top' }] as reptile}
-            <div class="flex w-48 flex-col items-center">
+            { name: 'Höckerkopfgecko', src: 'image/hoeckerkopfgecko.jpg' },
+            { name: 'Leopardgecko', src: 'image/leopardgecko.jpg' }, 
+            { name: 'Bartagame', src: 'image/bartagame.jpg' }, 
+            { name: 'Königspython', src: 'image/koenigspython.jpg' }
+            ] as reptile}
+            <div class="flex flex-col items-center">
                 <button
                     type="button"
-                    class="border-tertiary-contrast-200 h-40 w-40 overflow-hidden rounded-xl border-2 shadow-2xl"
+                    class="border-tertiary-contrast-200 aspect-square w-full overflow-hidden rounded-xl border-2 shadow-2xl hover:border-tertiary-500 hover:border-4 hover:brightness-75 hover:not-focus:border-primary-500"
                 >
                     <img
                         src={reptile.src}
                         alt={reptile.name}
-                        class="h-full w-full object-cover {reptile.position ?? ''}"
+                        class="h-full w-full object-cover"
                     />
                 </button>
-                <span class="mt-2 text-center text-sm opacity-80">{reptile.name}</span>
+                <span class="mt-2 text-center text-sm opacity-60">{reptile.name}</span>
             </div>
         {/each}
     </section>
