@@ -43,7 +43,7 @@
             disabled={loading || currentPowerState}
             onclick={() => changeState(true)}
         >
-            An
+            Ein
         </button>
         <button
             type="button"
