@@ -3,7 +3,7 @@
     import ConfigIpModal from '$lib/components/configIpModal.svelte';
     import { Copyright } from '@lucide/svelte';
 
-    function onConfirmIP(e: MouseEvent) {
+    function onConfirmIP(e: SubmitEvent) {
         goto('/configure');
     }
 </script>
