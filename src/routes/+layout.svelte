@@ -6,7 +6,7 @@
 
     let { children } = $props();
 
-    const BLOB_COUNT = 100;
+    const BLOB_COUNT = 10;
     const BLOB_CANVAS_WIDTH = 5000;
     const BLOB_CANVAS_HEIGHT = 2000;
     const MIN_DISTANCE_FACTOR = 0.8; // adjust how tightly blobs can be placed
@@ -84,9 +84,7 @@
     </div>
 
     <!-- Foreground content -->
-    <div
-        class="relative z-1 container mx-auto flex w-4/5 max-w-4xl flex-col justify-center p-5 text-white"
-    >
+    <div class="relative z-1 container mx-auto p-10">
         {@render children()}
     </div>
 </div>
