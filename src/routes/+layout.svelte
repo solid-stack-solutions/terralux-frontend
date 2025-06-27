@@ -84,7 +84,9 @@
     </div>
 
     <!-- Foreground content -->
-    <div class="relative z-1 container  flex flex-col justify-center mx-auto w-4/5 max-w-4xl p-5 text-white">
+    <div
+        class="relative z-1 container mx-auto flex w-4/5 max-w-4xl flex-col justify-center p-5 text-white"
+    >
         {@render children()}
     </div>
 </div>

@@ -2,7 +2,7 @@
     import { changePlugState, getPlugState } from '$lib/backend-api';
     import type { PowerState } from '$lib/response-types';
     import { onMount } from 'svelte';
-    import {Lightbulb, LightbulbOff } from '@lucide/svelte' 
+    import { Lightbulb, LightbulbOff } from '@lucide/svelte';
 
     export let background_styles: string | null = null;
     export let indicator: boolean = true;
@@ -27,23 +27,23 @@
     });
 </script>
 
-<div class="flex flex-col min-w-fit grow h-fit rounded-md {background_styles}">
+<div class="flex h-fit min-w-fit grow flex-col rounded-md {background_styles}">
     {#if indicator}
-    <div class="flex flex-row pt-2 px-2">
-        <div class="flex w-full justify-center py-1 rounded-md bg-surface-700">
-            {#if currentPowerState}
-                <Lightbulb color={onColor}/>
-            {:else}
-                <LightbulbOff color={offColor}/>
-            {/if}
+        <div class="flex flex-row px-2 pt-2">
+            <div class="bg-surface-700 flex w-full justify-center rounded-md py-1">
+                {#if currentPowerState}
+                    <Lightbulb color={onColor} />
+                {:else}
+                    <LightbulbOff color={offColor} />
+                {/if}
+            </div>
         </div>
-    </div>
     {/if}
     <div class="flex flex-row space-x-1 p-2 {loading ? 'animate-pulse cursor-not-allowed' : ''}">
         <button
             type="button"
             class="btn preset-filled-success-500 w-1/2"
-            disabled={loading || currentPowerState }
+            disabled={loading || currentPowerState}
             onclick={() => changeState(true)}
         >
             An
