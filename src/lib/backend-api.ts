@@ -26,9 +26,14 @@ async function getPlugState(): Promise<Response> {
  * @param configuration the new configuration
  * @returns the backend response as a {@link Promise<Response>}. Consult backend API documentation for response code semantics (https://github.com/solid-stack-solutions/terralux-backend)
  */
-async function changeConfiguration(configuration:PlugConfiguration): Promise<Response> {
-    return await tryFetching(getBackendUrl() + endpoints.put.configuration, HTTP_METHOD.PUT, JSON.stringify(configuration), '');
-};
+async function changeConfiguration(configuration: PlugConfiguration): Promise<Response> {
+    return await tryFetching(
+        getBackendUrl() + endpoints.put.configuration,
+        HTTP_METHOD.PUT,
+        JSON.stringify(configuration),
+        '',
+    );
+}
 
 /**
  * Fatches the plug configuration
@@ -36,10 +41,15 @@ async function changeConfiguration(configuration:PlugConfiguration): Promise<Res
  * @returns the fetched configuration
  */
 async function getConfiguration(full: boolean = false): Promise<Response> {
-    return await tryFetching(getBackendUrl() + (full ? endpoints.get.configuration :  endpoints.get.configuration_today), HTTP_METHOD.GET, null, '');
+    return await tryFetching(
+        getBackendUrl() + (full ? endpoints.get.configuration : endpoints.get.configuration_today),
+        HTTP_METHOD.GET,
+        null,
+        '',
+    );
 }
 
-async function getFullConfiguration(): Promise<PlugConfiguration>  {
+async function getFullConfiguration(): Promise<PlugConfiguration> {
     return (await getConfiguration(true)).json();
 }
 
@@ -47,5 +57,10 @@ async function getTodayConfiguration(): Promise<PlugTimer> {
     return (await getConfiguration(false)).json();
 }
 
-
-export { changePlugState, getPlugState, changeConfiguration, getFullConfiguration, getTodayConfiguration };
+export {
+    changePlugState,
+    getPlugState,
+    changeConfiguration,
+    getFullConfiguration,
+    getTodayConfiguration,
+};
