@@ -12,6 +12,10 @@ async function changePlugState(power: boolean): Promise<Response> {
     });
 }
 
+/**
+ * Fetchs the current power state of the plug
+ * @returns the backend response as a {@link Promise<PowerState>}. Consult backend API documentation for response code semantics (https://github.com/solid-stack-solutions/terralux-backend)
+ */
 async function getPlugState(): Promise<Response> {
     return await tryFetching(
         getBackendUrl() + endpoints.get.power_state,
@@ -36,9 +40,9 @@ async function changeConfiguration(configuration: PlugConfiguration): Promise<Re
 }
 
 /**
- * Fatches the plug configuration
+ * Fetches the plug configuration
  * @param full if true -- fetches the full configuration, otherwise the configuration for the current day
- * @returns the fetched configuration
+ * @returns the backend response as a {@link Promise<Response>}. Consult backend API documentation for response code semantics (https://github.com/solid-stack-solutions/terralux-backend)
  */
 async function getConfiguration(full: boolean = false): Promise<Response> {
     return await tryFetching(
@@ -49,10 +53,18 @@ async function getConfiguration(full: boolean = false): Promise<Response> {
     );
 }
 
+/**
+ * Fetches the full plug configuration
+ * @returns the configuration as a {@link Promise<PlugConfiguration>} of the plug with all plug timers included
+ */
 async function getFullConfiguration(): Promise<PlugConfiguration> {
     return (await getConfiguration(true)).json();
 }
 
+/**
+ * Fetches the plug configuration of the current day
+ * @returns the on- and off-timer as a as a {@link Promise<PlugTimer>} of the current day
+ */
 async function getTodayConfiguration(): Promise<PlugTimer> {
     return (await getConfiguration(false)).json();
 }
