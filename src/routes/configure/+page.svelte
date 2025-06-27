@@ -1,11 +1,14 @@
 <script lang="ts">
     import LocationPicker from '$lib/components/locationPicker.svelte';
     import { LatLng } from 'leaflet';
+    import { Slider } from '@skeletonlabs/skeleton-svelte';
     import { ipState } from './ipstate.svelte';
 
     let natCoords: LatLng | null = null;
     let terrCoords: LatLng | null = null;
 
+    let sliderValue = $state([50]);
+  
     async function setConfiguration() {
         // TODO send data to backend
     }
@@ -31,8 +34,36 @@
             </div>
         </div>
 
-        <p class="text-center">Klicke auf die Karten, um eine Position auszuwählen</p>
+        <p class="text-center text-sm opacity-60">
+            Klicke auf die Karten, um eine Position auszuwählen
+        </p>
     </div>
+
+    <p class="mt-10 text-xl font-bold">Natürlichkeitsfaktor</p>
+    <p class="mb-5 text-sm opacity-60">
+        Der Natürlichkeitsfaktor bestimmt wie stark sich die Schaltzeiten der Lampen im Terrarium
+        an den biologischen Rhythmus des Reptils anpassen. <br /> Hier wird zwischen
+        <strong>0 % für lokale Zeiten</strong>
+        und <strong>100 % für das natürliche Habitat</strong> unterschieden.
+    </p>
+
+    <section class="flex items-center gap-2">
+        <p class="text-lg opacity-60">Lokal</p>
+        <Slider
+            name="Slider Natürlichkeitsfaktor"
+            value={sliderValue}
+            onValueChange={(e) => (sliderValue = e.value)}
+            markers={[0, 25, 50, 75, 100]}
+            markText="text-sm"
+            markOpacity="opacity-60"
+            trackBg="bg-gradient-to-r from-surface-800 to-surface-700"
+            meterBg="bg-primary-500"
+            height="h-4"
+            thumbSize="size-6"
+            step={ 5 }
+        />
+        <p class="text-lg opacity-60">Natürlich</p>
+    </section>
 
     <div class="flex justify-center pt-10">
         <button type="button" class="btn preset-filled-primary-500 w-128" onclick={setConfiguration}
