@@ -1,6 +1,6 @@
 import { tryFetching, HTTP_METHOD } from './fetching-util';
 import { getBackendUrl, endpoints } from './backend-util';
-import type { PlugConfiguration } from './response-types';
+import type { PlugConfiguration } from './data-types';
 /**
  * Requests to change the power state of the plug
  * @param power the power state the plug should be switched to
