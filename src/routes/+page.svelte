@@ -1,33 +1,40 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
     import ConfigIpModal from '$lib/components/configIpModal.svelte';
+    import { Copyright } from '@lucide/svelte';
 
     function onConfirmIP(e: MouseEvent) {
         goto('/configure');
     }
 </script>
 
-<h1 class="text-center text-6xl font-bold">Terralux</h1>
+<section class="mx-auto max-w-6xl">
+    <h1 class="text-center text-6xl font-bold">Terralux</h1>
 
-<div class="mt-8 flex flex-col gap-8 px-4 lg:flex-row">
-    <div class="flex-1">
-        <p class="mt-4 text-3xl font-medium">
-            Die smarte <strong class="font-bold">all-in-one</strong> Lampensteuerung für dein Reptil.
-        </p>
-        <div class="mt-6 flex justify-center">
-            <ConfigIpModal triggerText="Jetzt starten" onConfirm={onConfirmIP} />
+    <div class="mt-12 flex flex-col gap-16 px-4 lg:flex-row">
+        <div class="flex-1">
+            <p class="mt-4 text-4xl font-medium">
+                Die smarte <br />
+                <strong
+                    class="from-primary-400 to-tertiary-500 bg-gradient-to-r bg-clip-text text-6xl font-bold text-transparent"
+                    >ALL IN ONE</strong
+                > Lampensteuerung für dein Reptil.
+            </p>
+            <p class="mt-2 text-2xl opacity-60">
+                Mit dem Terralux Smartplug <Copyright class="-ml-1 inline h-5 w-5 pb-1" /> passt sich
+                dein Terrarium automatisch dem biologischen Rhythmus deines Reptils an.
+            </p>
+            <div class="mt-16 flex justify-center">
+                <ConfigIpModal triggerText="Jetzt durchstarten 🚀" onConfirm={onConfirmIP} />
+            </div>
+        </div>
+
+        <div class="flex flex-1 justify-center">
+            <img
+                src="image/geckoOnLanding.jpg"
+                alt="Ein Reptil auf einem Ast"
+                class="border-tertiary-contrast-200 rounded-xl border-2 object-cover shadow-2xl"
+            />
         </div>
     </div>
-
-    <div class="flex flex-1 justify-center">
-        <img
-            src="image/reptileOnBranch.png"
-            alt="Ein Reptil auf einem Ast"
-            class="h-63 rounded object-cover"
-        />
-    </div>
-</div>
-
-<div class="bg-primary-500 h-20 w-20"></div>
-<div class="bg-secondary-500 h-20 w-20"></div>
-<div class="bg-tertiary-500 h-20 w-20"></div>
+</section>
