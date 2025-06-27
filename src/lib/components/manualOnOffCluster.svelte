@@ -9,8 +9,8 @@
 
     let loading = true;
     let currentPowerState: boolean = false;
-    let onColor = '';
-    let offColor = '';
+    const onColor = 'var(--color-yellow-500)';
+    const offColor = 'var(--color-surface-300)';
     function changeState(power: boolean) {
         changePlugState(power);
         currentPowerState = power;
@@ -18,9 +18,6 @@
 
     onMount(async () => {
         loading = true;
-        const style = getComputedStyle(document.documentElement);
-        onColor = style.getPropertyValue('--color-yellow-500');
-        offColor = style.getPropertyValue('--color-surface-300');
         const data: PowerState = await (await getPlugState()).json();
         currentPowerState = data.power;
         loading = false;
