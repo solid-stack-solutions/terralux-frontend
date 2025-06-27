@@ -26,7 +26,7 @@
     });
 </script>
 
-<div class="flex h-fit min-w-fit grow flex-col rounded-md {background_styles}">
+<div class="flex grow flex-col rounded-md {background_styles}">
     {#if indicator}
         <div class="flex flex-row px-2 pt-2">
             <div class="bg-surface-700 flex w-full justify-center rounded-md py-1">
