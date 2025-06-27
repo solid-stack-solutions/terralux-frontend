@@ -1,6 +1,6 @@
 import { tryFetching, HTTP_METHOD } from './fetching-util';
 import { getBackendUrl, endpoints } from './backend-util';
-import type { PlugConfiguration } from './data-types';
+import type { PlugConfiguration, PlugTimer } from './data-types';
 /**
  * Requests to change the power state of the plug
  * @param power the power state the plug should be switched to
@@ -39,12 +39,12 @@ async function getConfiguration(full: boolean = false): Promise<Response> {
     return await tryFetching(getBackendUrl() + (full ? endpoints.get.configuration :  endpoints.get.configuration_today), HTTP_METHOD.GET, null, '');
 }
 
-async function getFullConfiguration() {
-    return await getConfiguration(true);
+async function getFullConfiguration(): Promise<PlugConfiguration>  {
+    return (await getConfiguration(true)).json();
 }
 
-async function getTodayConfiguration() {
-    return await getConfiguration(false);
+async function getTodayConfiguration(): Promise<PlugTimer> {
+    return (await getConfiguration(false)).json();
 }
 
 
