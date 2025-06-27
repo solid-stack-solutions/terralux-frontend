@@ -4,6 +4,9 @@
     import { onMount } from 'svelte';
     import {Lightbulb, LightbulbOff } from '@lucide/svelte' 
 
+    export let background_styles: string | null = null;
+    export let indicator: boolean = true;
+
     let loading = true;
     let currentPowerState: boolean = false;
     let onColor = '';
@@ -18,15 +21,14 @@
         const style = getComputedStyle(document.documentElement);
         onColor = style.getPropertyValue('--color-yellow-500');
         offColor = style.getPropertyValue('--color-surface-300');
-        console.log(onColor);
-        console.log(offColor)
         const data: PowerState = await (await getPlugState()).json();
         currentPowerState = data.power;
         loading = false;
     });
 </script>
 
-<div class="flex flex-col h-fit rounded-md bg-surface-400">
+<div class="flex flex-col min-w-fit grow h-fit rounded-md {background_styles}">
+    {#if indicator}
     <div class="flex flex-row pt-2 px-2">
         <div class="flex w-full justify-center py-1 rounded-md bg-surface-700">
             {#if currentPowerState}
@@ -36,6 +38,7 @@
             {/if}
         </div>
     </div>
+    {/if}
     <div class="flex flex-row space-x-1 p-2 {loading ? 'animate-pulse cursor-not-allowed' : ''}">
         <button
             type="button"
