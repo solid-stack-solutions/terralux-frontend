@@ -1,6 +1,6 @@
 import { tryFetching, HTTP_METHOD } from './fetching-util';
 import { getBackendUrl, endpoints } from './backend-util';
-import type { PlugConfiguration, PlugTimer, PowerState  } from './data-types';
+import type { PlugConfiguration, PlugTimer, PowerState } from './data-types';
 
 /**
  * Requests to change the power state of the plug
@@ -18,12 +18,9 @@ async function changePlugState(power: boolean): Promise<Response> {
  * @returns the backend response as a {@link Promise<PowerState>}. Consult backend API documentation for response code semantics (https://github.com/solid-stack-solutions/terralux-backend)
  */
 async function getPlugState(): Promise<PowerState> {
-    return await (await tryFetching(
-        getBackendUrl() + endpoints.get.power_state,
-        HTTP_METHOD.GET,
-        null,
-        '',
-    )).json();
+    return await (
+        await tryFetching(getBackendUrl() + endpoints.get.power_state, HTTP_METHOD.GET, null, '')
+    ).json();
 }
 
 /**
