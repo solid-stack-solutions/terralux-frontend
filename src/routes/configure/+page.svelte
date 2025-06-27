@@ -36,7 +36,7 @@
 
     <p class="mt-10 text-xl font-bold">Natürlichkeitsfaktor</p>
     <p class="mb-5 text-sm opacity-60">
-        Der Natürlichkeitsfaktor bestimmt wie stark sich die Schaltzeiten der Lampen des Terrariums
+        Der Natürlichkeitsfaktor bestimmt wie stark sich die Schaltzeiten der Lampen im Terrarium
         an den biologischen Rhythmus des Reptils anpassen. <br /> Hier wird zwischen
         <strong>0 % für lokale Zeiten</strong>
         und <strong>100 % für das natürliche Habitat</strong> unterschieden.
