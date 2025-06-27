@@ -1,3 +1,7 @@
+export type PowerState = {
+    power: boolean;
+};
+
 export type PlugConfiguration = {
     plug_url: string;
     natural_factor: number;
