@@ -1,6 +1,6 @@
-import { tryFetching, HTTP_METHOD } from './fetching-util';
-import { getBackendUrl, endpoints } from './backend-util';
-import type { PlugConfiguration, PlugTimer, PowerState } from './data-types';
+import { tryFetching, HTTP_METHOD } from '$lib/fetching-util';
+import { getBackendUrl, endpoints } from '$lib/backend-util';
+import type { PlugConfiguration, PlugTimer, PowerState } from '$lib/data-types';
 
 /**
  * Requests to change the power state of the plug
