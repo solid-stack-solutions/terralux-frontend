@@ -14,7 +14,7 @@ async function changePlugState(power: boolean): Promise<Response> {
 }
 
 /**
- * Fetchs the current power state of the plug
+ * Fetches the current power state of the plug
  * @returns the backend response as a {@link Promise<PowerState>}. Consult backend API documentation for response code semantics (https://github.com/solid-stack-solutions/terralux-backend)
  */
 async function getPlugState(): Promise<PowerState> {
