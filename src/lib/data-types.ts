@@ -11,6 +11,8 @@ export type PlugConfiguration = {
     natural_longitude: number;
     timezone?: Date;
     computed_timers?: PlugTimer[];
+    local_timers?: PlugTimer[];
+    natural_timers?: PlugTimer[];
 };
 
 export type PlugTimer = {
