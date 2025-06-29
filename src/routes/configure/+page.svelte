@@ -4,8 +4,19 @@
     import { Slider } from '@skeletonlabs/skeleton-svelte';
     import { ShieldAlert } from '@lucide/svelte';
 
-    let natCoords: LatLng | null = null;
-    let terrCoords: LatLng | null = null;
+    const reptiles = [
+        {
+            name: 'Höckerkopfgecko',
+            src: 'image/hoeckerkopfgecko.jpg',
+            latlng: new LatLng(-22.1, 166.53),
+        },
+        { name: 'Leopardgecko', src: 'image/leopardgecko.jpg', latlng: new LatLng(25.8, 65.76) },
+        { name: 'Bartagame', src: 'image/bartagame.jpg', latlng: new LatLng(-28.13, 122.9) },
+        { name: 'Königspython', src: 'image/koenigspython.jpg', latlng: new LatLng(8.26, 1.86) },
+    ];
+
+    let natCoords: LatLng | null = $state(null);
+    let terrCoords: LatLng | null = $state(null);
 
     let sliderValue = $state([30]);
 </script>
@@ -20,23 +31,17 @@
         <i>Natürlicher Standort</i> einstellen.
     </p>
 
-    <section class="grid grid-cols-2 gap-4 md:grid-cols-4 w-full">
-        {#each [
-            { name: 'Höckerkopfgecko', src: 'image/hoeckerkopfgecko.jpg' },
-            { name: 'Leopardgecko', src: 'image/leopardgecko.jpg' }, 
-            { name: 'Bartagame', src: 'image/bartagame.jpg' }, 
-            { name: 'Königspython', src: 'image/koenigspython.jpg' }
-            ] as reptile}
+    <section class="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
+        {#each reptiles as reptile}
             <div class="flex flex-col items-center">
                 <button
                     type="button"
-                    class="border-tertiary-contrast-200 aspect-square w-full overflow-hidden rounded-xl border-2 shadow-2xl hover:border-tertiary-500 hover:border-4 hover:brightness-75 hover:not-focus:border-primary-500"
+                    class="border-tertiary-contrast-200 hover:border-tertiary-500 hover:not-focus:border-primary-500 aspect-square w-full overflow-hidden rounded-xl border-2 shadow-2xl hover:border-4 hover:brightness-75"
+                    onclick={() => {
+                        terrCoords = reptile.latlng;
+                    }}
                 >
-                    <img
-                        src={reptile.src}
-                        alt={reptile.name}
-                        class="h-full w-full object-cover"
-                    />
+                    <img src={reptile.src} alt={reptile.name} class="h-full w-full object-cover" />
                 </button>
                 <span class="mt-2 text-center text-sm opacity-60">{reptile.name}</span>
             </div>
@@ -48,14 +53,14 @@
             <div class="flex flex-col">
                 <h2 class="mb-2 text-center text-xl font-semibold">Natürlicher Standort</h2>
                 <div class="aspect-[6/5] w-full shadow">
-                    <LocationPicker onSelect={(pos) => (natCoords = pos)} />
+                    <LocationPicker selected={natCoords} onSelect={(pos) => (natCoords = pos)} />
                 </div>
             </div>
 
             <div class="flex flex-col">
                 <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
                 <div class="aspect-[6/5] w-full shadow">
-                    <LocationPicker onSelect={(pos) => (terrCoords = pos)} />
+                    <LocationPicker selected={terrCoords} onSelect={(pos) => (terrCoords = pos)} />
                 </div>
             </div>
         </div>
