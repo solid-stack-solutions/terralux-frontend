@@ -5,6 +5,7 @@
     import { ShieldAlert } from '@lucide/svelte';
     import { ipState } from './ipstate.svelte';
 
+    /** Watch out: Styling is made for 4 repitles */
     const reptiles = [
         {
             name: 'Höckerkopfgecko',
@@ -30,21 +31,21 @@
 <section class="mx-auto max-w-5xl">
     <h1 class="mb-10 text-center text-6xl font-bold">Terralux Konfigurator</h1>
 
-    <p class="mt-10 text-xl font-bold">Dein Reptil</p>
+    <p class="text-xl font-bold">Dein Reptil</p>
     <p class="mb-5 text-sm opacity-60">
         <ShieldAlert class="mb-0.5 inline h-4 w-4" /> Keine Sorge, sollte dein Reptil nicht unter der
         Auswahl zu finden sein kannst du einfach den <strong>Standort</strong> manuell auf der Karte
         <i>Natürlicher Standort</i> einstellen.
     </p>
 
-    <section class="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
+    <section class="grid grid-cols-2 gap-4 md:grid-cols-4">
         {#each reptiles as reptile, index}
             <div class="flex flex-col items-center">
                 <button
                     type="button"
                     class="{index == selectedReptile
                         ? 'border-tertiary-500!'
-                        : 'hover:border-primary-500'} border-tertiary-contrast-200 aspect-square w-full overflow-hidden rounded-xl border-2 shadow-2xl hover:border-4 hover:brightness-75"
+                        : 'hover:border-primary-500'} border-tertiary-contrast-200 aspect-square overflow-hidden rounded-xl border-2 shadow-2xl hover:border-4 hover:brightness-75"
                     onclick={() => {
                         selectedReptile = index;
                         natCoords = reptile.latlng;
@@ -61,7 +62,7 @@
         <div class="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
             <div class="flex flex-col">
                 <h2 class="mb-2 text-center text-xl font-semibold">Natürlicher Standort</h2>
-                <div class="aspect-[6/5] w-full shadow">
+                <div class="aspect-[6/5] shadow">
                     <LocationPicker
                         selected={natCoords}
                         onSelect={(pos) => {
@@ -74,7 +75,7 @@
 
             <div class="flex flex-col">
                 <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
-                <div class="aspect-[6/5] w-full shadow">
+                <div class="aspect-[6/5] shadow">
                     <LocationPicker selected={terrCoords} onSelect={(pos) => (terrCoords = pos)} />
                 </div>
             </div>
@@ -111,7 +112,7 @@
         <p class="text-lg opacity-60">Natürlich</p>
     </section>
 
-    <div class="flex justify-center pt-10">
+    <div class="flex justify-center pt-20">
         <button type="button" class="btn preset-filled-primary-500 w-128" onclick={setConfiguration}
             >Jetzt konfigurieren</button
         >
