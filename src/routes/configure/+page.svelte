@@ -113,8 +113,11 @@
     </section>
 
     <div class="flex justify-center pt-20">
-        <button type="button" class="btn preset-filled-primary-500 w-128" onclick={setConfiguration}
-            >Jetzt konfigurieren</button
+        <button
+            type="button"
+            class="btn preset-filled-primary-500 w-128"
+            disabled={!natCoords || !terrCoords}
+            onclick={setConfiguration}>Jetzt konfigurieren</button
         >
     </div>
 </section>
