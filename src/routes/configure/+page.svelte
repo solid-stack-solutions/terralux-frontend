@@ -17,6 +17,7 @@
 
     let natCoords: LatLng | null = $state(null);
     let terrCoords: LatLng | null = $state(null);
+    let selectedReptile: number | null = $state(null);
 
     let sliderValue = $state([30]);
 </script>
@@ -32,13 +33,16 @@
     </p>
 
     <section class="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
-        {#each reptiles as reptile}
+        {#each reptiles as reptile, index}
             <div class="flex flex-col items-center">
                 <button
                     type="button"
-                    class="border-tertiary-contrast-200 hover:border-tertiary-500 hover:not-focus:border-primary-500 aspect-square w-full overflow-hidden rounded-xl border-2 shadow-2xl hover:border-4 hover:brightness-75"
+                    class="{index == selectedReptile
+                        ? 'border-tertiary-500!'
+                        : 'hover:border-primary-500'} border-tertiary-contrast-200 aspect-square w-full overflow-hidden rounded-xl border-2 shadow-2xl hover:border-4 hover:brightness-75"
                     onclick={() => {
-                        terrCoords = reptile.latlng;
+                        selectedReptile = index;
+                        natCoords = reptile.latlng;
                     }}
                 >
                     <img src={reptile.src} alt={reptile.name} class="h-full w-full object-cover" />
@@ -53,7 +57,13 @@
             <div class="flex flex-col">
                 <h2 class="mb-2 text-center text-xl font-semibold">Natürlicher Standort</h2>
                 <div class="aspect-[6/5] w-full shadow">
-                    <LocationPicker selected={natCoords} onSelect={(pos) => (natCoords = pos)} />
+                    <LocationPicker
+                        selected={natCoords}
+                        onSelect={(pos) => {
+                            natCoords = pos;
+                            selectedReptile = null;
+                        }}
+                    />
                 </div>
             </div>
 
