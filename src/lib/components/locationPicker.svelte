@@ -6,16 +6,31 @@
     let map: L.Map;
     let marker: L.Marker;
 
-    const initialCenter: L.LatLngExpression = [53.131, 8.22];
-    const initialZoom = 13;
-
     let {
+        /**
+         * If false, the user can select a location on the map and move the map.
+         */
+        disabled = false,
         selected = null,
         onSelect = () => {},
-    }: { selected?: L.LatLng | null; onSelect: (coords: L.LatLng) => void } = $props();
+    }: {
+        disabled?: boolean;
+        selected?: L.LatLng | null;
+        onSelect?: (coords: L.LatLng) => void;
+    } = $props();
+
+    const initialCenter: L.LatLngExpression = selected ?? [53.131, 8.22];
+    const initialZoom = 13;
 
     onMount(() => {
-        map = L.map(mapDiv).setView(initialCenter, initialZoom);
+        const zoomBehaviour = disabled ? 'center' : true;
+        map = L.map(mapDiv, {
+            boxZoom: !disabled,
+            doubleClickZoom: zoomBehaviour,
+            dragging: !disabled,
+            scrollWheelZoom: zoomBehaviour,
+            touchZoom: zoomBehaviour,
+        }).setView(initialCenter, initialZoom);
 
         // see https://leaflet-extras.github.io/leaflet-providers/preview/ for list of available tile layers
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -26,6 +41,13 @@
             minZoom: 2,
         }).addTo(map);
 
+        // Add initial marker
+        if (selected) {
+            marker = L.marker(selected).addTo(map);
+        }
+
+        // Only add markers when enabled
+        if (disabled) return;
         map.on('click', (e: L.LeafletMouseEvent) => {
             const { latlng } = e;
 
@@ -42,14 +64,19 @@
 </script>
 
 <div class="relative flex h-full w-full">
-    <div bind:this={mapDiv} class="z-0 flex h-full w-full rounded"></div>
     {#if selected}
         <div
-            class="bg-primary-500 absolute top-3 left-1/2 -translate-x-1/2 transform rounded px-4 py-2 text-nowrap"
+            class="bg-primary-500 absolute top-3 left-1/2 z-20 -translate-x-1/2 transform rounded px-4 py-2 text-nowrap"
         >
             Lat: {selected.lat.toFixed(5)}, Lng: {selected.lng.toFixed(5)}
         </div>
     {/if}
+    {#if disabled}
+        <div
+            class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-black/15"
+        ></div>
+    {/if}
+    <div bind:this={mapDiv} class="z-0 flex h-full w-full rounded"></div>
 </div>
 
 <style>
