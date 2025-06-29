@@ -3,6 +3,7 @@
     import { LatLng } from 'leaflet';
     import { Slider } from '@skeletonlabs/skeleton-svelte';
     import { ShieldAlert } from '@lucide/svelte';
+    import { ipState } from './ipstate.svelte';
 
     const reptiles = [
         {
@@ -19,7 +20,11 @@
     let terrCoords: LatLng | null = $state(null);
     let selectedReptile: number | null = $state(null);
 
-    let sliderValue = $state([30]);
+    let sliderValue = $state([50]);
+  
+    async function setConfiguration() {
+        // TODO send data to backend
+    }
 </script>
 
 <section class="mx-auto max-w-5xl">
@@ -97,10 +102,18 @@
             markers={[0, 25, 50, 75, 100]}
             markText="text-sm"
             markOpacity="opacity-60"
+            trackBg="bg-gradient-to-r from-surface-800 to-surface-700"
             meterBg="bg-primary-500"
             height="h-4"
             thumbSize="size-6"
+            step={ 5 }
         />
         <p class="text-lg opacity-60">Natürlich</p>
     </section>
+
+    <div class="flex justify-center pt-10">
+        <button type="button" class="btn preset-filled-primary-500 w-128" onclick={setConfiguration}
+            >Jetzt konfigurieren</button
+        >
+    </div>
 </section>
