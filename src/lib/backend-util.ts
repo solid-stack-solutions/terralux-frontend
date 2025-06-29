@@ -13,8 +13,8 @@ function getBackendUrl(): string {
 
 // Backend endpoints
 const plugPower = 'plug/power';
-const configuration = 'configuration/';
-const today = 'today';
+const configuration = 'configuration';
+const today = '/today';
 
 /**
  * Collection of useable backend API endpoints
@@ -22,6 +22,7 @@ const today = 'today';
 const endpoints = {
     get: {
         configuration_today: configuration + today,
+        configuration: configuration,
         power_state: plugPower,
     },
     put: {
