@@ -1,8 +1,11 @@
 <script lang="ts">
+    import { goto } from '$app/navigation';
+    import ConfigIpModal from '$lib/components/configIpModal.svelte';
     import LocationPicker from '$lib/components/locationPicker.svelte';
-    import { LatLng } from 'leaflet';
-    import { Slider } from '@skeletonlabs/skeleton-svelte';
     import { ShieldAlert } from '@lucide/svelte';
+    import { Slider } from '@skeletonlabs/skeleton-svelte';
+    import { LatLng } from 'leaflet';
+    import { onMount } from 'svelte';
     import { ipState } from './ipstate.svelte';
 
     /** Watch out: Styling is made for 4 repitles */
@@ -23,9 +26,18 @@
 
     let sliderValue = $state([50]);
 
+    let ipModalOpen = $state(false);
+
     async function setConfiguration() {
         // TODO send data to backend
     }
+
+    onMount(() => {
+        // When user naviagates to this page manually
+        if (!ipState.ipAddress) {
+            ipModalOpen = true;
+        }
+    });
 </script>
 
 <section class="mx-auto max-w-5xl">
@@ -120,4 +132,9 @@
             onclick={setConfiguration}>Jetzt konfigurieren</button
         >
     </div>
+    <ConfigIpModal
+        hideButton={true}
+        bind:openState={ipModalOpen}
+        onConfirm={() => (ipModalOpen = false)}
+    />
 </section>
