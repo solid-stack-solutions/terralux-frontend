@@ -29,7 +29,7 @@
     }
 
     function returnToLandingPage() {
-        goto("/");    
+        goto('/');
     }
 </script>
 
@@ -117,9 +117,13 @@
         <p class="text-lg opacity-60">Natürlich</p>
     </section>
 
-    <div class="flex justify-center pt-20 gap-x-4">
-        <button type="button" class="btn preset-filled-primary-500 w-32" onclick={() => returnToLandingPage()}>
-            <ArrowBigLeftDash/> 
+    <div class="flex justify-center gap-x-4 pt-20">
+        <button
+            type="button"
+            class="btn preset-filled-primary-500 w-32"
+            onclick={() => returnToLandingPage()}
+        >
+            <ArrowBigLeftDash />
             Zurück
         </button>
         <button
