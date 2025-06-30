@@ -1,5 +1,6 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
+    import { changeConfiguration } from '$lib/backend-api';
     import ConfigIpModal from '$lib/components/configIpModal.svelte';
     import LocationPicker from '$lib/components/locationPicker.svelte';
     import { ShieldAlert } from '@lucide/svelte';
@@ -29,7 +30,20 @@
     let ipModalOpen = $state(false);
 
     async function setConfiguration() {
-        // TODO send data to backend
+        if (!natCoords || !terrCoords) return;
+
+        const response = await changeConfiguration({
+            plug_url: 'http://' + ipState.ipAddress,
+            natural_factor: sliderValue[0] / 100,
+            local_latitude: terrCoords.lat,
+            local_longitude: terrCoords.lng,
+            natural_latitude: natCoords.lat,
+            natural_longitude: natCoords.lng,
+        });
+        if (response.ok) {
+            goto('/monitor');
+        }
+        // Currently no error handling
     }
 
     onMount(() => {
