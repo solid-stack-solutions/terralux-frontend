@@ -1,6 +1,6 @@
 <script lang="ts">
     import { changePlugState, getPlugState } from '$lib/backend-api';
-    import type { PowerState } from '$lib/response-types';
+    import type { PowerState } from '$lib/data-types';
     import { onMount } from 'svelte';
     import { Lightbulb, LightbulbOff } from '@lucide/svelte';
 
@@ -20,7 +20,7 @@
 
     onMount(async () => {
         loading = true;
-        const data: PowerState = await (await getPlugState()).json();
+        const data: PowerState = await getPlugState();
         currentPowerState = data.power;
         loading = false;
     });
