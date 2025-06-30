@@ -1,7 +1,7 @@
 <script lang="ts">
+    import { houseIcon, treeIcon } from '$lib/components/locationMarkers';
     import LocationPicker from '$lib/components/locationPicker.svelte';
     import { LatLng } from 'leaflet';
-    import { ipState } from './ipstate.svelte';
 
     let natCoords: LatLng | null = null;
     let terrCoords: LatLng | null = null;
@@ -19,14 +19,14 @@
             <div class="flex flex-col">
                 <h2 class="mb-2 text-center text-xl font-semibold">Natürlicher Standort</h2>
                 <div class="aspect-[6/5] w-full shadow">
-                    <LocationPicker onSelect={(pos) => (natCoords = pos)} />
+                    <LocationPicker onSelect={(pos) => (natCoords = pos)} markerIcon={treeIcon} />
                 </div>
             </div>
 
             <div class="flex flex-col">
                 <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
                 <div class="aspect-[6/5] w-full shadow">
-                    <LocationPicker onSelect={(pos) => (terrCoords = pos)} />
+                    <LocationPicker onSelect={(pos) => (terrCoords = pos)} markerIcon={houseIcon} />
                 </div>
             </div>
         </div>
