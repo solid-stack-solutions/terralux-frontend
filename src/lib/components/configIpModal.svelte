@@ -63,15 +63,16 @@
         </header>
         <form onsubmit={handleConfirm}>
             <article class="pb-4">
-                <p>
-                    Gebe die IP-Adresse deiner Steckdose ein, um dich mit ihr zu verbinden.<br />
-                    <span class="opacity-60"
+                    <p class="text-sm">
+                        <span class="text-xl">
+                                Gebe die IP-Adresse deiner Steckdose ein, um dich mit ihr zu verbinden.</span><br />
+                        <span class="opacity-60"
                         >Die Steckdose muss sich im gleichen Netzwerk befinden. Du kannst die
                         IP-Adresse der Steckdose in den Router Einstellungen finden.
                     </span>
                 </p>
                 <label class="label pt-5">
-                    <span class="label-text">IPv4-Adresse</span>
+                    <span class="label-text text-sm">IPv4-Adresse</span>
                     <input
                         type="text"
                         class="input font-mono {error ? 'ring-error-500 focus:ring-error-500' : ''}"
