@@ -1,9 +1,10 @@
 <script lang="ts">
-    import LocationPicker from '$lib/components/locationPicker.svelte';
-    import { LatLng } from 'leaflet';
-    import { Slider } from '@skeletonlabs/skeleton-svelte';
-    import { ShieldAlert } from '@lucide/svelte';
     import { ipState } from './ipstate.svelte';
+    import { houseIcon, treeIcon } from '$lib/components/locationMarkers';
+    import LocationPicker from '$lib/components/locationPicker.svelte';
+    import { ShieldAlert } from '@lucide/svelte';
+    import { Slider } from '@skeletonlabs/skeleton-svelte';
+    import { LatLng } from 'leaflet';
 
     /** Watch out: Styling is made for 4 repitles */
     const reptiles = [
@@ -69,6 +70,7 @@
                             natCoords = pos;
                             selectedReptile = null;
                         }}
+                        markerIcon={treeIcon}
                     />
                 </div>
             </div>
@@ -76,7 +78,7 @@
             <div class="flex flex-col">
                 <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
                 <div class="aspect-[6/5] shadow">
-                    <LocationPicker selected={terrCoords} onSelect={(pos) => (terrCoords = pos)} />
+                    <LocationPicker selected={terrCoords} onSelect={(pos) => (terrCoords = pos)} markerIcon={houseIcon} />
                 </div>
             </div>
         </div>
