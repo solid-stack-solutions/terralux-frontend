@@ -46,7 +46,7 @@
                     Ein: <span class="font-normal">{todayOnHour}:{todayOnMinute}</span>
                 </p>
                 <p class="text-lg font-semibold">
-                    Aus: <span class="font-normal">{todayOnHour}:{todayOnMinute}</span>
+                    Aus: <span class="font-normal">{todayOffHour}:{todayOffMinute}</span>
                 </p>
             </div>
         </div>
