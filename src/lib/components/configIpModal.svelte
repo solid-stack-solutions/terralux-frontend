@@ -98,10 +98,10 @@
                     class="btn preset-filled-surface-500 font-semibold"
                     onclick={modalClose}
                 >
-                    Cancel
+                    Abbrechen
                 </button>
-                <button type="submit" class="btn preset-filled-success-500 font-semibold"
-                    >Confirm
+                <button type="submit" class="btn preset-filled-success-500 font-semibold">
+                    Bestätigen
                 </button>
             </footer>
         </form>
