@@ -20,7 +20,7 @@
     } = $props();
 
     const initialCenter: L.LatLngExpression = selected ?? [53.131, 8.22];
-    const initialZoom = 13;
+    const initialZoom = 7;
 
     onMount(() => {
         const zoomBehaviour = disabled ? 'center' : true;
@@ -41,25 +41,26 @@
             minZoom: 2,
         }).addTo(map);
 
-        // Add initial marker
-        if (selected) {
-            marker = L.marker(selected).addTo(map);
-        }
-
         // Only add markers when enabled
         if (disabled) return;
         map.on('click', (e: L.LeafletMouseEvent) => {
             const { latlng } = e;
 
-            if (!marker) {
-                marker = L.marker(latlng).addTo(map);
-            } else {
-                marker.setLatLng(latlng);
-            }
-
             selected = latlng;
             onSelect(latlng);
         });
+    });
+
+    // Update the marker and map view when selected location changes
+    $effect(() => {
+        if (!map || !selected) return;
+
+        map.setView(selected, map.getZoom());
+        if (!marker) {
+            marker = L.marker(selected).addTo(map);
+        } else {
+            marker.setLatLng(selected);
+        }
     });
 </script>
 
