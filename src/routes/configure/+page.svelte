@@ -62,6 +62,17 @@
     <div class="mt-15 flex flex-col items-center gap-4">
         <div class="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
             <div class="flex flex-col">
+                <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
+                <div class="aspect-[6/5] shadow">
+                    <LocationPicker
+                        selected={terrCoords}
+                        onSelect={(pos) => (terrCoords = pos)}
+                        markerIcon={houseIcon}
+                    />
+                </div>
+            </div>
+
+            <div class="flex flex-col">
                 <h2 class="mb-2 text-center text-xl font-semibold">Natürlicher Standort</h2>
                 <div class="aspect-[6/5] shadow">
                     <LocationPicker
@@ -72,13 +83,6 @@
                         }}
                         markerIcon={treeIcon}
                     />
-                </div>
-            </div>
-
-            <div class="flex flex-col">
-                <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
-                <div class="aspect-[6/5] shadow">
-                    <LocationPicker selected={terrCoords} onSelect={(pos) => (terrCoords = pos)} markerIcon={houseIcon} />
                 </div>
             </div>
         </div>
