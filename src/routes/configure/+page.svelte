@@ -2,7 +2,8 @@
     import LocationPicker from '$lib/components/locationPicker.svelte';
     import { LatLng } from 'leaflet';
     import { Slider } from '@skeletonlabs/skeleton-svelte';
-    import { ShieldAlert } from '@lucide/svelte';
+    import { ShieldAlert, ArrowBigLeftDash } from '@lucide/svelte';
+    import { goto } from '$app/navigation';
     import { ipState } from './ipstate.svelte';
 
     /** Watch out: Styling is made for 4 repitles */
@@ -25,6 +26,10 @@
 
     async function setConfiguration() {
         // TODO send data to backend
+    }
+
+    function returnToLandingPage() {
+        goto("/");    
     }
 </script>
 
@@ -112,12 +117,17 @@
         <p class="text-lg opacity-60">Natürlich</p>
     </section>
 
-    <div class="flex justify-center pt-20">
+    <div class="flex justify-center pt-20 gap-x-4">
+        <button type="button" class="btn preset-filled-primary-500 w-32" onclick={() => returnToLandingPage()}>
+            <ArrowBigLeftDash/> 
+            Zurück
+        </button>
         <button
             type="button"
             class="btn preset-filled-primary-500 w-128"
             disabled={!natCoords || !terrCoords}
             onclick={setConfiguration}>Jetzt konfigurieren</button
         >
+        <div class="w-32"></div>
     </div>
 </section>
