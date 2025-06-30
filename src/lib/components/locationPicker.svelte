@@ -60,7 +60,7 @@
 
         map.setView(selected, map.getZoom());
         if (!marker) {
-            marker = L.marker(selected, { icon: houseIcon }).addTo(map);
+            marker = L.marker(selected, { icon: markerIcon ?? houseIcon }).addTo(map);
         } else {
             marker.setLatLng(selected);
         }
