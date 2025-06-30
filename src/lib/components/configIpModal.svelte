@@ -64,14 +64,16 @@
         <form onsubmit={handleConfirm}>
             <article class="pb-4">
                 <p>
-                    Gebe die IP-Adresse deiner Steckdose ein, um dich mit ihr zu verbinden.<br />
-                    <span class="opacity-60"
-                        >Die Steckdose muss sich im gleichen Netzwerk befinden. Du kannst die
+                    <span class="text-lg">
+                        Gib die IP-Adresse deiner Steckdose ein, um dich mit ihr zu verbinden.
+                    </span><br />
+                    <span class="text-sm opacity-60">
+                        Die Steckdose muss sich im gleichen Netzwerk befinden. Du kannst die
                         IP-Adresse der Steckdose in den Router Einstellungen finden.
                     </span>
                 </p>
                 <label class="label pt-5">
-                    <span class="label-text">IPv4-Adresse</span>
+                    <span class="label-text text-sm">IPv4-Adresse</span>
                     <input
                         type="text"
                         class="input font-mono {error ? 'ring-error-500 focus:ring-error-500' : ''}"
@@ -94,11 +96,13 @@
                 <button
                     type="button"
                     class="btn preset-filled-surface-500 font-semibold"
-                    onclick={modalClose}>Cancel</button
+                    onclick={modalClose}
                 >
+                    Cancel
+                </button>
                 <button type="submit" class="btn preset-filled-success-500 font-semibold"
-                    >Confirm</button
-                >
+                    >Confirm
+                </button>
             </footer>
         </form>
     {/snippet}
