@@ -20,6 +20,9 @@
     const todayOffHour = configData.computed_timers[dayOfYearForArray].off_time.hour;
     const todayOffMinute = configData.computed_timers[dayOfYearForArray].off_time.minute;
 
+    // Time zone
+    const timezone = configData.timezone
+
     let sliderValue = $state([configData.natural_factor * 100]);
 
     // TODO get config from backend on page load
@@ -30,7 +33,13 @@
 <section class="mx-auto max-w-5xl">
     <div class="flex flex-col justify-center">
         <h1 class="text-center text-6xl font-bold">Terralux Kontrollstation</h1>
-        <div class="mt-4 flex items-center justify-center">
+
+        <div class="flex flex-col mt-10">
+            <h2 class="text-xl font-semibold">Aktuell verbunden mit der Steckdose 1.1.1.1</h2>
+            <p class="h10 opacity-60 text-sm">INFO ICON: Die aktuellen Zeiten werden mit berücksichtigung auf die Zeitzone {timezone} berechnet.</p>
+        </div>
+
+        <div class="justify-left mt-4 flex items-center">
             <ManualOnOffCluster background_styles="w-128" />
             <div class="ml-10 flex flex-col items-center gap-1">
                 <p class="text-lg font-semibold">
