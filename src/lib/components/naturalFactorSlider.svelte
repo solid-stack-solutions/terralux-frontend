@@ -7,7 +7,7 @@
     }: { sliderValue?: number; disabled?: boolean } = $props();
 </script>
 
-<section class="flex items-center gap-2">
+<section class="flex items-center gap-2 pb-10">
     <p class="text-lg opacity-60">Lokal</p>
     <Slider
         name="Slider Natürlichkeitsfaktor"

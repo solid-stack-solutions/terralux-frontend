@@ -16,11 +16,9 @@
     // TODO get config as prop instead of importing
 </script>
 
-<div>
-    <p class="text-lg font-semibold">
-        Einschaltung heute: <span class="font-normal">{plugSwitchTimeToString(todayOn)} Uhr</span>
-    </p>
-    <p class="text-lg font-semibold">
-        Ausschaltung heute: <span class="font-normal">{plugSwitchTimeToString(todayOff)} Uhr</span>
-    </p>
+<div class="grid grid-cols-2 justify-center p-1 text-lg font-semibold">
+    <p>Einschaltung heute:</p>
+    <p class="font-normal">{plugSwitchTimeToString(todayOn)} Uhr</p>
+    <p>Ausschaltung heute:</p>
+    <p class="font-normal">{plugSwitchTimeToString(todayOff)} Uhr</p>
 </div>
