@@ -7,20 +7,19 @@ import { redirect, type Load } from '@sveltejs/kit';
  * or not configured, the page will load normally.
  */
 export const load: Load = async ({ fetch }) => {
-    // Do not use retry policy to prevent long page loading
+    let response;
     try {
-        const res = await fetch(
+        // Do not use retry policy to prevent long page loading
+        response = await fetch(
             // Use power state since this returns quickly
             getBackendUrl() + endpoints.get.power_state,
             { method: HTTP_METHOD.GET.toString() },
         );
-
-        if (res.status !== 409) {
-            throw redirect(307, '/monitor');
-        }
     } catch (e) {
         console.warn(e);
     }
 
-    return {};
+    if (response?.status !== 409) {
+        throw redirect(307, '/monitor');
+    }
 };
