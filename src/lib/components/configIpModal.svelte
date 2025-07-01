@@ -3,7 +3,6 @@
     import { ipState } from '../../routes/configure/ipstate.svelte';
     import { onMount } from 'svelte';
 
-
     // == Form control ==
     // svelte-ignore non_reactive_update because it does not need to be reactive`
     let ipAddress = '';
