@@ -18,7 +18,7 @@
 
 <div class="p-2 pb-0">
     <div class="bg-surface-700 relative rounded-md p-3 pb-1">
-        <div class="bg-surface-600 absolute -top-4 left-2 rounded-md px-2 text-sm font-semibold">
+        <div class="bg-surface-600 absolute -top-5 left-2 rounded-md px-2 text-base font-semibold">
             Zeiten heute
         </div>
 

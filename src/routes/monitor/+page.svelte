@@ -4,8 +4,8 @@
     import ManualOnOffCluster from '$lib/components/manualOnOffCluster.svelte';
     import MonitorChart from '$lib/components/monitorChart.svelte';
     import { LatLng } from 'leaflet';
-    import NextOnOffTime from './components/nextOnOffTime.svelte';
     import AdditionalSettings from './components/additionalSettings.svelte';
+    import NextOnOffTime from './components/nextOnOffTime.svelte';
 
     // TODO get config from backend on page load
     const lat = 53.131;
