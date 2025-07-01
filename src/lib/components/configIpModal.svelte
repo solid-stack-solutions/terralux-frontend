@@ -7,7 +7,7 @@
     // svelte-ignore non_reactive_update because it does not need to be reactive`
     let ipAddress = '';
     let error = $state(false);
-    const errorMessage = 'Bitte gib eine gültige IPv4-Adresse ein.';
+    const errorMessage = 'Bitte gebe eine gültige IPv4-Adresse ein.';
 
     function isIPV4Address(ip: string): boolean {
         // Match up to 255.255.255.255
@@ -71,7 +71,7 @@
             <article class="pb-4">
                 <p>
                     <span class="text-lg">
-                        Gib die IP-Adresse deiner Steckdose ein, um dich mit ihr zu verbinden.
+                        Gebe die IP-Adresse deiner Steckdose ein, um dich mit ihr zu verbinden.
                     </span><br />
                     <span class="text-sm opacity-60">
                         Die Steckdose muss sich im gleichen Netzwerk befinden. Du kannst die
