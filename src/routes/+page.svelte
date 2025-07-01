@@ -22,7 +22,7 @@
             </p>
             <p class="mt-2 text-2xl opacity-60">
                 Mit dem Terralux Smartplug <Copyright class="-ml-1 inline h-5 w-5 pb-1" /> passt sich
-                dein Terrarium automatisch dem biologischen Rhythmus deines Reptils an.
+                deine Terrariumbeleuchtung automatisch dem Biorhythmus deines Reptils an.
             </p>
             <div class="mt-16 flex justify-center">
                 <ConfigIpModal triggerText="Jetzt durchstarten 🚀" onConfirm={onConfirmIP} />
@@ -32,7 +32,7 @@
         <div class="flex flex-1 justify-center">
             <img
                 src="image/geckoOnLanding.jpg"
-                alt="Ein Reptil auf einem Ast"
+                alt="Ein Höckerkopfgecko auf einem Ast"
                 class="border-tertiary-contrast-200 rounded-xl border-2 object-cover shadow-2xl"
             />
         </div>
