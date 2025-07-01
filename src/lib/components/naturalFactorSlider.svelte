@@ -20,7 +20,7 @@
         trackBg="bg-gradient-to-r from-surface-800 to-surface-700"
         meterBg="bg-primary-500"
         height="h-4"
-        thumbSize="size-6"
+        thumbSize={disabled ? 'size-0' : 'size-6'}
         step={5}
     />
     <p class="text-lg opacity-60">Natürlich</p>
