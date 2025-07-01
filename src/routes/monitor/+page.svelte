@@ -8,7 +8,6 @@
     import { LatLng } from 'leaflet';
     import NextOnOffTime from './components/nextOnOffTime.svelte';
 
-
     // Time zone
     const timezone = configData.timezone;
 
@@ -32,11 +31,13 @@
         </div>
 
         <div class="mt-5 grid w-full grid-cols-1 gap-6 md:grid-cols-2">
+            <ManualOnOffCluster />
+            <NextOnOffTime />
+        </div>
+
+        <div class="mt-5 grid w-full grid-cols-1 gap-6 md:grid-cols-2">
             <div class="flex flex-col">
-                <div>
-                    <ManualOnOffCluster background_styles="" />
-                    <h2 class="mb-2 text-center text-xl font-semibold">Natürlicher Standort</h2>
-                </div>
+                <h2 class="mb-2 text-center text-xl font-semibold">Natürlicher Standort</h2>
                 <div>
                     <div class="aspect-[6/3] w-full shadow">
                         <LocationPicker
@@ -50,8 +51,7 @@
 
             <div class="flex flex-col">
                 <div class="flex flex-col">
-                    <NextOnOffTime />
-                    <h2 class="mb-2 mt-5 text-center text-xl font-semibold">Terrarium Standort</h2>
+                    <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
                 </div>
                 <div>
                     <div class="aspect-[6/3] w-full shadow">
