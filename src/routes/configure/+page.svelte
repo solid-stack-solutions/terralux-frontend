@@ -117,7 +117,7 @@
         <p class="text-lg opacity-60">Natürlich</p>
     </section>
 
-    <div class="flex justify-center gap-x-4 pt-20">
+    <div class="realtive flex w-full gap-x-4 pt-20">
         <button
             type="button"
             class="btn preset-filled-primary-500 w-32"
@@ -128,10 +128,9 @@
         </button>
         <button
             type="button"
-            class="btn preset-filled-primary-500 w-128"
+            class="btn preset-filled-primary-500 w-128 lg:absolute lg:left-1/2 lg:-translate-x-1/2"
             disabled={!natCoords || !terrCoords}
             onclick={setConfiguration}>Jetzt konfigurieren</button
         >
-        <div class="w-32"></div>
     </div>
 </section>
