@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Modal } from '@skeletonlabs/skeleton-svelte';
     import { ipState } from '../../routes/configure/ipstate.svelte';
+    import { onMount } from 'svelte';
 
     // == Modal control ==
     let openState = $state(false);
@@ -45,6 +46,11 @@
         triggerText = 'Jetzt starten',
         onConfirm,
     }: { triggerText: string; onConfirm: (e: SubmitEvent) => void } = $props();
+
+    // Initialisation
+    onMount(() => {
+        ipAddress = ipState.ipAddress;
+    });
 </script>
 
 <Modal
@@ -56,6 +62,7 @@
 >
     {#snippet trigger()}
         {triggerText}
+        #
     {/snippet}
     {#snippet content()}
         <header class="flex justify-between">
