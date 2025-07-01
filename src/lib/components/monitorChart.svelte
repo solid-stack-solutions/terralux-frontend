@@ -228,7 +228,7 @@ The chart can not be rendered on the server.
 </script>
 
 <h1 class="h6 mt-20 ml-12 text-xl">Sonnenzeiten & Schaltpunkte</h1>
-<p class="h10 mb-2 ml-12 opacity-60 text-sm">Hier kann der Graph erläutert werden</p>
+<p class="h10 mb-2 ml-12 text-sm opacity-60">Hier kann der Graph erläutert werden</p>
 <div bind:this={chartElement}></div>
 
 <style>

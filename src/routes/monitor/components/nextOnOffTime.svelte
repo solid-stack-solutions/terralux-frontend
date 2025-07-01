@@ -18,10 +18,10 @@
 </script>
 
 <div>
-<p class="text-lg font-semibold">
-    Einschaltung heute: <span class="font-normal">{todayOnHour}:{todayOnMinute} Uhr</span>
-</p>
-<p class="text-lg font-semibold">
-    Ausschaltung heute: <span class="font-normal">{todayOffHour}:{todayOffMinute} Uhr</span>
-</p>
+    <p class="text-lg font-semibold">
+        Einschaltung heute: <span class="font-normal">{todayOnHour}:{todayOnMinute} Uhr</span>
+    </p>
+    <p class="text-lg font-semibold">
+        Ausschaltung heute: <span class="font-normal">{todayOffHour}:{todayOffMinute} Uhr</span>
+    </p>
 </div>
