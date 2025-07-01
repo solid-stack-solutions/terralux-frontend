@@ -1,13 +1,14 @@
 <script lang="ts">
+    import { ipState } from './ipstate.svelte';
+    import { houseIcon, treeIcon } from '$lib/components/locationMarkers';
     import { goto } from '$app/navigation';
     import { changeConfiguration } from '$lib/backend-api';
     import ConfigIpModal from '$lib/components/configIpModal.svelte';
     import LocationPicker from '$lib/components/locationPicker.svelte';
     import { ShieldAlert } from '@lucide/svelte';
-    import { Progress, Slider } from '@skeletonlabs/skeleton-svelte';
+    import { Slider } from '@skeletonlabs/skeleton-svelte';
     import { LatLng } from 'leaflet';
     import { onMount } from 'svelte';
-    import { ipState } from './ipstate.svelte';
     import SmoothLoadingBar from '$lib/components/smoothLoadingBar.svelte';
 
     let ipModalOpen = $state(false);
@@ -110,24 +111,26 @@
         <div class="mt-15 flex flex-col items-center gap-4">
             <div class="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
                 <div class="flex flex-col">
-                    <h2 class="mb-2 text-center text-xl font-semibold">Natürlicher Standort</h2>
+                    <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
                     <div class="aspect-[6/5] shadow">
                         <LocationPicker
-                            selected={natCoords}
+                            selected={terrCoords}
                             onSelect={(pos) => {
-                                natCoords = pos;
+                                terrCoords = pos;
                                 selectedReptile = null;
                             }}
+                            markerIcon={houseIcon}
                         />
                     </div>
                 </div>
 
                 <div class="flex flex-col">
-                    <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
+                    <h2 class="mb-2 text-center text-xl font-semibold">Natürlicher Standort</h2>
                     <div class="aspect-[6/5] shadow">
                         <LocationPicker
-                            selected={terrCoords}
-                            onSelect={(pos) => (terrCoords = pos)}
+                            selected={natCoords}
+                            onSelect={(pos) => (natCoords = pos)}
+                            markerIcon={treeIcon}
                         />
                     </div>
                 </div>

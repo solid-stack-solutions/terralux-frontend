@@ -1,6 +1,7 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
+    import { houseIcon } from '$lib/components/locationMarkers';
     import * as L from 'leaflet';
+    import { onMount } from 'svelte';
 
     let mapDiv: HTMLDivElement;
     let map: L.Map;
@@ -12,10 +13,12 @@
          */
         disabled = false,
         selected = null,
+        markerIcon = null,
         onSelect = () => {},
     }: {
         disabled?: boolean;
         selected?: L.LatLng | null;
+        markerIcon?: L.Icon | null;
         onSelect?: (coords: L.LatLng) => void;
     } = $props();
 
@@ -57,7 +60,7 @@
 
         map.setView(selected, map.getZoom());
         if (!marker) {
-            marker = L.marker(selected).addTo(map);
+            marker = L.marker(selected, { icon: markerIcon ?? houseIcon }).addTo(map);
         } else {
             marker.setLatLng(selected);
         }
