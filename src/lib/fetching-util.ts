@@ -15,7 +15,7 @@ const retryPolicy = retry(handleAll, {
 async function tryFetching(
     url: string,
     method: HTTP_METHOD,
-    body: string | null,
+    body: object | null,
     query: string[][] | Record<string, string> | string | URLSearchParams,
 ) {
     if (query) {

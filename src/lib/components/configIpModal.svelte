@@ -2,13 +2,6 @@
     import { Modal } from '@skeletonlabs/skeleton-svelte';
     import { ipState } from '../../routes/configure/ipstate.svelte';
 
-    // == Modal control ==
-    let openState = $state(false);
-
-    function modalClose() {
-        openState = false;
-    }
-
     // == Form control ==
     // svelte-ignore non_reactive_update because it does not need to be reactive`
     let ipAddress = '';
@@ -30,7 +23,7 @@
         }
         error = false;
         ipState.ipAddress = ipAddress;
-        onConfirm(e);
+        if (onConfirm) onConfirm(e);
     }
 
     /**
@@ -43,14 +36,21 @@
 
     let {
         triggerText = 'Jetzt starten',
+        hideButton = false,
+        openState = $bindable(false),
         onConfirm,
-    }: { triggerText: string; onConfirm: (e: SubmitEvent) => void } = $props();
+    }: {
+        triggerText?: string;
+        hideButton?: boolean;
+        openState?: boolean;
+        onConfirm?: (e: SubmitEvent) => void;
+    } = $props();
 </script>
 
 <Modal
     open={openState}
     onOpenChange={(e) => (openState = e.open)}
-    triggerBase="btn preset-filled-primary-500 text-2xl font-semibold"
+    triggerBase={hideButton ? 'invisible!' : 'btn preset-filled-primary-500 text-2xl font-semibold'}
     contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl max-w-screen-sm"
     backdropClasses="backdrop-blur-sm"
 >
@@ -96,12 +96,12 @@
                 <button
                     type="button"
                     class="btn preset-filled-surface-500 font-semibold"
-                    onclick={modalClose}
+                    onclick={() => (openState = false)}
                 >
-                    Cancel
+                    Abbrechen
                 </button>
-                <button type="submit" class="btn preset-filled-success-500 font-semibold"
-                    >Confirm
+                <button type="submit" class="btn preset-filled-success-500 font-semibold">
+                    Bestätigen
                 </button>
             </footer>
         </form>
