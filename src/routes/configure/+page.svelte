@@ -6,7 +6,7 @@
     import LocationPicker from '$lib/components/locationPicker.svelte';
     import NaturalFactorSlider from '$lib/components/naturalFactorSlider.svelte';
     import SmoothLoadingBar from '$lib/components/smoothLoadingBar.svelte';
-    import { ShieldAlert } from '@lucide/svelte';
+    import { ArrowBigLeftDash, ShieldAlert } from '@lucide/svelte';
     import { LatLng } from 'leaflet';
     import { onMount } from 'svelte';
     import { ipState } from './ipstate.svelte';
@@ -61,10 +61,26 @@
             ipModalOpen = true;
         }
     });
+
+    function returnToLandingPage() {
+        goto('/');
+    }
 </script>
 
 <section class="mx-auto max-w-5xl">
-    <h1 class="mb-10 text-center text-6xl font-bold">Terralux Konfigurator</h1>
+    <div class="relative flex w-full items-center">
+        {#if !loading}
+            <button
+                type="button"
+                class="btn preset-filled-secondary-500 absolute left-0"
+                onclick={() => returnToLandingPage()}
+            >
+                <ArrowBigLeftDash />
+            </button>
+        {/if}
+
+        <h1 class="mx-auto text-center text-6xl font-bold">Terralux Konfigurator</h1>
+    </div>
 
     {#if loading}
         <div class="mt-20">

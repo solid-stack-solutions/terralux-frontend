@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Modal } from '@skeletonlabs/skeleton-svelte';
     import { ipState } from '../../routes/configure/ipstate.svelte';
+    import { onMount } from 'svelte';
 
     // == Form control ==
     // svelte-ignore non_reactive_update because it does not need to be reactive`
@@ -45,6 +46,11 @@
         openState?: boolean;
         onConfirm?: (e: SubmitEvent) => void;
     } = $props();
+
+    // Initialisation
+    onMount(() => {
+        ipAddress = ipState.ipAddress;
+    });
 </script>
 
 <Modal
