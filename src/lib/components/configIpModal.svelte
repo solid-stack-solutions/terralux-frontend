@@ -67,7 +67,6 @@
 >
     {#snippet trigger()}
         {triggerText}
-        #
     {/snippet}
     {#snippet content()}
         <header class="flex justify-between">
