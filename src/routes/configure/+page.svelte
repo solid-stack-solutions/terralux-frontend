@@ -186,7 +186,7 @@
         <div class="realtive flex w-full gap-x-4 pt-20">
             <button
                 type="button"
-                class="btn preset-filled-primary-500 w-128 lg:absolute lg:left-1/2 lg:-translate-x-1/2"
+                class="btn preset-filled-primary-500 w-128" 
                 disabled={!natCoords || !terrCoords}
                 onclick={setConfiguration}>Jetzt konfigurieren</button
             >
