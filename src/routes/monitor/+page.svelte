@@ -35,30 +35,24 @@
 
         <div class="mt-5 grid w-full grid-cols-1 gap-6 md:grid-cols-2">
             <div class="flex flex-col">
-                <h2 class="mb-2 text-center text-xl font-semibold">Natürlicher Standort</h2>
-                <div>
-                    <div class="aspect-[6/3] w-full shadow">
-                        <LocationPicker
-                            disabled={true}
-                            selected={new LatLng(lat, lng)}
-                            markerIcon={treeIcon}
-                        />
-                    </div>
+                <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
+                <div class="aspect-[6/3] w-full shadow">
+                    <LocationPicker
+                        disabled={true}
+                        selected={new LatLng(lat, lng)}
+                        markerIcon={houseIcon}
+                    />
                 </div>
             </div>
 
             <div class="flex flex-col">
-                <div class="flex flex-col">
-                    <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
-                </div>
-                <div>
-                    <div class="aspect-[6/3] w-full shadow">
-                        <LocationPicker
-                            disabled={true}
-                            selected={new LatLng(lat, lng)}
-                            markerIcon={houseIcon}
-                        />
-                    </div>
+                <h2 class="mb-2 text-center text-xl font-semibold">Natürlicher Standort</h2>
+                <div class="aspect-[6/3] w-full shadow">
+                    <LocationPicker
+                        disabled={true}
+                        selected={new LatLng(lat, lng)}
+                        markerIcon={treeIcon}
+                    />
                 </div>
             </div>
         </div>

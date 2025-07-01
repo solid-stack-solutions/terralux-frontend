@@ -50,3 +50,22 @@
 .font-atma {
     font-family: 'Atma', cursive;
 }
+
+/* === Custom CSS === */
+.smooth-progress-animation {
+    animation: smooth-progress-animation 1.8s linear infinite;
+}
+@keyframes smooth-progress-animation {
+    0% {
+        transform: translateX(-100%);
+    }
+    5% {
+        transform: translateX(-100%);
+    }
+    85% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}

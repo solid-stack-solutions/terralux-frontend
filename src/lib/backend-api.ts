@@ -29,11 +29,20 @@ async function getPlugState(): Promise<PowerState> {
  * @returns the backend response as a {@link Promise<Response>}. Consult backend API documentation for response code semantics (https://github.com/solid-stack-solutions/terralux-backend)
  */
 async function changeConfiguration(configuration: PlugConfiguration): Promise<Response> {
+    const params: Record<string, string> = {
+        plug_url: configuration.plug_url,
+        natural_factor: configuration.natural_factor.toString(),
+        local_latitude: configuration.local_latitude.toString(),
+        local_longitude: configuration.local_longitude.toString(),
+        natural_latitude: configuration.natural_latitude.toString(),
+        natural_longitude: configuration.natural_longitude.toString(),
+    };
+
     return await tryFetching(
         getBackendUrl() + endpoints.put.configuration,
         HTTP_METHOD.PUT,
-        JSON.stringify(configuration),
-        '',
+        null,
+        params,
     );
 }
 
