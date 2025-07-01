@@ -6,10 +6,15 @@
     import { LatLng } from 'leaflet';
     import AdditionalSettings from './components/additionalSettings.svelte';
     import NextOnOffTime from './components/nextOnOffTime.svelte';
+    import { goto } from '$app/navigation';
 
     // TODO get config from backend on page load
     const lat = 53.131;
     const lng = 8.22;
+
+    function onReconfigure() {
+        goto('/configure');
+    }
 </script>
 
 <section class="mx-auto max-w-5xl">
@@ -57,7 +62,10 @@
 
         <div class="mt-10 flex w-full justify-center">
             <div class="flex justify-center">
-                <button type="button" class="btn preset-filled-primary-500 w-128 font-semibold"
+                <button
+                    onclick={onReconfigure}
+                    type="button"
+                    class="btn preset-filled-primary-500 w-128 font-semibold"
                     >Neu konfigurieren</button
                 >
             </div>
