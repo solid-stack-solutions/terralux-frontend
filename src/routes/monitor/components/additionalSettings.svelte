@@ -25,7 +25,7 @@
                     </h2>
                     <p class="h10 text-sm opacity-60">
                         <Info class="mb-0.5 inline w-4" /> Die aktuellen Zeiten werden mit berücksichtigung
-                        auf die Zeitzone {timezone}
+                        auf die <span class="font-semibold">Zeitzone</span> {timezone}
                         berechnet.
                     </p>
                 </div>
