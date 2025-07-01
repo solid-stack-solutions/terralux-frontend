@@ -1,17 +1,15 @@
 <script lang="ts">
     import { houseIcon, treeIcon } from '$lib/components/locationMarkers';
     import LocationPicker from '$lib/components/locationPicker.svelte';
-    import { Slider } from '@skeletonlabs/skeleton-svelte';
     import ManualOnOffCluster from '$lib/components/manualOnOffCluster.svelte';
     import MonitorChart from '$lib/components/monitorChart.svelte';
+    import NaturalFactorSlider from '$lib/components/naturalFactorSlider.svelte';
     import configData from '$lib/data/Configuration-Data.json';
     import { LatLng } from 'leaflet';
     import NextOnOffTime from './components/nextOnOffTime.svelte';
 
     // Time zone
     const timezone = configData.timezone;
-
-    let sliderValue = $state([configData.natural_factor * 100]);
 
     // TODO get config from backend on page load
     const lat = 53.131;
@@ -67,24 +65,7 @@
 
         <p class="mt-16 text-xl font-bold">Natürlichkeitsfaktor</p>
 
-        <section class="flex items-center gap-2">
-            <p class="text-lg opacity-60">Lokal</p>
-            <Slider
-                name="Slider Natürlichkeitsfaktor"
-                value={sliderValue}
-                onValueChange={(e) => (sliderValue = e.value)}
-                readOnly
-                markers={[0, 25, 50, 75, 100]}
-                markText="text-sm"
-                markOpacity="opacity-60"
-                trackBg="bg-gradient-to-r from-surface-800 to-surface-700"
-                meterBg="bg-primary-500"
-                height="h-4"
-                thumbSize="size-0"
-                step={5}
-            />
-            <p class="text-lg opacity-60">Natürlich</p>
-        </section>
+        <NaturalFactorSlider sliderValue={configData.natural_factor} disabled={true} />
 
         <MonitorChart />
 

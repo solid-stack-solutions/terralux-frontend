@@ -1,9 +1,8 @@
 <script lang="ts">
-    import { ipState } from './ipstate.svelte';
     import { houseIcon, treeIcon } from '$lib/components/locationMarkers';
     import LocationPicker from '$lib/components/locationPicker.svelte';
+    import NaturalFactorSlider from '$lib/components/naturalFactorSlider.svelte';
     import { ShieldAlert } from '@lucide/svelte';
-    import { Slider } from '@skeletonlabs/skeleton-svelte';
     import { LatLng } from 'leaflet';
 
     /** Watch out: Styling is made for 4 repitles */
@@ -22,7 +21,7 @@
     let terrCoords: LatLng | null = $state(null);
     let selectedReptile: number | null = $state(null);
 
-    let sliderValue = $state([50]);
+    let sliderValue = $state(0.5);
 
     async function setConfiguration() {
         // TODO send data to backend
@@ -78,7 +77,11 @@
             <div class="flex flex-col">
                 <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
                 <div class="aspect-[6/5] shadow">
-                    <LocationPicker selected={terrCoords} onSelect={(pos) => (terrCoords = pos)} markerIcon={houseIcon} />
+                    <LocationPicker
+                        selected={terrCoords}
+                        onSelect={(pos) => (terrCoords = pos)}
+                        markerIcon={houseIcon}
+                    />
                 </div>
             </div>
         </div>
@@ -96,23 +99,7 @@
         und <strong>100 % für das natürliche Habitat</strong> unterschieden.
     </p>
 
-    <section class="flex items-center gap-2">
-        <p class="text-lg opacity-60">Lokal</p>
-        <Slider
-            name="Slider Natürlichkeitsfaktor"
-            value={sliderValue}
-            onValueChange={(e) => (sliderValue = e.value)}
-            markers={[0, 25, 50, 75, 100]}
-            markText="text-sm"
-            markOpacity="opacity-60"
-            trackBg="bg-gradient-to-r from-surface-800 to-surface-700"
-            meterBg="bg-primary-500"
-            height="h-4"
-            thumbSize="size-6"
-            step={5}
-        />
-        <p class="text-lg opacity-60">Natürlich</p>
-    </section>
+    <NaturalFactorSlider bind:sliderValue />
 
     <div class="flex justify-center pt-20">
         <button
