@@ -21,7 +21,7 @@
     const todayOffMinute = configData.computed_timers[dayOfYearForArray].off_time.minute;
 
     // Time zone
-    const timezone = configData.timezone
+    const timezone = configData.timezone;
 
     let sliderValue = $state([configData.natural_factor * 100]);
 
@@ -34,48 +34,54 @@
     <div class="flex flex-col justify-center">
         <h1 class="text-center text-6xl font-bold">Terralux Kontrollstation</h1>
 
-        <div class="flex flex-col mt-10">
+        <div class="mt-10 flex flex-col">
             <h2 class="text-xl font-semibold">Aktuell verbunden mit der Steckdose 1.1.1.1</h2>
-            <p class="h10 opacity-60 text-sm">INFO ICON: Die aktuellen Zeiten werden mit berücksichtigung auf die Zeitzone {timezone} berechnet.</p>
-        </div>
-
-        <div class="justify-left mt-4 flex items-center">
-            <ManualOnOffCluster background_styles="w-128" />
-            <div class="ml-10 flex flex-col items-center gap-1">
-                <p class="text-lg font-semibold">
-                    Ein: <span class="font-normal">{todayOnHour}:{todayOnMinute}</span>
-                </p>
-                <p class="text-lg font-semibold">
-                    Aus: <span class="font-normal">{todayOffHour}:{todayOffMinute}</span>
-                </p>
-            </div>
+            <p class="h10 text-sm opacity-60">
+                INFO ICON: Die aktuellen Zeiten werden mit berücksichtigung auf die Zeitzone {timezone}
+                berechnet.
+            </p>
         </div>
 
         <div class="mt-5 grid w-full grid-cols-1 gap-6 md:grid-cols-2">
             <div class="flex flex-col">
-                <h2 class="mb-2 text-center text-xl font-semibold">Natürlicher Standort</h2>
-                <div class="aspect-[6/3] w-full shadow">
-                    <LocationPicker
-                        disabled={true}
-                        selected={new LatLng(lat, lng)}
-                        markerIcon={treeIcon}
-                    />
+                <div>
+                    <ManualOnOffCluster background_styles="" />
+                    <h2 class="mb-2 text-center text-xl font-semibold">Natürlicher Standort</h2>
+                </div>
+                <div>
+                    <div class="aspect-[6/3] w-full shadow">
+                        <LocationPicker
+                            disabled={true}
+                            selected={new LatLng(lat, lng)}
+                            markerIcon={treeIcon}
+                        />
+                    </div>
                 </div>
             </div>
 
             <div class="flex flex-col">
-                <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
-                <div class="aspect-[6/3] w-full shadow">
-                    <LocationPicker
-                        disabled={true}
-                        selected={new LatLng(lat, lng)}
-                        markerIcon={houseIcon}
-                    />
+                <div class="flex flex-col">
+                    <p class="text-lg font-semibold">
+                        Einschaltung heute: <span class="font-normal">{todayOnHour}:{todayOnMinute} Uhr</span>
+                    </p>
+                    <p class="text-lg font-semibold">
+                        Ausschaltung heute: <span class="font-normal">{todayOffHour}:{todayOffMinute} Uhr</span>
+                    </p>
+                    <h2 class="mb-2 mt-5 text-center text-xl font-semibold">Terrarium Standort</h2>
+                </div>
+                <div>
+                    <div class="aspect-[6/3] w-full shadow">
+                        <LocationPicker
+                            disabled={true}
+                            selected={new LatLng(lat, lng)}
+                            markerIcon={houseIcon}
+                        />
+                    </div>
                 </div>
             </div>
         </div>
 
-        <p class="mt-16 text-xl font-bold">Voreingestellter Natürlichkeitsfaktor</p>
+        <p class="mt-16 text-xl font-bold">Natürlichkeitsfaktor</p>
 
         <section class="flex items-center gap-2">
             <p class="text-lg opacity-60">Lokal</p>
