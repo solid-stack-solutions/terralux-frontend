@@ -24,3 +24,8 @@ export type PlugSwitchTime = {
     hour: number;
     minute: number;
 };
+
+export function plugSwitchTimeToString(time: PlugSwitchTime): string {
+    const minute = time.minute.toString().padStart(2, '0');
+    return `${time.hour}:${minute}`;
+}

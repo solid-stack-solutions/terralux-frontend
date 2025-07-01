@@ -1,19 +1,19 @@
 <script lang="ts">
-    import { houseIcon, treeIcon } from '$lib/components/locationMarkers';
     import { goto } from '$app/navigation';
     import { changeConfiguration } from '$lib/backend-api';
     import ConfigIpModal from '$lib/components/configIpModal.svelte';
+    import { houseIcon, treeIcon } from '$lib/components/locationMarkers';
     import LocationPicker from '$lib/components/locationPicker.svelte';
-    import { Slider } from '@skeletonlabs/skeleton-svelte';
+    import NaturalFactorSlider from '$lib/components/naturalFactorSlider.svelte';
+    import SmoothLoadingBar from '$lib/components/smoothLoadingBar.svelte';
+    import { ArrowBigLeftDash, ShieldAlert } from '@lucide/svelte';
     import { LatLng } from 'leaflet';
     import { onMount } from 'svelte';
-    import SmoothLoadingBar from '$lib/components/smoothLoadingBar.svelte';
-    import { ShieldAlert, ArrowBigLeftDash } from '@lucide/svelte';
     import { ipState } from './ipstate.svelte';
 
     let ipModalOpen = $state(false);
 
-    /** Watch out: Styling is made for 4 repitles */
+    /** Watch out: Styling is made for 4 reptiles */
     const reptiles = [
         {
             name: 'Höckerkopfgecko',
@@ -28,7 +28,8 @@
 
     let natCoords: LatLng | null = $state(null);
     let terrCoords: LatLng | null = $state(null);
-    let sliderValue = $state([50]);
+
+    let sliderValue = $state(0.5);
 
     let loading = $state(false);
 
@@ -42,7 +43,7 @@
         loading = true;
         const response = await changeConfiguration({
             plug_url: 'http://' + ipState.ipAddress,
-            natural_factor: sliderValue[0] / 100,
+            natural_factor: sliderValue,
             local_latitude: terrCoords.lat,
             local_longitude: terrCoords.lng,
             natural_latitude: natCoords.lat,
@@ -169,23 +170,7 @@
             Bei allem dazwischen wird gemittelt!
         </p>
 
-        <section class="flex items-center gap-2">
-            <p class="text-lg opacity-60">Lokal</p>
-            <Slider
-                name="Slider Natürlichkeitsfaktor"
-                value={sliderValue}
-                onValueChange={(e) => (sliderValue = e.value)}
-                markers={[0, 25, 50, 75, 100]}
-                markText="text-sm"
-                markOpacity="opacity-60"
-                trackBg="bg-gradient-to-r from-surface-800 to-surface-700"
-                meterBg="bg-primary-500"
-                height="h-4"
-                thumbSize="size-6"
-                step={5}
-            />
-            <p class="text-lg opacity-60">Natürlich</p>
-        </section>
+        <NaturalFactorSlider bind:sliderValue />
 
         <div class="flex justify-center pt-20">
             <button
