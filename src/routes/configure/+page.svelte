@@ -6,7 +6,7 @@
     import LocationPicker from '$lib/components/locationPicker.svelte';
     import { Slider } from '@skeletonlabs/skeleton-svelte';
     import { LatLng } from 'leaflet';
-    import { onMount } from "svelte";
+    import { onMount } from 'svelte';
     import SmoothLoadingBar from '$lib/components/smoothLoadingBar.svelte';
     import { ShieldAlert, ArrowBigLeftDash } from '@lucide/svelte';
     import { ipState } from './ipstate.svelte';
@@ -67,7 +67,19 @@
 </script>
 
 <section class="mx-auto max-w-5xl">
-    <h1 class="mb-10 text-center text-6xl font-bold">Terralux Konfigurator</h1>
+    <div class="relative flex w-full items-center">
+        {#if !loading}
+        <button
+            type="button"
+            class="btn preset-filled-primary-500 absolute left-0"
+            onclick={() => returnToLandingPage()}
+        >
+            <ArrowBigLeftDash />
+        </button>
+        {/if}
+
+        <h1 class="mx-auto text-center text-6xl font-bold">Terralux Konfigurator</h1>
+    </div>
 
     {#if loading}
         <div class="mt-20">
@@ -171,21 +183,13 @@
             <p class="text-lg opacity-60">Natürlich</p>
         </section>
 
-    <div class="realtive flex w-full gap-x-4 pt-20">
-        <button
-            type="button"
-            class="btn preset-filled-primary-500 w-32"
-            onclick={() => returnToLandingPage()}
-        >
-            <ArrowBigLeftDash />
-            Zurück
-        </button>
-        <button
-            type="button"
-            class="btn preset-filled-primary-500 w-128 lg:absolute lg:left-1/2 lg:-translate-x-1/2"
-            disabled={!natCoords || !terrCoords}
-            onclick={setConfiguration}>Jetzt konfigurieren</button
-        >
-    </div>
+        <div class="realtive flex w-full gap-x-4 pt-20">
+            <button
+                type="button"
+                class="btn preset-filled-primary-500 w-128 lg:absolute lg:left-1/2 lg:-translate-x-1/2"
+                disabled={!natCoords || !terrCoords}
+                onclick={setConfiguration}>Jetzt konfigurieren</button
+            >
+        </div>
     {/if}
 </section>
