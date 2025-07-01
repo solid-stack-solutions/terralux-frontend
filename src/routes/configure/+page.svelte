@@ -94,9 +94,10 @@
         />
         <p class="text-xl font-bold">Dein Reptil</p>
         <p class="mb-5 text-sm opacity-60">
-            <ShieldAlert class="mb-0.5 inline h-4 w-4" /> Keine Sorge, sollte dein Reptil nicht unter der Auswahl
-            zu finden sein, kannst du einfach den <strong>Natürlichen Standort</strong> manuell auf der entsprechenden
-            Karte einstellen. Damit ist ein Ort gemeint, an dem deine Reptilien-Spezies wild in der Natur lebt.
+            <ShieldAlert class="mb-0.5 inline h-4 w-4" /> Keine Sorge, sollte dein Reptil nicht unter
+            der Auswahl zu finden sein, kannst du einfach den <strong>Natürlichen Standort</strong> manuell
+            auf der entsprechenden Karte einstellen. Damit ist ein Ort gemeint, an dem deine Reptilien-Spezies
+            wild in der Natur lebt.
         </p>
 
         <section class="grid grid-cols-2 gap-4 md:grid-cols-4">
@@ -158,10 +159,13 @@
 
         <p class="mt-15 text-xl font-bold">Natürlichkeitsfaktor</p>
         <p class="mb-5 text-sm opacity-60">
-            Der Natürlichkeitsfaktor bestimmt, wie stark sich die Schaltzeiten deiner Terrarienlampen am natürlichen
-            Biorhythmus deines Reptils orientieren. <br /> Hier kannst du einen Wert zwischen <strong>0 %</strong>
-            für die Sonnenauf/-untergangszeiten am <strong>Terrarium Standort</strong> und <strong>100 %</strong>
-            für eine zusätzliche Anpassung der Tageslänge an die des <strong>Natürlichen Standorts</strong>. <br />
+            Der Natürlichkeitsfaktor bestimmt, wie stark sich die Schaltzeiten deiner
+            Terrarienlampen am natürlichen Biorhythmus deines Reptils orientieren. <br /> Hier
+            kannst du einen Wert zwischen <strong>0 %</strong>
+            für die Sonnenauf/-untergangszeiten am <strong>Terrarium Standort</strong> und
+            <strong>100 %</strong>
+            für eine zusätzliche Anpassung der Tageslänge an die des
+            <strong>Natürlichen Standorts</strong>. <br />
             Bei allem dazwischen wird gemittelt!
         </p>
 
