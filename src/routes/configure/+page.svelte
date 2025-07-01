@@ -183,7 +183,7 @@
             <p class="text-lg opacity-60">Natürlich</p>
         </section>
 
-        <div class="realtive flex w-full gap-x-4 pt-20">
+        <div class="flex justify-center pt-20">
             <button
                 type="button"
                 class="btn preset-filled-primary-500 w-128"
