@@ -16,9 +16,17 @@
     // TODO get config as prop instead of importing
 </script>
 
-<div class="grid grid-cols-2 justify-center p-1 text-lg font-semibold">
-    <p>Einschaltung heute:</p>
-    <p class="font-normal">{plugSwitchTimeToString(todayOn)} Uhr</p>
-    <p>Ausschaltung heute:</p>
-    <p class="font-normal">{plugSwitchTimeToString(todayOff)} Uhr</p>
+<div class="p-2 pb-0">
+    <div class="bg-surface-700 relative rounded-md p-3 pb-1">
+        <div class="bg-surface-600 absolute -top-4 left-2 rounded-md px-2 text-sm font-semibold">
+            Zeiten heute
+        </div>
+
+        <div class="grid grid-cols-2 justify-center gap-y-1 text-base">
+            <span>Einschaltung:</span>
+            <p class="font-normal">{plugSwitchTimeToString(todayOn)} Uhr</p>
+            <p class="-mt-1">Ausschaltung:</p>
+            <span class="-mt-1 font-normal">{plugSwitchTimeToString(todayOff)} Uhr</span>
+        </div>
+    </div>
 </div>
