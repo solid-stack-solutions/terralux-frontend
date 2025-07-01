@@ -69,13 +69,13 @@
 <section class="mx-auto max-w-5xl">
     <div class="relative flex w-full items-center">
         {#if !loading}
-        <button
-            type="button"
-            class="btn preset-filled-primary-500 absolute left-0"
-            onclick={() => returnToLandingPage()}
-        >
-            <ArrowBigLeftDash />
-        </button>
+            <button
+                type="button"
+                class="btn preset-filled-secondary-500 absolute left-0"
+                onclick={() => returnToLandingPage()}
+            >
+                <ArrowBigLeftDash />
+            </button>
         {/if}
 
         <h1 class="mx-auto text-center text-6xl font-bold">Terralux Konfigurator</h1>

@@ -3,7 +3,6 @@
     import { ipState } from '../../routes/configure/ipstate.svelte';
     import { onMount } from 'svelte';
 
-
     function modalClose() {
         openState = false;
     }
