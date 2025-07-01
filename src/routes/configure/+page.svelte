@@ -13,7 +13,7 @@
 
     let ipModalOpen = $state(false);
 
-    /** Watch out: Styling is made for 4 repitles */
+    /** Watch out: Styling is made for 4 reptiles */
     const reptiles = [
         {
             name: 'Höckerkopfgecko',
