@@ -215,14 +215,6 @@ The chart can not be rendered on the server.
                 name: 'Terrarium 🌚',
                 data: seriesDataLocalSunset,
             },
-            // {
-            //     name: 'Lampe 🌞',
-            //     data: seriesDataOn,
-            // },
-            // {
-            //     name: 'Lampe 🌚',
-            //     data: seriesDataOff,
-            // },
         ],
         colors: [
             'var(--color-success-400)',
@@ -325,6 +317,18 @@ The chart can not be rendered on the server.
             }
             chart.updateSeries(seriesData);
         }, 7000);
+
+        setTimeout(() => {
+            seriesData.push({
+                name: 'Lampe 🌞',
+                data: seriesDataOn,
+            });
+            seriesData.push({
+                name: 'Lampe 🌚',
+                data: seriesDataOff,
+            });
+            chart.updateSeries(seriesData);
+        }, 9000);
     });
 
     onDestroy(() => {
