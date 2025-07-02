@@ -33,6 +33,12 @@ The chart can not be rendered on the server.
         return `${hours.toString()}:${minutes.toString().padStart(2, '0')}`;
     }
 
+    function rotateYValues(arr: { x: Date; y: number }[], count: number): { x: Date; y: number }[] {
+        const ys = arr.map((item) => item.y);
+        const rotatedYs = ys.slice(count).concat(ys.slice(0, count));
+        return arr.map((item, idx) => ({ x: item.x, y: rotatedYs[idx] }));
+    }
+
     // Chart
     let chart: ApexChartsClass;
     let chartElement: HTMLDivElement;
@@ -56,12 +62,53 @@ The chart can not be rendered on the server.
     const dataOff: number[] = configData.computed_timers.map((timer) =>
         toDecimalTime(timer.off_time.hour, timer.off_time.minute),
     );
-    const seriesDataNaturalSunrise = mapToDatetimeSeries(dataNaturalSunrise);
-    const seriesDataNaturalSunset = mapToDatetimeSeries(dataNaturalSunset);
+    let seriesDataNaturalSunrise = mapToDatetimeSeries(dataNaturalSunrise);
+    let seriesDataNaturalSunset = mapToDatetimeSeries(dataNaturalSunset);
     const seriesDataLocalSunrise = mapToDatetimeSeries(dataLocalSunrise);
     const seriesDataLocalSunset = mapToDatetimeSeries(dataLocalSunset);
     const seriesDataOn = mapToDatetimeSeries(dataOn);
     const seriesDataOff = mapToDatetimeSeries(dataOff);
+
+    // move upwards
+    seriesDataNaturalSunrise = seriesDataNaturalSunrise.map(({ x, y }) => ({
+        x,
+        y: y - 1,
+    }));
+    seriesDataNaturalSunset = seriesDataNaturalSunset.map(({ x, y }) => ({
+        x,
+        y: y - 1,
+    }));
+
+    // Example: rotate y values by 100 positions
+    seriesDataNaturalSunrise = rotateYValues(seriesDataNaturalSunrise, 100);
+    seriesDataNaturalSunset = rotateYValues(seriesDataNaturalSunset, 100);
+
+    const seriesData = [
+        {
+            name: 'Natürlich 🌞',
+            data: seriesDataNaturalSunrise,
+        },
+        {
+            name: 'Natürlich 🌚',
+            data: seriesDataNaturalSunset,
+        },
+        {
+            name: 'Terrarium 🌞',
+            data: seriesDataLocalSunrise,
+        },
+        {
+            name: 'Terrarium 🌚',
+            data: seriesDataLocalSunset,
+        },
+        // {
+        //     name: 'Lampe 🌞',
+        //     data: seriesDataOn,
+        // },
+        // {
+        //     name: 'Lampe 🌚',
+        //     data: seriesDataOff,
+        // },
+    ];
 
     const options: ApexOptions = {
         title: {
@@ -94,6 +141,10 @@ The chart can not be rendered on the server.
                 animateGradually: {
                     enabled: false,
                     delay: 50,
+                },
+                dynamicAnimation: {
+                    enabled: true,
+                    speed: 1000,
                 },
             },
             zoom: {
@@ -155,14 +206,14 @@ The chart can not be rendered on the server.
                 name: 'Terrarium 🌚',
                 data: seriesDataLocalSunset,
             },
-            {
-                name: 'Lampe 🌞',
-                data: seriesDataOn,
-            },
-            {
-                name: 'Lampe 🌚',
-                data: seriesDataOff,
-            },
+            // {
+            //     name: 'Lampe 🌞',
+            //     data: seriesDataOn,
+            // },
+            // {
+            //     name: 'Lampe 🌚',
+            //     data: seriesDataOff,
+            // },
         ],
         colors: [
             'var(--color-success-400)',
@@ -218,6 +269,41 @@ The chart can not be rendered on the server.
     onMount(async () => {
         chart = new ApexCharts(chartElement, options);
         await chart.render();
+
+        setTimeout(() => {
+            seriesDataNaturalSunrise = rotateYValues(seriesDataNaturalSunrise, -100);
+            seriesDataNaturalSunset = rotateYValues(seriesDataNaturalSunset, -100);
+            seriesData[0] =             {
+                name: 'Natürlich 🌞',
+                data: seriesDataNaturalSunrise,
+            };
+            seriesData[1] = {
+                name: 'Natürlich 🌚',
+                data: seriesDataNaturalSunset,
+            };
+            chart.updateSeries(seriesData);
+        }, 2000);
+
+        setTimeout(() => {
+            seriesDataNaturalSunrise = seriesDataNaturalSunrise.map(({ x, y }) => ({
+                x,
+                y: y - 1,
+            }));
+            seriesDataNaturalSunset = seriesDataNaturalSunset.map(({ x, y }) => ({
+                x,
+                y: y - 1,
+            }));
+
+            seriesData[0] =             {
+                name: 'Natürlich 🌞',
+                data: seriesDataNaturalSunrise,
+            };
+            seriesData[1] = {
+                name: 'Natürlich 🌚',
+                data: seriesDataNaturalSunset,
+            };
+            chart.updateSeries(seriesData);
+        }, 5000);
     });
 
     onDestroy(() => {
