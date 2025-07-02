@@ -4,11 +4,11 @@
     import { houseIcon } from '$lib/components/locationMarkers';
     import LocationPicker from '$lib/components/locationPicker.svelte';
     import ManualOnOffCluster from '$lib/components/manualOnOffCluster.svelte';
-    import MonitorChart from '$lib/components/monitorChart.svelte';
     import type { PlugConfiguration } from '$lib/data-types';
     import { LatLng } from 'leaflet';
     import { onMount } from 'svelte';
     import AdditionalSettings from './components/additionalSettings.svelte';
+    import MonitorChart from './components/monitorChart.svelte';
     import NextOnOffTime from './components/nextOnOffTime.svelte';
 
     let configData: Promise<PlugConfiguration> = new Promise(() => {});
@@ -77,7 +77,11 @@
 
         <h1 class="mt-10 text-xl font-semibold">Sonnenzeiten & Schaltzeiten</h1>
         <p class="mb-2 text-sm text-red-400 opacity-60">Hier kann der Graph erläutert werden</p>
-        <MonitorChart />
+        {#await configData}
+            <div class="placeholder h-[550px] animate-pulse"></div>
+        {:then configData}
+            <MonitorChart {configData} />
+        {/await}
 
         <div class="mt-10 flex w-full justify-center">
             <div class="flex justify-center">
