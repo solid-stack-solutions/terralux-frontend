@@ -72,16 +72,16 @@ The chart can not be rendered on the server.
     // move upwards
     seriesDataNaturalSunrise = seriesDataNaturalSunrise.map(({ x, y }) => ({
         x,
-        y: y - 1,
+        y: y - 2,
     }));
     seriesDataNaturalSunset = seriesDataNaturalSunset.map(({ x, y }) => ({
         x,
-        y: y - 1,
+        y: y - 2,
     }));
 
     // Example: rotate y values by 100 positions
-    seriesDataNaturalSunrise = rotateYValues(seriesDataNaturalSunrise, 100);
-    seriesDataNaturalSunset = rotateYValues(seriesDataNaturalSunset, 100);
+    seriesDataNaturalSunrise = rotateYValues(seriesDataNaturalSunrise, -100);
+    seriesDataNaturalSunset = rotateYValues(seriesDataNaturalSunset, -100);
 
     const seriesData = [
         {
@@ -271,8 +271,8 @@ The chart can not be rendered on the server.
         await chart.render();
 
         setTimeout(() => {
-            seriesDataNaturalSunrise = rotateYValues(seriesDataNaturalSunrise, -100);
-            seriesDataNaturalSunset = rotateYValues(seriesDataNaturalSunset, -100);
+            seriesDataNaturalSunrise = rotateYValues(seriesDataNaturalSunrise, 100);
+            seriesDataNaturalSunset = rotateYValues(seriesDataNaturalSunset, 100);
             seriesData[0] =             {
                 name: 'Natürlich 🌞',
                 data: seriesDataNaturalSunrise,
@@ -287,11 +287,11 @@ The chart can not be rendered on the server.
         setTimeout(() => {
             seriesDataNaturalSunrise = seriesDataNaturalSunrise.map(({ x, y }) => ({
                 x,
-                y: y - 1,
+                y: y + 2,
             }));
             seriesDataNaturalSunset = seriesDataNaturalSunset.map(({ x, y }) => ({
                 x,
-                y: y - 1,
+                y: y + 2,
             }));
 
             seriesData[0] =             {

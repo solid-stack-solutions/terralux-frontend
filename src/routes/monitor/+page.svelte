@@ -57,7 +57,6 @@
         </div>
 
         <h1 class="mt-10 text-xl font-semibold">Sonnenzeiten & Schaltzeiten</h1>
-        <p class="mb-2 text-sm text-red-400 opacity-60">Hier kann der Graph erläutert werden</p>
         <MonitorChart />
 
         <div class="mt-10 flex w-full justify-center">
