@@ -72,7 +72,7 @@
         </div>
 
         <div class="mt-5">
-            <AdditionalSettings />
+            <AdditionalSettings {configData} />
         </div>
 
         <h1 class="mt-10 text-xl font-semibold">Sonnenzeiten & Schaltzeiten</h1>
