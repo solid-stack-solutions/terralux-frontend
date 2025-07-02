@@ -79,6 +79,15 @@ The chart can not be rendered on the server.
         y: y - 2,
     }));
 
+    for (let i = 85; i <= 301; i++) {
+        if (seriesDataNaturalSunrise[i]) {
+            seriesDataNaturalSunrise[i].y -= 1;
+        }
+        if (seriesDataNaturalSunset[i]) {
+            seriesDataNaturalSunset[i].y -= 1;
+        }
+    }
+
     // Example: rotate y values by 100 positions
     seriesDataNaturalSunrise = rotateYValues(seriesDataNaturalSunrise, -100);
     seriesDataNaturalSunset = rotateYValues(seriesDataNaturalSunset, -100);
@@ -273,7 +282,7 @@ The chart can not be rendered on the server.
         setTimeout(() => {
             seriesDataNaturalSunrise = rotateYValues(seriesDataNaturalSunrise, 100);
             seriesDataNaturalSunset = rotateYValues(seriesDataNaturalSunset, 100);
-            seriesData[0] =             {
+            seriesData[0] = {
                 name: 'Natürlich 🌞',
                 data: seriesDataNaturalSunrise,
             };
@@ -294,7 +303,7 @@ The chart can not be rendered on the server.
                 y: y + 2,
             }));
 
-            seriesData[0] =             {
+            seriesData[0] = {
                 name: 'Natürlich 🌞',
                 data: seriesDataNaturalSunrise,
             };
@@ -304,6 +313,18 @@ The chart can not be rendered on the server.
             };
             chart.updateSeries(seriesData);
         }, 5000);
+
+        setTimeout(() => {
+            for (let i = 85; i <= 301; i++) {
+                if (seriesDataNaturalSunrise[i]) {
+                    seriesDataNaturalSunrise[i].y += 1;
+                }
+                if (seriesDataNaturalSunset[i]) {
+                    seriesDataNaturalSunset[i].y += 1;
+                }
+            }
+            chart.updateSeries(seriesData);
+        }, 7000);
     });
 
     onDestroy(() => {
