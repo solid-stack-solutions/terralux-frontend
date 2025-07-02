@@ -3,7 +3,6 @@
         plugSwitchTimeToString,
         type PlugConfiguration,
         type PlugSwitchTime,
-        type PlugTimer,
     } from '$lib/data-types';
 
     // Day number of today
