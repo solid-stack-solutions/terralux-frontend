@@ -1,6 +1,10 @@
 <script lang="ts">
-    import { plugSwitchTimeToString } from '$lib/data-types';
-    import configData from '$lib/data/Configuration-Data.json';
+    import {
+        plugSwitchTimeToString,
+        type PlugConfiguration,
+        type PlugSwitchTime,
+        type PlugTimer,
+    } from '$lib/data-types';
 
     // Day number of today
     const getDayOfYear = (date: Date): number =>
@@ -9,11 +13,24 @@
         );
     const dayOfYearForArray = getDayOfYear(new Date()) - 1;
 
-    // Today on / off
-    const todayOn = configData.computed_timers[dayOfYearForArray].on_time;
-    const todayOff = configData.computed_timers[dayOfYearForArray].off_time;
+    const fallBackTime: PlugSwitchTime = {
+        hour: 0,
+        minute: 0,
+    };
 
-    // TODO get config as prop instead of importing
+    let {
+        configData = new Promise<PlugConfiguration>(() => {}),
+    }: {
+        configData: Promise<PlugConfiguration>;
+    } = $props();
+
+    // Today on / off
+    function getOnTime(configData: PlugConfiguration): PlugSwitchTime {
+        return configData?.computed_timers?.[dayOfYearForArray]?.on_time ?? fallBackTime;
+    }
+    function getOffTime(configData: PlugConfiguration): PlugSwitchTime {
+        return configData?.computed_timers?.[dayOfYearForArray]?.off_time ?? fallBackTime;
+    }
 </script>
 
 <div class="p-2 pb-0">
@@ -24,9 +41,20 @@
 
         <div class="grid grid-cols-2 justify-center gap-y-1 text-base">
             <span>Einschaltung:</span>
-            <p class="font-normal">{plugSwitchTimeToString(todayOn)} Uhr</p>
+            {#await configData}
+                <div class="placeholder mb-1 animate-pulse"></div>
+            {:then configData}
+                <p class="font-normal">{plugSwitchTimeToString(getOnTime(configData))} Uhr</p>
+            {/await}
+
             <p class="-mt-1">Ausschaltung:</p>
-            <span class="-mt-1 font-normal">{plugSwitchTimeToString(todayOff)} Uhr</span>
+            {#await configData}
+                <div class=" placeholder animate-pulse"></div>
+            {:then configData}
+                <span class="-mt-1 font-normal"
+                    >{plugSwitchTimeToString(getOffTime(configData))} Uhr</span
+                >
+            {/await}
         </div>
     </div>
 </div>
