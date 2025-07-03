@@ -35,6 +35,29 @@
             touchZoom: zoomBehaviour,
         }).setView(initialCenter, initialZoom);
 
+        // Add polar cicles
+        L.polyline(
+            [
+                [66.6, -180],
+                [66.6, 180],
+            ],
+            {
+                color: 'var(--color-primary-500)',
+                weight: 3,
+            },
+        ).addTo(map);
+
+        L.polyline(
+            [
+                [-66.6, -180],
+                [-66.6, 180],
+            ],
+            {
+                color: 'var(--color-primary-500)',
+                weight: 3,
+            },
+        ).addTo(map);
+
         // see https://leaflet-extras.github.io/leaflet-providers/preview/ for list of available tile layers
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
             attribution:
