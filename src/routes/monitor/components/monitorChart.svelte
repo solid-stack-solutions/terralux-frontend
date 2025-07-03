@@ -34,31 +34,43 @@ The chart can not be rendered on the server.
 
     let { configData }: { configData: PlugConfiguration } = $props();
 
-    // Data
-    const dataNaturalSunrise: number[] = configData.natural_timers!.map((timer) =>
-        toDecimalTime(timer.on_time.hour, timer.on_time.minute),
-    );
-    const dataNaturalSunset: number[] = configData.natural_timers!.map((timer) =>
-        toDecimalTime(timer.off_time.hour, timer.off_time.minute),
-    );
-    const dataLocalSunrise: number[] = configData.local_timers!.map((timer) =>
-        toDecimalTime(timer.on_time.hour, timer.on_time.minute),
-    );
-    const dataLocalSunset: number[] = configData.local_timers!.map((timer) =>
-        toDecimalTime(timer.off_time.hour, timer.off_time.minute),
-    );
-    const dataOn: number[] = configData.computed_timers!.map((timer) =>
-        toDecimalTime(timer.on_time.hour, timer.on_time.minute),
-    );
-    const dataOff: number[] = configData.computed_timers!.map((timer) =>
-        toDecimalTime(timer.off_time.hour, timer.off_time.minute),
-    );
-    const seriesDataNaturalSunrise = mapToDatetimeSeries(dataNaturalSunrise);
-    const seriesDataNaturalSunset = mapToDatetimeSeries(dataNaturalSunset);
-    const seriesDataLocalSunrise = mapToDatetimeSeries(dataLocalSunrise);
-    const seriesDataLocalSunset = mapToDatetimeSeries(dataLocalSunset);
-    const seriesDataOn = mapToDatetimeSeries(dataOn);
-    const seriesDataOff = mapToDatetimeSeries(dataOff);
+    function getSeriesData(
+        configData: PlugConfiguration,
+    ): { name: string; data: { x: Date; y: number }[] }[] {
+        const seriesDataNaturalSunrise =
+            configData.natural_timers?.map((timer) =>
+                toDecimalTime(timer.on_time.hour, timer.on_time.minute),
+            ) ?? [];
+        const seriesDataNaturalSunset =
+            configData.natural_timers?.map((timer) =>
+                toDecimalTime(timer.off_time.hour, timer.off_time.minute),
+            ) ?? [];
+        const seriesDataLocalSunrise =
+            configData.local_timers?.map((timer) =>
+                toDecimalTime(timer.on_time.hour, timer.on_time.minute),
+            ) ?? [];
+        const seriesDataLocalSunset =
+            configData.local_timers?.map((timer) =>
+                toDecimalTime(timer.off_time.hour, timer.off_time.minute),
+            ) ?? [];
+        const seriesDataOn =
+            configData.computed_timers?.map((timer) =>
+                toDecimalTime(timer.on_time.hour, timer.on_time.minute),
+            ) ?? [];
+        const seriesDataOff =
+            configData.computed_timers?.map((timer) =>
+                toDecimalTime(timer.off_time.hour, timer.off_time.minute),
+            ) ?? [];
+
+        return [
+            { name: 'Natürlich 🌞', data: mapToDatetimeSeries(seriesDataNaturalSunrise) },
+            { name: 'Natürlich 🌚', data: mapToDatetimeSeries(seriesDataNaturalSunset) },
+            { name: 'Terrarium 🌞', data: mapToDatetimeSeries(seriesDataLocalSunrise) },
+            { name: 'Terrarium 🌚', data: mapToDatetimeSeries(seriesDataLocalSunset) },
+            { name: 'Lampe 🌞', data: mapToDatetimeSeries(seriesDataOn) },
+            { name: 'Lampe 🌚', data: mapToDatetimeSeries(seriesDataOff) },
+        ];
+    }
 
     const options: ApexOptions = {
         title: {
@@ -135,32 +147,7 @@ The chart can not be rendered on the server.
                 fontSize: '16px',
             },
         },
-        series: [
-            {
-                name: 'Natürlich 🌞',
-                data: seriesDataNaturalSunrise,
-            },
-            {
-                name: 'Natürlich 🌚',
-                data: seriesDataNaturalSunset,
-            },
-            {
-                name: 'Terrarium 🌞',
-                data: seriesDataLocalSunrise,
-            },
-            {
-                name: 'Terrarium 🌚',
-                data: seriesDataLocalSunset,
-            },
-            {
-                name: 'Lampe 🌞',
-                data: seriesDataOn,
-            },
-            {
-                name: 'Lampe 🌚',
-                data: seriesDataOff,
-            },
-        ],
+        series: getSeriesData(configData),
         colors: [
             'var(--color-success-400)',
             'var(--color-success-400)',
