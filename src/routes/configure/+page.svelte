@@ -167,10 +167,9 @@
                     class="bg-tertiary-500 flex items-center justify-center rounded-md p-3"
                     bind:this={warningRef}
                 >
-                    <p class=" text-center text-sm">
-                        <ShieldAlert class="mb-0.5 inline h-4 w-4" /> Für die ausgewählten Koordinaten
-                        gibt es keine gültigen Sonnenstunden-Daten. Bitte wähle keinen Standort in der
-                        Nähe der Pole.
+                    <p class=" text-center text-sm font-semibold">
+                        <ShieldAlert class="mb-0.5 inline h-4 w-4" /> Hast du einen Pinguin 🐧? Bitte wähle keinen Standort in der
+                        Nähe der Pole!
                     </p>
                 </div>
             {:else}
