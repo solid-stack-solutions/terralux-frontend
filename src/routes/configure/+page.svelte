@@ -55,8 +55,8 @@
         if (response.ok) {
             return goto('/monitor');
         }
-        if (response.status === 502) {
-            // Sunrise API returned unexpected data
+        if (response.status === 400) {
+            // Coordinates were too close too poles
             invalidLocation = true;
             loading = false;
             warningRef?.scrollIntoView({ behavior: 'smooth', block: 'center' });
