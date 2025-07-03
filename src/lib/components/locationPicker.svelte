@@ -44,7 +44,7 @@
             minZoom: 2,
         }).addTo(map);
 
-        // Only add markers when enabled
+        // Only add markers and polylines when enabled
         if (disabled) return;
 
         // Add polar cicles
