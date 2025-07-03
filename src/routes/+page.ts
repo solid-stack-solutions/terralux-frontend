@@ -17,9 +17,10 @@ export const load: Load = async ({ fetch }) => {
         );
     } catch (e) {
         console.warn(e);
+        return;
     }
 
-    if (response?.status !== 409) {
+    if (response && response.status !== 409) {
         throw redirect(307, '/monitor');
     }
 };

@@ -44,8 +44,32 @@
             minZoom: 2,
         }).addTo(map);
 
-        // Only add markers when enabled
+        // Only add markers and polylines when enabled
         if (disabled) return;
+
+        // Add polar cicles
+        L.polyline(
+            [
+                [66, -3600],
+                [66, 3600],
+            ],
+            {
+                color: 'var(--color-primary-500)',
+                weight: 3,
+            },
+        ).addTo(map);
+
+        L.polyline(
+            [
+                [-66, -3600],
+                [-66, 3600],
+            ],
+            {
+                color: 'var(--color-primary-500)',
+                weight: 3,
+            },
+        ).addTo(map);
+
         map.on('click', (e: L.LeafletMouseEvent) => {
             const { latlng } = e;
 
