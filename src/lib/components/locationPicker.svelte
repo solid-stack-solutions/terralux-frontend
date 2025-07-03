@@ -35,6 +35,18 @@
             touchZoom: zoomBehaviour,
         }).setView(initialCenter, initialZoom);
 
+        // see https://leaflet-extras.github.io/leaflet-providers/preview/ for list of available tile layers
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 8,
+            minZoom: 2,
+        }).addTo(map);
+
+        // Only add markers when enabled
+        if (disabled) return;
+
         // Add polar cicles
         L.polyline(
             [
@@ -58,17 +70,6 @@
             },
         ).addTo(map);
 
-        // see https://leaflet-extras.github.io/leaflet-providers/preview/ for list of available tile layers
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            attribution:
-                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            subdomains: 'abcd',
-            maxZoom: 8,
-            minZoom: 2,
-        }).addTo(map);
-
-        // Only add markers when enabled
-        if (disabled) return;
         map.on('click', (e: L.LeafletMouseEvent) => {
             const { latlng } = e;
 
