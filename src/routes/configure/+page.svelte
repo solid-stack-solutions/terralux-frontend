@@ -32,6 +32,9 @@
     let sliderValue = $state(0.5);
 
     let loading = $state(false);
+    let invalidLocation = $state(false);
+    // svelte-ignore non_reactive_update because this is not reactive data
+    let warningRef: HTMLDivElement;
 
     async function setConfiguration() {
         if (!natCoords || !terrCoords) return;
@@ -50,9 +53,15 @@
             natural_longitude: natCoords.lng,
         });
         if (response.ok) {
-            goto('/monitor');
+            return goto('/monitor');
         }
-        // Currently no error handling
+        if (response.status === 502) {
+            // Sunrise API returned unexpected data
+            invalidLocation = true;
+            loading = false;
+            warningRef?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        // Currently no full error handling
     }
 
     onMount(() => {
@@ -153,9 +162,22 @@
                 </div>
             </div>
 
-            <p class="text-center text-sm opacity-60">
-                Klicke auf die Karten, um eine Position auszuwählen
-            </p>
+            {#if invalidLocation}
+                <div
+                    class="bg-tertiary-500 flex items-center justify-center rounded-md p-3"
+                    bind:this={warningRef}
+                >
+                    <p class=" text-center text-sm">
+                        <ShieldAlert class="mb-0.5 inline h-4 w-4" /> Für die ausgewählten Koordinaten
+                        gibt es keine gültigen Sonnenstunden-Daten. Bitte wähle keinen Standort in der
+                        Nähe der Pole.
+                    </p>
+                </div>
+            {:else}
+                <p class="text-center text-sm opacity-60">
+                    Klicke auf die Karten, um eine Position auszuwählen
+                </p>
+            {/if}
         </div>
 
         <p class="mt-15 text-xl font-bold">Natürlichkeitsfaktor</p>
