@@ -50,8 +50,8 @@
         // Add polar cicles
         L.polyline(
             [
-                [66, -3600],
-                [66, 3600],
+                [65, -3600],
+                [65, 3600],
             ],
             {
                 color: 'var(--color-primary-500)',
@@ -61,8 +61,8 @@
 
         L.polyline(
             [
-                [-66, -3600],
-                [-66, 3600],
+                [-65, -3600],
+                [-65, 3600],
             ],
             {
                 color: 'var(--color-primary-500)',
