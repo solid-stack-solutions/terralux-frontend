@@ -168,7 +168,7 @@
                     bind:this={warningRef}
                 >
                     <p class=" text-center text-sm">
-                        <ShieldAlert class="mb-0.5 inline h-4 w-4" /> Für die ausgewählten Koordinaten
+                        <ShieldAlert class="mb-0.5 inline h-4 w-4 font-semibold" /> Für die ausgewählten Koordinaten
                         gibt es keine gültigen Sonnenstunden-Daten. Bitte wähle keinen Standort in der
                         Nähe der Pole.
                     </p>
