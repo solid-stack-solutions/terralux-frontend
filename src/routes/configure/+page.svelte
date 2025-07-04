@@ -187,7 +187,7 @@
             für die Sonnenauf/-untergangszeiten am <strong>Terrarium Standort</strong> und
             <strong>100 %</strong>
             für eine zusätzliche Anpassung der Tageslänge an die des
-            <strong>Natürlichen Standorts</strong>. <br />
+            <strong>Natürlichen Standorts</strong> wählen. <br />
             Bei allem dazwischen wird gemittelt!
         </p>
 
