@@ -48,10 +48,14 @@
         if (disabled) return;
 
         // Add polar cicles
+        /** Absolute value for geographic coordinate latitude of polar circle.
+         * This value should be synchronized with the one in the backend to avoid
+         * confusion. */
+        const polarCircleLat = 65;
         L.polyline(
             [
-                [66, -3600],
-                [66, 3600],
+                [polarCircleLat, -3600],
+                [polarCircleLat, 3600],
             ],
             {
                 color: 'var(--color-primary-500)',
@@ -61,8 +65,8 @@
 
         L.polyline(
             [
-                [-66, -3600],
-                [-66, 3600],
+                [-polarCircleLat, -3600],
+                [-polarCircleLat, 3600],
             ],
             {
                 color: 'var(--color-primary-500)',
