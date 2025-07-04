@@ -1,8 +1,10 @@
 <script lang="ts">
-    import '../app.css';
-    import { onMount } from 'svelte';
-    import { loadConfig } from '$lib/load-config';
     import { backendUrl } from '$lib/backend-util';
+    import { loadConfig } from '$lib/load-config';
+    import { toaster } from '$lib/toaster';
+    import { Toaster } from '@skeletonlabs/skeleton-svelte';
+    import { onMount } from 'svelte';
+    import '../app.css';
 
     let { children } = $props();
 
@@ -62,6 +64,8 @@
         backendUrl.set(config.backendUrl);
     });
 </script>
+
+<Toaster {toaster} />
 
 <div class="bg-background-800 relative h-screen w-full">
     <!-- Static blob canvas -->

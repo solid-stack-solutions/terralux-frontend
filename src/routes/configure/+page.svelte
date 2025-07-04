@@ -6,6 +6,7 @@
     import LocationPicker from '$lib/components/locationPicker.svelte';
     import NaturalFactorSlider from '$lib/components/naturalFactorSlider.svelte';
     import SmoothLoadingBar from '$lib/components/smoothLoadingBar.svelte';
+    import { toaster } from '$lib/toaster';
     import { ArrowBigLeftDash, ShieldAlert } from '@lucide/svelte';
     import { LatLng } from 'leaflet';
     import { onMount } from 'svelte';
@@ -43,6 +44,14 @@
             return;
         }
 
+        if (natCoords.lat < 70 && terrCoords.lat > 70) {
+            toaster.warning({
+                title: "🐧 am Nordpol, merks't selber ne!",
+                closable: false,
+            });
+            return;
+        }
+
         loading = true;
         const response = await changeConfiguration({
             plug_url: 'http://' + ipState.ipAddress,
@@ -55,8 +64,8 @@
         if (response.ok) {
             return goto('/monitor');
         }
-        if (response.status === 502) {
-            // Sunrise API returned unexpected data
+        if (response.status === 400) {
+            // Coordinates were too close too poles
             invalidLocation = true;
             loading = false;
             warningRef?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -167,9 +176,10 @@
                     class="bg-tertiary-500 flex items-center justify-center rounded-md p-3"
                     bind:this={warningRef}
                 >
-                    <p class=" text-center text-sm font-semibold">
-                        <ShieldAlert class="mb-0.5 inline h-4 w-4" /> Hast du einen Pinguin 🐧? Bitte wähle keinen Standort in der
-                        Nähe der Pole!
+                    <p class=" text-center text-sm">
+                        <ShieldAlert class="mb-0.5 inline h-4 w-4 font-semibold" /> Für die ausgewählten
+                        Koordinaten gibt es keine gültigen Sonnenstunden-Daten. Bitte wähle keinen Standort
+                        in der Nähe der Pole.
                     </p>
                 </div>
             {:else}
