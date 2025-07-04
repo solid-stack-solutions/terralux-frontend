@@ -4,16 +4,11 @@ Make sure to add `export const ssr = false` to the page when using this componen
 The chart can not be rendered on the server.
 -->
 <script lang="ts">
-    // Types for typescript support
-    import ApexChartsClass from 'apexcharts';
-    import ApexCharts from 'apexcharts';
-    import type { ApexOptions } from 'apexcharts';
-
-    import { onMount, onDestroy } from 'svelte';
     import apexchartsLocaleDE from '$lib/apexcharts-locales/de.json';
-
-    // Dummy data
-    import configData from '$lib/data/Configuration-Data.json';
+    import type { PlugConfiguration } from '$lib/data-types';
+    import type { ApexOptions } from 'apexcharts';
+    import { default as ApexCharts, default as ApexChartsClass } from 'apexcharts';
+    import { onDestroy, onMount } from 'svelte';
 
     // Prepare data
     function toDecimalTime(hour: number, minute: number): number {
@@ -37,31 +32,45 @@ The chart can not be rendered on the server.
     let chart: ApexChartsClass;
     let chartElement: HTMLDivElement;
 
-    // Data
-    const dataNaturalSunrise: number[] = configData.natural_timers.map((timer) =>
-        toDecimalTime(timer.on_time.hour, timer.on_time.minute),
-    );
-    const dataNaturalSunset: number[] = configData.natural_timers.map((timer) =>
-        toDecimalTime(timer.off_time.hour, timer.off_time.minute),
-    );
-    const dataLocalSunrise: number[] = configData.local_timers.map((timer) =>
-        toDecimalTime(timer.on_time.hour, timer.on_time.minute),
-    );
-    const dataLocalSunset: number[] = configData.local_timers.map((timer) =>
-        toDecimalTime(timer.off_time.hour, timer.off_time.minute),
-    );
-    const dataOn: number[] = configData.computed_timers.map((timer) =>
-        toDecimalTime(timer.on_time.hour, timer.on_time.minute),
-    );
-    const dataOff: number[] = configData.computed_timers.map((timer) =>
-        toDecimalTime(timer.off_time.hour, timer.off_time.minute),
-    );
-    const seriesDataNaturalSunrise = mapToDatetimeSeries(dataNaturalSunrise);
-    const seriesDataNaturalSunset = mapToDatetimeSeries(dataNaturalSunset);
-    const seriesDataLocalSunrise = mapToDatetimeSeries(dataLocalSunrise);
-    const seriesDataLocalSunset = mapToDatetimeSeries(dataLocalSunset);
-    const seriesDataOn = mapToDatetimeSeries(dataOn);
-    const seriesDataOff = mapToDatetimeSeries(dataOff);
+    let { configData }: { configData: PlugConfiguration } = $props();
+
+    function getSeriesData(
+        configData: PlugConfiguration,
+    ): { name: string; data: { x: Date; y: number }[] }[] {
+        const seriesDataNaturalSunrise =
+            configData.natural_timers?.map((timer) =>
+                toDecimalTime(timer.on_time.hour, timer.on_time.minute),
+            ) ?? [];
+        const seriesDataNaturalSunset =
+            configData.natural_timers?.map((timer) =>
+                toDecimalTime(timer.off_time.hour, timer.off_time.minute),
+            ) ?? [];
+        const seriesDataLocalSunrise =
+            configData.local_timers?.map((timer) =>
+                toDecimalTime(timer.on_time.hour, timer.on_time.minute),
+            ) ?? [];
+        const seriesDataLocalSunset =
+            configData.local_timers?.map((timer) =>
+                toDecimalTime(timer.off_time.hour, timer.off_time.minute),
+            ) ?? [];
+        const seriesDataOn =
+            configData.computed_timers?.map((timer) =>
+                toDecimalTime(timer.on_time.hour, timer.on_time.minute),
+            ) ?? [];
+        const seriesDataOff =
+            configData.computed_timers?.map((timer) =>
+                toDecimalTime(timer.off_time.hour, timer.off_time.minute),
+            ) ?? [];
+
+        return [
+            { name: 'Natürlich 🌞', data: mapToDatetimeSeries(seriesDataNaturalSunrise) },
+            { name: 'Natürlich 🌚', data: mapToDatetimeSeries(seriesDataNaturalSunset) },
+            { name: 'Terrarium 🌞', data: mapToDatetimeSeries(seriesDataLocalSunrise) },
+            { name: 'Terrarium 🌚', data: mapToDatetimeSeries(seriesDataLocalSunset) },
+            { name: 'Lampe 🌞', data: mapToDatetimeSeries(seriesDataOn) },
+            { name: 'Lampe 🌚', data: mapToDatetimeSeries(seriesDataOff) },
+        ];
+    }
 
     const options: ApexOptions = {
         title: {
@@ -138,32 +147,7 @@ The chart can not be rendered on the server.
                 fontSize: '16px',
             },
         },
-        series: [
-            {
-                name: 'Natürlich 🌞',
-                data: seriesDataNaturalSunrise,
-            },
-            {
-                name: 'Natürlich 🌚',
-                data: seriesDataNaturalSunset,
-            },
-            {
-                name: 'Terrarium 🌞',
-                data: seriesDataLocalSunrise,
-            },
-            {
-                name: 'Terrarium 🌚',
-                data: seriesDataLocalSunset,
-            },
-            {
-                name: 'Lampe 🌞',
-                data: seriesDataOn,
-            },
-            {
-                name: 'Lampe 🌚',
-                data: seriesDataOff,
-            },
-        ],
+        series: getSeriesData(configData),
         colors: [
             'var(--color-success-400)',
             'var(--color-success-400)',

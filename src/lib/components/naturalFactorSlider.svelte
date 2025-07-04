@@ -4,7 +4,8 @@
     let {
         sliderValue = $bindable(0.5),
         disabled = false,
-    }: { sliderValue?: number; disabled?: boolean } = $props();
+        loading = false,
+    }: { sliderValue?: number; disabled?: boolean; loading?: boolean } = $props();
 </script>
 
 <section class="flex items-center gap-2 pb-10">
@@ -17,8 +18,10 @@
         markers={[0, 25, 50, 75, 100]}
         markText="text-sm"
         markOpacity="opacity-60"
-        trackBg="bg-gradient-to-r from-surface-800 to-surface-700"
-        meterBg="bg-primary-500"
+        trackBg="{loading
+            ? 'placeholder animate-pulse'
+            : ''} bg-gradient-to-r from-surface-800 to-surface-700"
+        meterBg="{loading ? 'invisible' : ''} bg-primary-500"
         height="h-4"
         thumbSize={disabled ? 'size-0' : 'size-6'}
         step={5}

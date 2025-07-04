@@ -1,20 +1,25 @@
 <script lang="ts">
-    import { houseIcon, treeIcon } from '$lib/components/locationMarkers';
+    import { goto } from '$app/navigation';
+    import { getFullConfiguration } from '$lib/backend-api';
+    import { houseIcon } from '$lib/components/locationMarkers';
     import LocationPicker from '$lib/components/locationPicker.svelte';
     import ManualOnOffCluster from '$lib/components/manualOnOffCluster.svelte';
-    import MonitorChart from '$lib/components/monitorChart.svelte';
+    import type { PlugConfiguration } from '$lib/data-types';
     import { LatLng } from 'leaflet';
+    import { onMount } from 'svelte';
     import AdditionalSettings from './components/additionalSettings.svelte';
+    import MonitorChart from './components/monitorChart.svelte';
     import NextOnOffTime from './components/nextOnOffTime.svelte';
-    import { goto } from '$app/navigation';
 
-    // TODO get config from backend on page load
-    const lat = 53.131;
-    const lng = 8.22;
+    let configData: Promise<PlugConfiguration> = new Promise(() => {});
 
     function onReconfigure() {
         goto('/configure');
     }
+
+    onMount(async () => {
+        configData = getFullConfiguration();
+    });
 </script>
 
 <section class="mx-auto max-w-5xl">
@@ -23,7 +28,7 @@
 
         <div class="mt-5 grid w-full grid-cols-1 gap-6 md:grid-cols-2">
             <ManualOnOffCluster />
-            <NextOnOffTime />
+            <NextOnOffTime {configData} />
         </div>
 
         <div
@@ -32,33 +37,51 @@
             <div class="flex flex-col">
                 <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
                 <div class="aspect-[6/3] w-full shadow">
-                    <LocationPicker
-                        disabled={true}
-                        selected={new LatLng(lat, lng)}
-                        markerIcon={houseIcon}
-                    />
+                    {#await configData}
+                        <div class="placeholder h-full animate-pulse"></div>
+                    {:then configData}
+                        <LocationPicker
+                            disabled={true}
+                            selected={new LatLng(
+                                configData.local_latitude,
+                                configData.local_longitude,
+                            )}
+                            markerIcon={houseIcon}
+                        />
+                    {/await}
                 </div>
             </div>
 
             <div class="flex flex-col">
                 <h2 class="mb-2 text-center text-xl font-semibold">Natürlicher Standort</h2>
                 <div class="aspect-[6/3] w-full shadow">
-                    <LocationPicker
-                        disabled={true}
-                        selected={new LatLng(lat, lng)}
-                        markerIcon={treeIcon}
-                    />
+                    {#await configData}
+                        <div class="placeholder h-full animate-pulse"></div>
+                    {:then configData}
+                        <LocationPicker
+                            disabled={true}
+                            selected={new LatLng(
+                                configData.natural_latitude,
+                                configData.natural_longitude,
+                            )}
+                            markerIcon={houseIcon}
+                        />
+                    {/await}
                 </div>
             </div>
         </div>
 
         <div class="mt-5">
-            <AdditionalSettings />
+            <AdditionalSettings {configData} />
         </div>
 
         <h1 class="mt-10 text-xl font-semibold">Sonnenzeiten & Schaltzeiten</h1>
         <p class="mb-2 text-sm text-red-400 opacity-60">Hier kann der Graph erläutert werden</p>
-        <MonitorChart />
+        {#await configData}
+            <div class="placeholder h-[550px] animate-pulse"></div>
+        {:then configData}
+            <MonitorChart {configData} />
+        {/await}
 
         <div class="mt-10 flex w-full justify-center">
             <div class="flex justify-center">
