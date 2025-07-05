@@ -1,34 +1,20 @@
 <script lang="ts">
-    import {
-        plugSwitchTimeToString,
-        type PlugConfiguration,
-        type PlugSwitchTime,
-    } from '$lib/data-types';
-
-    // Day number of today
-    const getDayOfYear = (date: Date): number =>
-        Math.floor(
-            (date.getTime() - new Date(date.getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24),
-        );
-    const dayOfYearForArray = getDayOfYear(new Date()) - 1;
+    import { getTodayConfiguration } from '$lib/backend-api';
+    import { plugSwitchTimeToString, type PlugSwitchTime, type PlugTimer } from '$lib/data-types';
 
     const fallBackTime: PlugSwitchTime = {
         hour: 0,
         minute: 0,
     };
 
-    let {
-        configData = new Promise<PlugConfiguration>(() => {}),
-    }: {
-        configData: Promise<PlugConfiguration>;
-    } = $props();
+    const configData = getTodayConfiguration();
 
     // Today on / off
-    function getOnTime(configData: PlugConfiguration): PlugSwitchTime {
-        return configData?.computed_timers?.[dayOfYearForArray]?.on_time ?? fallBackTime;
+    function getOnTime(configData: PlugTimer): PlugSwitchTime {
+        return configData?.on_time ?? fallBackTime;
     }
-    function getOffTime(configData: PlugConfiguration): PlugSwitchTime {
-        return configData?.computed_timers?.[dayOfYearForArray]?.off_time ?? fallBackTime;
+    function getOffTime(configData: PlugTimer): PlugSwitchTime {
+        return configData?.off_time ?? fallBackTime;
     }
 </script>
 
