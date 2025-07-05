@@ -65,7 +65,7 @@
     {/snippet}
     {#snippet content()}
         <header class="flex justify-between">
-            <h2 class="h2">Steckdose verbinden</h2>
+            <h2 class="text-3xl font-bold">Steckdose verbinden</h2>
         </header>
         <form onsubmit={handleConfirm}>
             <article class="pb-4">

@@ -26,7 +26,7 @@
     <div class="flex flex-col justify-center">
         <h1 class="text-center text-6xl font-bold">Terralux Kontrollstation</h1>
 
-        <div class="mt-5 grid w-full grid-cols-1 gap-6 md:grid-cols-2">
+        <div class="mt-12 grid w-full grid-cols-1 gap-6 md:grid-cols-2">
             <ManualOnOffCluster />
             <NextOnOffTime {configData} />
         </div>
@@ -75,7 +75,7 @@
             <AdditionalSettings {configData} />
         </div>
 
-        <h1 class="mt-10 text-xl font-semibold">Sonnenzeiten & Schaltzeiten</h1>
+        <h1 class="mt-12 text-xl font-semibold">Sonnenzeiten & Schaltzeiten</h1>
         <p class="mb-2 text-sm text-red-400 opacity-60">Hier kann der Graph erläutert werden</p>
         {#await configData}
             <div class="placeholder h-[550px] animate-pulse"></div>
@@ -83,7 +83,7 @@
             <MonitorChart {configData} />
         {/await}
 
-        <div class="mt-10 flex w-full justify-center">
+        <div class="mt-12 flex w-full justify-center">
             <div class="flex justify-center">
                 <button
                     onclick={onReconfigure}

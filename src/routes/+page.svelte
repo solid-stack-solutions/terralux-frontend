@@ -11,7 +11,7 @@
 <section class="mx-auto max-w-6xl">
     <h1 class="text-center text-6xl font-bold">Terralux</h1>
 
-    <div class="mt-12 flex flex-col gap-16 px-4 lg:flex-row">
+    <div class="flex flex-col gap-16 px-4 mt-12 lg:flex-row">
         <div class="flex-1">
             <p class="mt-4 text-4xl font-medium">
                 Die smarte <br />

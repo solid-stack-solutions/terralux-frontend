@@ -111,7 +111,7 @@
             bind:openState={ipModalOpen}
             onConfirm={() => (ipModalOpen = false)}
         />
-        <p class="text-xl font-bold">Dein Reptil</p>
+        <p class="text-xl font-bold mt-12">Dein Reptil</p>
         <p class="mb-5 text-sm opacity-60">
             <ShieldAlert class="mb-0.5 inline h-4 w-4" /> Keine Sorge, sollte dein Reptil nicht unter
             der Auswahl zu finden sein, kannst du einfach den <strong>Natürlichen Standort</strong> manuell
@@ -143,7 +143,7 @@
             {/each}
         </section>
 
-        <div class="mt-15 flex flex-col items-center gap-4">
+        <div class="mt-12 flex flex-col items-center gap-4">
             <div class="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
                 <div class="flex flex-col">
                     <h2 class="mb-2 text-center text-xl font-semibold">Terrarium Standort</h2>
@@ -189,7 +189,7 @@
             {/if}
         </div>
 
-        <p class="mt-15 text-xl font-bold">Natürlichkeitsfaktor</p>
+        <p class="mt-12 text-xl font-bold">Natürlichkeitsfaktor</p>
         <p class="mb-5 text-sm opacity-60">
             Der Natürlichkeitsfaktor bestimmt, wie stark sich die Schaltzeiten deiner
             Terrarienlampen am natürlichen Biorhythmus deines Reptils orientieren. <br /> Hier
@@ -203,7 +203,7 @@
 
         <NaturalFactorSlider bind:sliderValue />
 
-        <div class="flex justify-center pt-20">
+        <div class="flex justify-center mt-12">
             <button
                 type="button"
                 class="btn preset-filled-primary-500 w-128 font-semibold"
