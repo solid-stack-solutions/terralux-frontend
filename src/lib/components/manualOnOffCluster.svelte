@@ -11,7 +11,7 @@
 
     let loading = $state(true);
     let currentPowerState: boolean = $state(false);
-    let pollIntervall: number;
+    let pollInterval: number;
     const onColor = 'var(--color-yellow-500)';
     const offColor = 'var(--color-surface-300)';
 
@@ -20,7 +20,7 @@
         currentPowerState = power;
     }
 
-    async function getPowerState() {
+    async function updatePowerState() {
         const data: PowerState = await getPlugState();
         currentPowerState = data.power;
     }
@@ -30,13 +30,11 @@
         const data: PowerState = await getPlugState();
         currentPowerState = data.power;
         loading = false;
-        pollIntervall = setInterval(() => {
-            getPowerState;
-        }, 500);
+        pollInterval = setInterval(updatePowerState, 500);
     });
 
     onDestroy(() => {
-        clearInterval(pollIntervall);
+        clearInterval(pollInterval);
     });
 </script>
 
