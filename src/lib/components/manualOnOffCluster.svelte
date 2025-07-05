@@ -24,7 +24,6 @@
         while (true) {
             await sleep(500);
             const data: PowerState = await getPlugState();
-            console.log('polled');
             currentPowerState = data.power;
         }
     }
