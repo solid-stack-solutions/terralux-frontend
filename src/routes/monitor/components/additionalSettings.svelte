@@ -13,13 +13,13 @@
     <Accordion.Item
         value="additional-settings"
         controlHover="hover:bg-surface-600"
-        controlClasses="text-lg font-semibold"
+        controlClasses="text-xl font-semibold"
     >
         {#snippet control()}Weitere Informationen{/snippet}
         {#snippet panel()}
             <div class="mx-3">
                 <div class="mt-2 flex flex-col">
-                    <h2 class="text-xl font-semibold">
+                    <h2 class="text-lg font-semibold">
                         Aktuell verbunden mit der Steckdose
                         {#await configData}
                             <div
@@ -40,7 +40,7 @@
                         berechnet.
                     </p>
                 </div>
-                <p class="mt-10 text-xl font-semibold">Natürlichkeitsfaktor</p>
+                <p class="mt-10 text-lg font-semibold">Natürlichkeitsfaktor</p>
                 {#await configData}
                     <NaturalFactorSlider disabled={true} loading={true} />
                 {:then configData}

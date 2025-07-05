@@ -10,6 +10,7 @@
     import AdditionalSettings from './components/additionalSettings.svelte';
     import MonitorChart from './components/monitorChart.svelte';
     import NextOnOffTime from './components/nextOnOffTime.svelte';
+    import { Info } from '@lucide/svelte';
 
     let configData: Promise<PlugConfiguration> = new Promise(() => {});
 
@@ -76,7 +77,13 @@
         </div>
 
         <h1 class="mt-10 text-xl font-semibold">Sonnenzeiten & Schaltzeiten</h1>
-        <p class="mb-2 text-sm text-red-400 opacity-60">Hier kann der Graph erläutert werden</p>
+        <p class="mb-2 text-sm opacity-60">
+            <Info class="mb-0.5 inline w-4" /> Mit diesem Graphen erhältst du einen übersichtlichen Einblick in alle Abläufe im
+            Terrarium.<br>
+            Du kannst erkennen, <strong>wann</strong> im Jahresverlauf die <strong>Schaltzeiten</strong> im Verhältnis zu
+            den Sonnenaufgangs- und Sonnenuntergangszeiten liegen, sowohl in der <strong>natürlichen Umgebung</strong>
+            als auch im <strong>Terrarium</strong>. <br>Die Tage sind von oben nach unten zu lesen.
+        </p>
         {#await configData}
             <div class="placeholder h-[550px] animate-pulse"></div>
         {:then configData}

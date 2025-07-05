@@ -2,6 +2,7 @@
     import { Modal } from '@skeletonlabs/skeleton-svelte';
     import { ipState } from '../../routes/configure/ipstate.svelte';
     import { onMount } from 'svelte';
+    import { Info } from '@lucide/svelte';
 
     // == Form control ==
     // svelte-ignore non_reactive_update because it does not need to be reactive`
@@ -74,7 +75,7 @@
                         Gib die IP-Adresse deiner Steckdose ein, um dich mit ihr zu verbinden.
                     </span><br />
                     <span class="text-sm opacity-60">
-                        Die Steckdose muss sich im gleichen Netzwerk befinden. Du kannst die
+                        <Info class="mb-0.5 inline w-4" /> Die Steckdose muss sich im gleichen Netzwerk befinden. Du kannst die
                         IP-Adresse der Steckdose in den Router Einstellungen finden.
                     </span>
                 </p>
