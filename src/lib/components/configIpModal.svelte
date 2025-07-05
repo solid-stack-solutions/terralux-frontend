@@ -57,7 +57,7 @@
 <Modal
     open={openState}
     onOpenChange={(e) => (openState = e.open)}
-    triggerBase={hideButton ? 'invisible!' : 'btn preset-filled-primary-500 text-2xl font-semibold'}
+    triggerBase={hideButton ? 'invisible! block w-0 h-0' : 'btn preset-filled-primary-500 text-2xl font-semibold'}
     contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl max-w-screen-sm"
     backdropClasses="backdrop-blur-sm"
 >
