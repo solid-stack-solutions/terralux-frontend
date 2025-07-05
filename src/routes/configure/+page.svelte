@@ -7,7 +7,7 @@
     import NaturalFactorSlider from '$lib/components/naturalFactorSlider.svelte';
     import SmoothLoadingBar from '$lib/components/smoothLoadingBar.svelte';
     import { toaster } from '$lib/toaster';
-    import { ArrowBigLeftDash, ShieldAlert } from '@lucide/svelte';
+    import { ArrowBigLeftDash, Info, ShieldAlert } from '@lucide/svelte';
     import { LatLng } from 'leaflet';
     import { onMount } from 'svelte';
     import { ipState } from './ipstate.svelte';
@@ -111,7 +111,9 @@
             bind:openState={ipModalOpen}
             onConfirm={() => (ipModalOpen = false)}
         />
-        <p class="text-xl font-bold mt-12">Dein Reptil</p>
+        
+        <p class="text-xl font-semibold mt-12">Dein Reptil</p>
+
         <p class="mb-5 text-sm opacity-60">
             <ShieldAlert class="mb-0.5 inline h-4 w-4" /> Keine Sorge, sollte dein Reptil nicht unter
             der Auswahl zu finden sein, kannst du einfach den <strong>Natürlichen Standort</strong> manuell
@@ -189,9 +191,10 @@
             {/if}
         </div>
 
-        <p class="mt-12 text-xl font-bold">Natürlichkeitsfaktor</p>
+        <p class="mt-12 text-xl font-semibold">Natürlichkeitsfaktor</p>
+
         <p class="mb-5 text-sm opacity-60">
-            Der Natürlichkeitsfaktor bestimmt, wie stark sich die Schaltzeiten deiner
+            <Info class="mb-0.5 inline w-4" /> Der Natürlichkeitsfaktor bestimmt, wie stark sich die Schaltzeiten deiner
             Terrarienlampen am natürlichen Biorhythmus deines Reptils orientieren. <br /> Hier
             kannst du einen Wert zwischen <strong>0 %</strong>
             für die Sonnenauf/-untergangszeiten am <strong>Terrarium Standort</strong> und
