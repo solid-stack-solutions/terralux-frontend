@@ -41,7 +41,7 @@
     <div class="flex flex-row space-x-1 p-2 {loading ? 'animate-pulse cursor-not-allowed' : ''}">
         <button
             type="button"
-            class="btn preset-filled-success-500 w-1/2"
+            class="btn preset-filled-success-500 w-1/2 font-semibold"
             disabled={loading || currentPowerState}
             onclick={() => changeState(true)}
         >
@@ -49,7 +49,7 @@
         </button>
         <button
             type="button"
-            class="btn preset-filled-error-500 w-1/2"
+            class="btn preset-filled-error-500 w-1/2 font-semibold"
             disabled={loading || !currentPowerState}
             onclick={() => changeState(false)}
         >

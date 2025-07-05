@@ -93,7 +93,7 @@
                 class="btn preset-filled-secondary-500 absolute left-0"
                 onclick={() => returnToLandingPage()}
             >
-                <ArrowBigLeftDash />
+                <ArrowBigLeftDash strokeWidth={3} />
             </button>
         {/if}
 
@@ -206,7 +206,7 @@
         <div class="flex justify-center pt-20">
             <button
                 type="button"
-                class="btn preset-filled-primary-500 w-128"
+                class="btn preset-filled-primary-500 w-128 font-semibold"
                 disabled={!natCoords || !terrCoords}
                 onclick={setConfiguration}>Jetzt konfigurieren</button
             >
