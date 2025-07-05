@@ -1,13 +1,14 @@
 <script lang="ts">
     import { getTodayConfiguration } from '$lib/backend-api';
     import { plugSwitchTimeToString, type PlugSwitchTime, type PlugTimer } from '$lib/data-types';
+    import { onMount } from 'svelte';
 
     const fallBackTime: PlugSwitchTime = {
         hour: 0,
         minute: 0,
     };
 
-    const configData = getTodayConfiguration();
+    let configData: PlugTimer;
 
     // Today on / off
     function getOnTime(configData: PlugTimer): PlugSwitchTime {
@@ -16,6 +17,10 @@
     function getOffTime(configData: PlugTimer): PlugSwitchTime {
         return configData?.off_time ?? fallBackTime;
     }
+
+    onMount(async () => {
+        configData = await getTodayConfiguration();
+    });
 </script>
 
 <div class="p-2 pb-0">
