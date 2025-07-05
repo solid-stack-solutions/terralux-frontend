@@ -75,8 +75,9 @@
                         Gib die IP-Adresse deiner Steckdose ein, um dich mit ihr zu verbinden.
                     </span><br />
                     <span class="text-sm opacity-60">
-                        <Info class="mb-0.5 inline w-4" /> Die Steckdose muss sich im gleichen Netzwerk befinden. Du kannst die
-                        IP-Adresse der Steckdose in den Router Einstellungen finden.
+                        <Info class="mb-0.5 inline w-4" /> Die Steckdose muss sich im gleichen Netzwerk
+                        befinden. Du kannst die IP-Adresse der Steckdose in den Router Einstellungen
+                        finden.
                     </span>
                 </p>
                 <label class="label pt-5">

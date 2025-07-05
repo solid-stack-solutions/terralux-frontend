@@ -194,9 +194,10 @@
         <p class="mt-12 text-xl font-semibold">Natürlichkeitsfaktor</p>
 
         <p class="mb-5 text-sm opacity-60">
-            <Info class="mb-0.5 inline w-4" /> Der Natürlichkeitsfaktor bestimmt, wie stark sich die Schaltzeiten deiner
-            Terrarienlampen am natürlichen Biorhythmus deines Reptils orientieren. <br /> Hier
-            kannst du einen Wert zwischen <strong>0 %</strong>
+            <Info class="mb-0.5 inline w-4" /> Der Natürlichkeitsfaktor bestimmt, wie stark sich die
+            Schaltzeiten deiner Terrarienlampen am natürlichen Biorhythmus deines Reptils orientieren.
+            <br />
+            Hier kannst du einen Wert zwischen <strong>0 %</strong>
             für die Sonnenauf/-untergangszeiten am <strong>Terrarium Standort</strong> und
             <strong>100 %</strong>
             für eine zusätzliche Anpassung der Tageslänge an die des
