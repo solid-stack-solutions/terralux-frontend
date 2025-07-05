@@ -38,11 +38,13 @@ cd terralux-frontend
 nix run
 ```
 
-## Development
+## Local release build
 
 ```sh
-### building/running release
+# building
 npm run build
-# run with port env var (on linux, needs different syntax on windows)
-PORT=4173 node build
+# run with env vars (on linux)
+NODE_ENV=production PORT=4173 node build
+# (on windowss)
+set NODE_ENV=production && set PORT=4173 && node build
 ```
