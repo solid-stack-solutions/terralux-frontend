@@ -67,12 +67,9 @@
 
 <Toaster {toaster} />
 
-<div class="bg-background-800 relative h-screen w-full">
+<div class="bg-background-800 relative min-h-screen w-full">
     <!-- Static blob canvas -->
-    <div
-        class="pointer-events-none absolute top-1/2 left-1/2"
-        style={`width: ${BLOB_CANVAS_WIDTH}px; height: ${BLOB_CANVAS_HEIGHT}px; transform: translate(-50%, -50%);`}
-    >
+    <div class="pointer-events-none absolute inset-0 h-full w-full overflow-hidden">
         {#each blobs as blob}
             <div
                 class={`absolute rounded-full ${blob.colorClass} ${blob.blur}`}
