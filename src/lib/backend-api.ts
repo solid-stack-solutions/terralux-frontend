@@ -18,9 +18,19 @@ async function changePlugState(power: boolean): Promise<Response> {
  * @returns the backend response as a {@link Promise<PowerState>}. Consult backend API documentation for response code semantics (https://github.com/solid-stack-solutions/terralux-backend)
  */
 async function getPlugState(): Promise<PowerState> {
-    return await (
-        await tryFetching(getBackendUrl() + endpoints.get.power_state, HTTP_METHOD.GET, null, '')
-    ).json();
+    const data = await fetch(
+        new Request(getBackendUrl() + endpoints.get.power_state, {
+            method: HTTP_METHOD.GET.toString(),
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: null,
+        }),
+    );
+    if (data.ok) {
+        return await data.json();
+    }
+    return { power: false };
 }
 
 /**

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { changePlugState, getPlugState } from '$lib/backend-api';
     import type { PowerState } from '$lib/data-types';
-    import { onMount } from 'svelte';
+    import { onDestroy, onMount } from 'svelte';
     import { Lightbulb, LightbulbOff } from '@lucide/svelte';
 
     let {
@@ -11,11 +11,18 @@
 
     let loading = $state(true);
     let currentPowerState: boolean = $state(false);
+    let pollInterval: number;
     const onColor = 'var(--color-yellow-500)';
     const offColor = 'var(--color-surface-300)';
+
     function changeState(power: boolean) {
         changePlugState(power);
         currentPowerState = power;
+    }
+
+    async function updatePowerState() {
+        const data: PowerState = await getPlugState();
+        currentPowerState = data.power;
     }
 
     onMount(async () => {
@@ -23,6 +30,11 @@
         const data: PowerState = await getPlugState();
         currentPowerState = data.power;
         loading = false;
+        pollInterval = setInterval(updatePowerState, 500);
+    });
+
+    onDestroy(() => {
+        clearInterval(pollInterval);
     });
 </script>
 
