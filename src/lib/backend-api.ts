@@ -19,7 +19,15 @@ async function changePlugState(power: boolean): Promise<Response> {
  */
 async function getPlugState(): Promise<PowerState> {
     return await (
-        await tryFetching(getBackendUrl() + endpoints.get.power_state, HTTP_METHOD.GET, null, '')
+        await fetch(
+            new Request(getBackendUrl() + endpoints.get.power_state, {
+                method: HTTP_METHOD.GET.toString(),
+                headers: {
+                    'Content-Type': 'text/plain',
+                },
+                body: null,
+            }),
+        )
     ).json();
 }
 

@@ -17,12 +17,24 @@
         changePlugState(power);
         currentPowerState = power;
     }
+    async function sleep(ms: number): Promise<void> {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+    async function contiousPoll() {
+        while (true) {
+            await sleep(500);
+            const data: PowerState = await getPlugState();
+            console.log('polled');
+            currentPowerState = data.power;
+        }
+    }
 
     onMount(async () => {
         loading = true;
         const data: PowerState = await getPlugState();
         currentPowerState = data.power;
         loading = false;
+        contiousPoll();
     });
 </script>
 
