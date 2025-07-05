@@ -29,7 +29,7 @@
 
         <div class="mt-5 grid w-full grid-cols-1 gap-6 md:grid-cols-2">
             <ManualOnOffCluster />
-            <NextOnOffTime {configData} />
+            <NextOnOffTime />
         </div>
 
         <div
@@ -78,11 +78,14 @@
 
         <h1 class="mt-10 text-xl font-semibold">Sonnenzeiten & Schaltzeiten</h1>
         <p class="mb-2 text-sm opacity-60">
-            <Info class="mb-0.5 inline w-4" /> Mit diesem Graphen erhältst du einen übersichtlichen Einblick in alle Abläufe im
-            Terrarium.<br>
-            Du kannst erkennen, <strong>wann</strong> im Jahresverlauf die <strong>Schaltzeiten</strong> im Verhältnis zu
-            den Sonnenaufgangs- und Sonnenuntergangszeiten liegen, sowohl in der <strong>natürlichen Umgebung</strong>
-            als auch im <strong>Terrarium</strong>. <br>Die Tage sind von oben nach unten zu lesen.
+            <Info class="mb-0.5 inline w-4" /> Mit diesem Graphen erhältst du einen übersichtlichen Einblick
+            in alle Abläufe im Terrarium.<br />
+            Du kannst erkennen, <strong>wann</strong> im Jahresverlauf die
+            <strong>Schaltzeiten</strong>
+            im Verhältnis zu den Sonnenaufgangs- und Sonnenuntergangszeiten liegen, sowohl in der
+            <strong>natürlichen Umgebung</strong>
+            als auch im <strong>Terrarium</strong>. <br />Die Tage sind von oben nach unten zu
+            lesen.
         </p>
         {#await configData}
             <div class="placeholder h-[550px] animate-pulse"></div>
