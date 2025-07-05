@@ -36,7 +36,7 @@
     }
 
     let {
-        triggerText = 'Jetzt starten',
+        triggerText = 'Jetzt durchstarten 🚀',
         hideButton = false,
         openState = $bindable(false),
         onConfirm,
