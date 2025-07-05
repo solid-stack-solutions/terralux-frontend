@@ -13,7 +13,7 @@
     <Accordion.Item
         value="additional-settings"
         controlHover="hover:bg-surface-600"
-        controlClasses="text-lg font-semibold"
+        controlClasses="text-xl font-semibold"
     >
         {#snippet control()}Weitere Informationen{/snippet}
         {#snippet panel()}
