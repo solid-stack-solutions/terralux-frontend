@@ -150,10 +150,7 @@
                     <div class="aspect-[6/5] shadow">
                         <LocationPicker
                             selected={terrCoords}
-                            onSelect={(pos) => {
-                                terrCoords = pos;
-                                selectedReptile = null;
-                            }}
+                            onSelect={(pos) => (terrCoords = pos)}
                             markerIcon={houseIcon}
                         />
                     </div>
@@ -164,7 +161,10 @@
                     <div class="aspect-[6/5] shadow">
                         <LocationPicker
                             selected={natCoords}
-                            onSelect={(pos) => (natCoords = pos)}
+                            onSelect={(pos) => {
+                                natCoords = pos;
+                                selectedReptile = null;
+                            }}
                             markerIcon={treeIcon}
                         />
                     </div>
