@@ -7,7 +7,7 @@
     import NaturalFactorSlider from '$lib/components/naturalFactorSlider.svelte';
     import SmoothLoadingBar from '$lib/components/smoothLoadingBar.svelte';
     import { toaster } from '$lib/toaster';
-    import { ArrowBigLeftDash, ShieldAlert } from '@lucide/svelte';
+    import { ArrowBigLeftDash, Info, ShieldAlert } from '@lucide/svelte';
     import { LatLng } from 'leaflet';
     import { onMount } from 'svelte';
     import { ipState } from './ipstate.svelte';
@@ -191,7 +191,7 @@
 
         <p class="mt-15 text-xl font-semibold">Natürlichkeitsfaktor</p>
         <p class="mb-5 text-sm opacity-60">
-            Der Natürlichkeitsfaktor bestimmt, wie stark sich die Schaltzeiten deiner
+            <Info class="mb-0.5 inline w-4" /> Der Natürlichkeitsfaktor bestimmt, wie stark sich die Schaltzeiten deiner
             Terrarienlampen am natürlichen Biorhythmus deines Reptils orientieren. <br /> Hier
             kannst du einen Wert zwischen <strong>0 %</strong>
             für die Sonnenauf/-untergangszeiten am <strong>Terrarium Standort</strong> und
